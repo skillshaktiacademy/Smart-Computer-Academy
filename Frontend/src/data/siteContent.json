@@ -1,0 +1,208 @@
+{
+  "seo": {
+    "home": {
+      "title": "Skill Shakti Academy | #1 Computer Institute in Bihar | DCA, ADCA, Tally",
+      "description": "Join Skill Shakti Academy, Bihar's most trusted computer education center. ISO Certified diploma courses in DCA, ADCA, PGDCA, Tally with GST. Start your career today!",
+      "keywords": "computer institute Bihar, DCA course Bihar, ADCA Bihar, computer diploma Bihar, Skill Shakti Academy, computer coaching Patna, computer classes Gaya"
+    },
+    "courses": {
+      "title": "Computer Courses & Diplomas | Skill Shakti Academy Bihar",
+      "description": "Explore our government recognized computer courses. From 2-month certificate to 1-year diploma. Learn DCA, ADCA, Tally, Web Design and more.",
+      "keywords": "DCA syllabus, ADCA course fees, Tally with GST Bihar, computer diploma courses, professional IT training"
+    },
+    "about": {
+      "title": "About Skill Shakti Academy | Leading IT Training in Bihar",
+      "description": "Skill Shakti Academy is dedicated to digital literacy in Bihar. With 15+ years of excellence, we empower students with job-oriented computer skills.",
+      "keywords": "best computer center Bihar, computer education mission, Skill Shakti Academy history"
+    },
+    "franchise": {
+      "title": "Start Computer Franchise in Bihar | Skill Shakti Academy Business",
+      "description": "Become a partner in Bihar's digital revolution. Open your own Skill Shakti Academy franchise. Low investment, high returns, and full academic support.",
+      "keywords": "computer franchise Bihar, open computer center, education business opportunity, low investment franchise"
+    },
+    "contact": {
+      "title": "Contact Skill Shakti Academy | Locations in Bihar",
+      "description": "Get in touch for admissions or franchise queries. Visit our Patna head office or call us at +91 9876543210. Bihar's best IT academy.",
+      "keywords": "computer institute address Patna, Skill Shakti contact number, admission helpline"
+    },
+    "verifyCertificate": {
+      "title": "Verify Student Certificate | Skill Shakti Academy Official",
+      "description": "Check the authenticity of Skill Shakti Academy certificates online. QR-code based instant verification for employers and students.",
+      "keywords": "certificate verification, verify computer diploma, Skill Shakti student search"
+    }
+  },
+  "hero": {
+    "badge": "Bihar ka #1 Computer Institute",
+    "headline": "Digital Saksharta se <span class='text-accent'>Atmanirbhar</span> Bihar Tak.",
+    "subheadline": "Ab har ghar se banega ek Computer Expert. Skill Shakti Academy lekar aaya hai industry-leading courses sabse saste fees mein.",
+    "cta1": "View Courses",
+    "cta2": "Verify Certificate"
+  },
+  "stats": [
+    { "label": "Students Enrolled", "value": "15,000+", "icon": "Users" },
+    { "label": "Franchise Centers", "value": "120+", "icon": "Building2" },
+    { "label": "Success Rate", "value": "98%", "icon": "TrendingUp" },
+    { "label": "Experience", "value": "15+ Years", "icon": "Award" }
+  ],
+  "about": {
+    "heading": "Empowering Bihar Through Digital Education.",
+    "paragraph1": "Skill Shakti Academy Bihar ka ek agarni computer education institute hai jo pichle 15 saalo se logo ko digital yug ke liye taiyar kar raha hai. Hamara uddeshya har student ko technical skills se mazboot banana hai.",
+    "paragraph2": "Hum srif degree nahi, job-ready skills dete hai. Hamare DCA aur ADCA courses Bihar ke students ke liye vishesh roop se design kiye gaye hai taki wo sarkari aur private jobs mein safal ho sake.",
+    "mission": "Bihar ke har block aur gaon tak gunvatta-purna (quality) computer shiksha pahunchana.",
+    "vision": "Bihar ko India ka digital hub banana aur yuvaon ko berozgari se mukti dilana."
+  },
+  "whyChooseUs": [
+    { "title": "Government Recognized", "description": "Hamare certificates sabhi sarkari aur private jobs ke liye valid hai.", "icon": "ShieldCheck" },
+    { "title": "Expert Faculty", "description": "Experienced teachers jo hard-topic ko aasaan bhasha mein samjhate hai.", "icon": "User" },
+    { "title": "Placement Support", "description": "Interview ki taiyari aur resume building mein poori sahayata.", "icon": "Rocket" },
+    { "title": "Modern Labs", "description": "High-speed internet aur latest software ke sath advanced labs.", "icon": "LayoutGrid" }
+  ],
+  "courses": [
+    {
+      "title": "DCA - Diploma in Computer Applications",
+      "slug": "dca",
+      "duration": "6 Months",
+      "fee": 3500,
+      "category": "DCA",
+      "description": "Essential foundation for every student and professional.",
+      "syllabus": [
+        { "moduleTitle": "Computer Fundamentals", "topics": ["Introduction to Computers", "History & Generations", "Hardware & Software Concepts", "Operating System Basics"] },
+        { "moduleTitle": "MS Office Suite", "topics": ["MS Word (Advanced Documentation)", "MS Excel (Spreadsheets & Formulas)", "MS PowerPoint (Presentations)"] },
+        { "moduleTitle": "Internet & Communication", "topics": ["Browsing & Search Engines", "Email Management", "Social Media Safety", "Online Banking & Services"] }
+      ]
+    },
+    {
+      "title": "ADCA - Advance Diploma in Computer Applications",
+      "slug": "adca",
+      "duration": "12 Months",
+      "fee": 6500,
+      "category": "ADCA",
+      "description": "The most popular one-year diploma for career growth in Bihar.",
+      "syllabus": [
+        { "moduleTitle": "First Semester (DCA Core)", "topics": ["Fundamentals", "OS (Windows/Linux)", "MS Office Full Suite", "Internet"] },
+        { "moduleTitle": "Financial Accounting", "topics": ["Tally Prime with GST", "Inventory Management", "Voucher Entry", "Balance Sheet Analysis"] },
+        { "moduleTitle": "Graphic Designing & Programming", "topics": ["Photoshop Basics", "PageMaker", "Introduction to C/C++", "HTML & Web Basics"] }
+      ]
+    },
+    {
+      "title": "PGDCA - Post Graduate Diploma in Computer Applications",
+      "slug": "pgdca",
+      "duration": "12 Months",
+      "fee": 8500,
+      "category": "PGDCA",
+      "description": "Professional level diploma after graduation for high-end IT roles.",
+      "syllabus": [
+        { "moduleTitle": "IT Frameworks", "topics": ["Computer Organization", "Data Communication", "System Analysis & Design"] },
+        { "moduleTitle": "Advanced Programming", "topics": ["C++ Programming", "Java Fundamentals", "RDBMS & SQL Concepts"] },
+        { "moduleTitle": "Business Computing", "topics": ["ERP Systems", "Business Analytics", "E-Commerce Management"] }
+      ]
+    },
+    {
+      "title": "Tally Prime with GST",
+      "slug": "tally-gst",
+      "duration": "3 Months",
+      "fee": 2500,
+      "category": "Tally",
+      "description": "Become a professional accountant with GST knowledge.",
+      "syllabus": [
+        { "moduleTitle": "Accounting Fundamentals", "topics": ["Journal Entries", "Ledger & Trial Balance", "Final Accounts"] },
+        { "moduleTitle": "Tally Operations", "topics": ["Company Creation", "Inventory Setup", "Taxation (GST, TDS, TCS)", "Payroll Management"] }
+      ]
+    },
+    {
+      "title": "MS Office Certificate",
+      "slug": "ms-office",
+      "duration": "2 Months",
+      "fee": 1500,
+      "category": "Other",
+      "description": "Master the world's most used productivity software.",
+      "syllabus": [
+        { "moduleTitle": "Word & Excel", "topics": ["Advanced Formatting", "VLOOKUP & Pivot Tables", "Mail Merge"] },
+        { "moduleTitle": "Presentations", "topics": ["Slide Transitions", "Animations", "Master Slides"] }
+      ]
+    },
+    {
+      "title": "Professional Web Design",
+      "slug": "web-design",
+      "duration": "3 Months",
+      "fee": 4500,
+      "category": "Other",
+      "description": "Learn to create beautiful and responsive websites.",
+      "syllabus": [
+        { "moduleTitle": "Frontend Basics", "topics": ["HTML5 Structural Tags", "CSS3 Styling & Flexbox", "JavaScript Fundamentals"] },
+        { "moduleTitle": "Frameworks", "topics": ["Bootstrap 5", "Responsive Web Design Concepts"] }
+      ]
+    },
+    {
+      "title": "Hindi & English Typing",
+      "slug": "typing",
+      "duration": "2 Months",
+      "fee": 1000,
+      "category": "Other",
+      "description": "Essential for government clerk jobs (SSC, BSSC).",
+      "syllabus": [
+        { "moduleTitle": "Speed & Accuracy", "topics": ["Touch Typing Method", "Remington GAIL Keyboard", "Speed Improvement Drills", "Mock Typing Tests"] }
+      ]
+    },
+    {
+      "title": "Hardware & Networking",
+      "slug": "hardware-networking",
+      "duration": "6 Months",
+      "fee": 5500,
+      "category": "Other",
+      "description": "Become a certified computer technician.",
+      "syllabus": [
+        { "moduleTitle": "Hardware Troubleshooting", "topics": ["Assembling PC", "OS Installation", "Component Testing"] },
+        { "moduleTitle": "Networking", "topics": ["LAN Configuration", "IP Addressing", "Router Setup", "Security Basics"] }
+      ]
+    }
+  ],
+  "testimonials": [
+    { "name": "Amit Ranjan", "course": "ADCA", "text": "Skill Shakti Academy Patna mein join karne ke baad mera confidence bahut badh gaya hai. Ab main bank mein aaram se computer operator ka kaam kar raha hoon.", "rating": 5, "location": "Patna" },
+    { "name": "Priyanka Kumari", "course": "Tally GST", "text": "Sir bahut hi accha padhate hai. GST returns aur accounting ab mere liye bahut aasaan hai. Best institute for girls in Gaya.", "rating": 5, "location": "Gaya" },
+    { "name": "Ravi Yadav", "course": "DCA", "text": "Fees bhi kam hai aur padhai bhi top class. Bihar ke har gaon mein aisi academy honi chahiye.", "rating": 5, "location": "Muzaffarpur" }
+  ],
+  "franchiseBenefits": [
+    { "title": "Low Investment", "description": "Kam lagat mein apna computer center shuru karein." },
+    { "title": "Authorized Certification", "description": "Sarkari manyata prapt certificates dene ka adhikaar." },
+    { "title": "Full Course Material", "description": "Syllabus, books aur exam paper ki poori suvidha." },
+    { "title": "Technical Training", "description": "Franchise owner aur staff ko poori training." }
+  ],
+  "franchiseProcess": [
+    { "step": 1, "title": "Online Inquiry", "description": "Pahle hamare inquiry form ko bharein ya call karein." },
+    { "step": 2, "title": "Location Visit", "description": "Hamari team aapke center location ko verify karegi." },
+    { "step": 3, "title": "Documentation", "description": "Agreement aur affiliation process poora karein." },
+    { "step": 4, "title": "Center Launch", "description": "Marketing support aur pehle batch ka enrollment shuru." }
+  ],
+  "franchiseFAQ": [
+    { "question": "Bihar mein computer center kholne ke liye kitni jagah chahiye?", "answer": "Aapko kam se kam 500-800 sq. ft. jagah chahiye jisme ek lab aur ek classroom ban sake." },
+    { "question": "Kya mujhe sikhana aata hona chahiye?", "answer": "Nahi, hum aapko aur aapke teachers ko poori training denge." },
+    { "question": "Certificate kab milta hai?", "answer": "Exam ke 15-20 dino ke andar verifiable certificate online upload ho jata hai." }
+  ],
+  "notices": [
+    { "title": "New Session Admissions Open", "content": "April-June batch ke liye DCA aur ADCA mein admission shuru ho gaye hai. Aaj hi apne nazdiki center visit karein.", "date": "March 20, 2024" },
+    { "title": "Annual Scholarship Exam", "content": "Har saal ki tarah is baar bhi mega scholarship test hone wala hai. Top 10 students ko 100% fee discount milega.", "date": "March 15, 2024" },
+    { "title": "Tally New Batch", "content": "Specially designed for commerce students, Tally Prime with GST ka naya batch 1st April se shuru ho raha hai.", "date": "March 10, 2024" },
+    { "title": "Certificate Distribution Ceremony", "content": "Jan-Feb batch ke students apna certificate 25th March ko head office se collect kar sakte hai.", "date": "March 05, 2024" },
+    { "title": "Franchise Meet 2024", "content": "Bihar ke sabhi franchise owners ke liye Patna mein annual meet rakhi gayi hai. Invite cards aapke email par bhej diye gaye hai.", "date": "March 01, 2024" }
+  ],
+  "footerLinks": {
+    "quickLinks": [
+      { "label": "About Academy", "href": "/about" },
+      { "label": "Verify Certificate", "href": "/verify-certificate" },
+      { "label": "Franchise Inquiry", "href": "/franchise" },
+      { "label": "Contact Us", "href": "/contact" }
+    ],
+    "courses": [
+      { "label": "DCA Diploma", "href": "/courses/dca" },
+      { "label": "ADCA Diploma", "href": "/courses/adca" },
+      { "label": "Tally Training", "href": "/courses/tally-gst" },
+      { "label": "Web Designing", "href": "/courses/web-design" }
+    ],
+    "contact": {
+      "address": "Main Road, Opp. SBI Bank, Patna, Bihar - 800001",
+      "phone": "+91 98765 43210",
+      "email": "info@skillshakti.com"
+    }
+  }
+}
