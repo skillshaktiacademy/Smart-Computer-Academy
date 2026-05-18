@@ -126,16 +126,16 @@ function Home() {
         <motion.div 
           id="student-choices"
           variants={sectionVariants} 
-          className="max-w-7xl mx-auto w-full text-center z-10"
+          className="max-w-7xl mx-auto w-full text-center z-10 pt-10"
         >
-          <span className="inline-block px-3 py-1 bg-red-50 border border-red-100 text-red-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-4 shadow-sm">
-            Our Job Oriented Syllabus
+          <span className="inline-block px-4 py-1.5 bg-red-50/80 border border-red-100 text-red-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6 shadow-sm">
+            Job Oriented Syllabus
           </span>
-          <h2 className="text-3xl sm:text-5xl font-black text-gray-900 mb-4 tracking-tight leading-tight">
-            Student’s Top Choices
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-gray-900 mb-6 tracking-tight leading-tight">
+            Explore Our <span className="text-red-600">Top Courses</span>
           </h2>
-          <p className="text-xs sm:text-sm text-gray-500 max-w-xl mx-auto leading-relaxed mb-12 font-medium">
-            Explore our most popular and career-focused <strong className="font-extrabold text-red-600">computer courses in Kahalgaon</strong>, designed with hands-on labs and direct corporate placement guidance.
+          <p className="text-sm sm:text-base text-gray-500 max-w-2xl mx-auto leading-relaxed mb-16 font-medium">
+            Discover Kahalgaon's most comprehensive computer courses. From foundational skills to advanced accounting and web development, we have the perfect program for your career.
           </p>
 
           {/* Decluttered, clean course cards */}
@@ -156,17 +156,17 @@ function Home() {
         {/* Section 4: Why Choose Us (Clean whitespace feature cards) */}
         <motion.section 
           variants={sectionVariants}
-          className="max-w-7xl mx-auto w-full z-10"
+          className="max-w-7xl mx-auto w-full z-10 pt-10"
         >
-          <div className="text-center mb-12">
-            <span className="inline-block px-3 py-1 bg-red-50 border border-red-100 text-red-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-4 shadow-sm">
+          <div className="text-center mb-16">
+            <span className="inline-block px-4 py-1.5 bg-red-50/80 border border-red-100 text-red-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6 shadow-sm">
               Our Key Strengths
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4 tracking-tight leading-tight">
-              Why Learn At Smart Computer Academy?
+            <h2 className="text-3xl sm:text-5xl font-black text-gray-900 mb-6 tracking-tight leading-tight">
+              Why Choose Smart Computer Academy?
             </h2>
-            <p className="text-xs text-gray-500 max-w-md mx-auto font-medium">
-              We stand apart in deliverable excellence, central Kahalgaon labs, and accredited certifications.
+            <p className="text-sm sm:text-base text-gray-500 max-w-2xl mx-auto font-medium leading-relaxed">
+              We stand apart in deliverable excellence, central Kahalgaon labs, and accredited certifications that actually help you get hired.
             </p>
           </div>
 
@@ -303,21 +303,21 @@ function Home() {
             viewport={{ once: true, margin: "-100px" }}
             className="w-full"
           >
-            <div className="bg-gray-950 text-white rounded-3xl p-8 sm:p-12 text-center shadow-md relative overflow-hidden z-10">
+            <div className="bg-gray-900 text-white rounded-[32px] p-8 sm:p-16 text-center shadow-2xl relative overflow-hidden z-10 border border-gray-800">
               {/* Ultra subtle background gradient node */}
-              <div className="absolute inset-0 bg-gradient-to-r from-red-600/[0.08] to-blue-500/[0.04] pointer-events-none -z-10" />
+              <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 via-transparent to-blue-600/10 pointer-events-none -z-10" />
               
-              <span className="inline-block px-3 py-1 bg-red-500/10 border border-red-500/20 text-red-400 text-[10px] font-extrabold uppercase tracking-widest rounded-full mb-4">
+              <span className="inline-block px-4 py-1.5 bg-red-500/10 border border-red-500/20 text-red-400 text-[10px] font-extrabold uppercase tracking-widest rounded-full mb-6">
                 Admissions Ongoing
               </span>
-              <h3 className="text-2xl sm:text-4xl font-black tracking-tight leading-tight max-w-xl mx-auto">
-                Secure Your Seat At Kahalgaon's Central Computer Academy
+              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight max-w-3xl mx-auto">
+                Secure Your Seat At Kahalgaon's Most Advanced Computer Academy
               </h3>
-              <p className="text-xs text-slate-400 mt-3 max-w-md mx-auto font-medium">
-                Get online verifiable ISO-certified training under Praveen Sir. Apply today for a free demo class.
+              <p className="text-sm sm:text-base text-gray-400 mt-6 max-w-xl mx-auto font-medium leading-relaxed">
+                Join thousands of successful students. Get online verifiable ISO-certified training under expert guidance. Apply today for a free demo class.
               </p>
               
-              <div className="flex flex-col sm:flex-row justify-center gap-4 pt-6">
+              <div className="flex flex-col sm:flex-row justify-center gap-4 pt-10">
                 <motion.button 
                   whileTap={{ scale: 0.96 }}
                   onClick={() => navigate("/contact")}

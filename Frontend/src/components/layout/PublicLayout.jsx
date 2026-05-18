@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
-import { Menu, X, LogIn, ChevronRight, GraduationCap, PhoneCall, Mail, MapPin } from "lucide-react";
+import { Menu, X, ChevronRight, PhoneCall, Mail, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
+import logoImg from "../../assets/logo.jpg";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,9 +45,11 @@ const Navbar = () => {
           {/* Logo Section */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2 group">
-              <div className="w-9 h-9 bg-red-600 rounded-xl flex items-center justify-center shadow-sm group-hover:bg-gray-900 transition-colors duration-300">
-                <GraduationCap className="text-white" size={20} />
-              </div>
+              <img
+                src={logoImg}
+                alt="Smart Computer Academy Logo"
+                className="w-10 h-10 rounded-xl object-cover shadow-sm ring-1 ring-red-100 group-hover:ring-red-400 transition-all duration-300"
+              />
               <div className="flex flex-col">
                 <span className="text-gray-900 font-black text-sm tracking-tight leading-none uppercase">
                   Smart Computer
@@ -194,9 +197,11 @@ const Footer = () => (
         {/* Branding Column */}
         <div className="col-span-1 md:col-span-2 space-y-5">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
-              <GraduationCap className="text-white" size={18} />
-            </div>
+            <img
+              src={logoImg}
+              alt="Smart Computer Academy"
+              className="w-10 h-10 rounded-xl object-cover ring-1 ring-red-800"
+            />
             <span className="text-white font-black text-lg tracking-tight uppercase">Smart Computer Academy</span>
           </div>
           <p className="text-xs text-slate-400 max-w-sm leading-relaxed font-medium">
