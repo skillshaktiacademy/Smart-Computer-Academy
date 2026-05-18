@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -19,6 +20,7 @@ const itemVariants = {
 };
 
 const CertificateGallery = () => {
+    const navigate = useNavigate();
     const certificates = [
         {
             id: 1,
@@ -92,7 +94,7 @@ const CertificateGallery = () => {
 
                 <motion.button 
                     whileTap={{ scale: 0.96 }}
-                    onClick={() => alert("Our full academy physical gallery is coming soon! You are welcome to visit our Smart Computer Academy campus at S.S.V. College Road, Kahalgaon.")}
+                    onClick={() => navigate("/gallery")}
                     className="mt-10 bg-red-600 hover:bg-gray-900 text-white text-[10px] font-extrabold uppercase tracking-widest px-8 py-3.5 rounded-xl transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
                 >
                     View All Gallery

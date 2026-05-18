@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Clock, Tag } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const courses = [
   {
@@ -88,6 +89,8 @@ const cardVariants = {
 };
 
 const CourseCards = () => {
+  const navigate = useNavigate();
+
   return (
     <motion.div 
       variants={containerVariants}
@@ -148,7 +151,7 @@ const CourseCards = () => {
             {/* Clean, premium converted button */}
             <motion.button 
               whileTap={{ scale: 0.97 }}
-              onClick={() => alert(`Enquiry submitted for ${course.title}. Praveen Sir will reach out to you shortly.`)}
+              onClick={() => navigate("/contact")}
               className="w-full mt-4 bg-red-600 hover:bg-gray-900 text-white text-[10px] font-extrabold uppercase tracking-widest py-3 rounded-xl transition-all duration-300 shadow-sm active:scale-97 text-center cursor-pointer"
             >
               Admission Enquiry
