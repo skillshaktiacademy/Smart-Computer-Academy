@@ -30,11 +30,11 @@ function Home() {
 
   return (
     <>
-      {/* SEO Optimization Meta Tags */}
+      {/* SEO Optimization Meta Tags (Updated for Smart Computer Academy Kahalgaon) */}
       <Meta 
-        title="Smart Computer Academy | Best Computer Classes in Balbadda, Godda" 
-        description="Explore career-focused computer courses at Smart Computer Academy in Balbadda, Godda. Learn ADCA, DCA, Tally Prime + GST, Web Development, SEO, and coding with 100% practical lab training."
-        keywords="computer classes Balbadda, computer courses Godda, Tally GST coaching Godda, web development course Balbadda, ADCA DCA Godda"
+        title="Smart Computer Academy Kahalgaon | Best Computer Classes & ISO Certified Center" 
+        description="Explore software & hardware computer courses at Smart Computer Academy in Kahalgaon. Learn ADCA (₹3500), DCA (₹1500), Tally Prime + GST (₹2500), DFA, DTP, and Typing with 100% practical lab training."
+        keywords="computer classes Kahalgaon, computer courses Kahalgaon, Tally Prime GST coaching Kahalgaon, ADCA DCA Kahalgaon, Praveen Sir computer Kahalgaon"
       />
 
       {/* Main Container with highly optimized minimalist background mesh */}
@@ -66,7 +66,7 @@ function Home() {
               Student’s Top Choices
             </h2>
             <p className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto leading-relaxed italic mb-10 border-l-4 border-red-500 pl-4 text-left font-medium">
-              "Explore our most popular and career-focused <strong className="font-extrabold text-red-600">computer courses in Balbadda, Godda</strong>, designed with practical knowledge and live training. Discover our trusted and in-demand programs to achieve academic excellence and professional success."
+              "Explore our most popular and career-focused <strong className="font-extrabold text-red-600">computer courses in Kahalgaon</strong>, designed with practical knowledge and live training. Discover our trusted, in-demand programs with certified syllabuses to achieve academic excellence and professional success."
             </p>
 
             {/* Course Cards Container */}
@@ -77,7 +77,7 @@ function Home() {
             <motion.div whileTap={{ scale: 0.95 }} className="mt-8 z-20">
               <button 
                 onClick={() => navigate('/courses')}
-                className="bg-red-600 hover:bg-gray-900 text-white font-extrabold text-sm px-8 py-4 rounded-xl hover:shadow-xl transition-all duration-300 transform active:scale-95 shadow-md"
+                className="bg-red-600 hover:bg-gray-900 text-white font-extrabold text-sm px-8 py-4 rounded-xl hover:shadow-xl transition-all duration-300 transform active:scale-95 shadow-md cursor-pointer"
               >
                 View All Courses
               </button>

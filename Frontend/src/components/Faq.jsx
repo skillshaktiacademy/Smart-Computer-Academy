@@ -3,28 +3,28 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const faqData = [
   {
-    question: "What courses are offered at Smart Computer Academy?",
-    answer: "We offer a wide range of job-oriented and professional computer programs including ADCA (12 Months), DCA (6 Months), Tally Prime with GST (3 Months), Full-Stack Web Development (6-9 Months), Python, C/C++ Coding, AutoCAD, 2D/3D Animation, SEO, and YouTube Channel Management."
+    question: "What courses are offered at Smart Computer Academy Kahalgaon?",
+    answer: "We offer government-recognized software, hardware, and typing programs including ADCA (12 Months Course - ₹3500), DCA (6 Months Course - ₹1500), Tally with GST (6 Months Course - ₹2500), DFA (Diploma in Financial Accounting), DTP (Desktop Publishing), Hindi & English Expert Typing, and Data Entry Operator."
   },
   {
-    question: "Are the certificates from Smart Computer Academy globally/nationally recognized?",
-    answer: "Yes, absolutely! All our certificates are ISO 9001:2015 certified, government-registered, and nationally recognized. You can present them in any private or government job interview, and they can be easily verified online through our verification portal."
+    question: "Are the certificates globally/nationally recognized and online verifiable?",
+    answer: "Yes, absolutely! Smart Computer Academy is an ISO 9001:2015 certified institute registered under the Govt. of India (Udyam Regd. No: UDYAM-BR-07-00328832). All our certificates are valid for government & private sector job interviews and can be instantly verified on our online verification portal."
   },
   {
-    question: "Do you provide 100% practical lab training?",
-    answer: "Yes, our training is heavily focused on hands-on practical experience. Every student gets dedicated computer access in our fully equipped computer lab, along with real-world case studies, accounting books (for Tally), and live projects (for Web Development)."
+    question: "What is the fee structure? Do you have installable or low-fee plans?",
+    answer: "We have the most affordable fees in Kahalgaon: ADCA (1 Year) is only ₹3500, DCA (6 Months) is ₹1500, and Tally (6 Months) is only ₹2500. We also provide online form-filling and basic hardware training during the course at no extra cost!"
   },
   {
-    question: "What are the timings of the classes? Is there flexibility?",
-    answer: "We run multiple batches daily from 8:00 AM to 7:00 PM. We offer flexible hours for school/college students, working professionals, and business owners, so you can learn at your own comfortable pace."
+    question: "Do you provide 100% practical lab training and job guarantees?",
+    answer: "Yes, our training center provides a fully equipped computer lab with dedicated individual PC access, professional faculty, and live practice projects. We stand by our banner statement and offer full job assistance & guidance to our graduates."
   },
   {
-    question: "Do you offer job placement or career support?",
-    answer: "Yes, we provide complete career counselling, resume building assistance, mock interview sessions, and job vacancy alerts. Our practical learning makes our graduates ready for immediate employment in administrative, IT, accounting, and creative fields."
+    question: "What are the timings of the classes? Is it open to beginners?",
+    answer: "Classes are open for all school, college, and non-computer background students. We operate multiple batches from 8:00 AM in the morning to 7:00 PM in the evening, providing complete flexibility to match your schedule."
   },
   {
-    question: "How can I apply for a new admission or ask a query?",
-    answer: "You can easily request a callback by filling out our online Enquiry Form on the homepage, or you can call us directly at +91 80925 78834. Our admission counselor, Awdhesh Sir, will guide you to choose the best career-focused course!"
+    question: "How do I secure an admission or register a query?",
+    answer: "You can submit an inquiry through our Online Callback Form on the homepage, or visit our physical campus at S.S.V. College Road, Near STS Coaching, Kahalgaon (1st Floor). You can also call Director Praveen Sir directly at +91 99057 88324 for immediate support."
   }
 ];
 
@@ -46,7 +46,7 @@ const Faq = () => {
             Frequently Asked Questions
           </h2>
           <p className="text-gray-600 mt-3 text-sm sm:text-base leading-relaxed font-medium">
-            Find answers to common questions about our courses, certifications, batch timings, and training methods at Smart Computer Academy.
+            Find answers to common questions about our courses, government certifications, low fee structures, and lab practicals in Kahalgaon.
           </p>
         </div>
 
@@ -64,7 +64,7 @@ const Faq = () => {
               >
                 <button
                   onClick={() => toggleAccordion(index)}
-                  className="w-full flex items-center justify-between p-5 text-left font-bold text-gray-900 transition-colors duration-200 hover:text-red-600 outline-none"
+                  className="w-full flex items-center justify-between p-5 text-left font-bold text-gray-900 transition-colors duration-200 hover:text-red-600 outline-none cursor-pointer"
                   aria-expanded={isOpen}
                 >
                   <span className="text-sm sm:text-base pr-4 font-extrabold">{item.question}</span>

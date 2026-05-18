@@ -26,27 +26,27 @@ const CertificateGallery = () => {
         {
             id: 1,
             image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=400",
-            alt: 'Students learning computers together',
+            alt: 'Students learning computers together in Kahalgaon',
         },
         {
             id: 2,
             image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=400",
-            alt: 'Interactive computer practical classes Godda',
+            alt: 'Interactive computer practical classes Kahalgaon',
         },
         {
             id: 3,
             image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=80&w=400",
-            alt: 'Group discussion and career training Balbadda',
+            alt: 'Group discussion and career training Kahalgaon',
         },
         {
             id: 4,
             image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=400",
-            alt: 'Teacher guiding student in computer programming',
+            alt: 'Teacher guiding student in computer programming in Kahalgaon',
         },
     ];
 
     return (
-        <section className="bg-white/30 backdrop-blur-xl px-6 py-16 sm:px-8 lg:px-16 rounded-3xl shadow-lg border border-white/50 my-8">
+        <section className="bg-white/30 backdrop-blur-xl px-6 py-16 sm:px-8 lg:px-16 rounded-3xl shadow-lg bg-white/30 backdrop-blur-xl border border-white/50 my-8">
             <div className="max-w-screen-xl mx-auto text-center">
                 <span className="inline-block px-3 py-1 bg-red-100 text-red-600 text-xs font-bold uppercase tracking-wider rounded-full mb-3">
                     Our Recognition & Pride
@@ -55,7 +55,7 @@ const CertificateGallery = () => {
                     Institute Certificate & Gallery
                 </h2>
                 <p className="text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed text-sm sm:text-base font-medium">
-                    Every student completing our <strong className="font-extrabold text-red-600">computer classes in Balbadda, Godda</strong> receives an ISO-certified, government-recognized certificate that significantly boosts their career, resume value, and success in job interviews.
+                    Every student completing our <strong className="font-extrabold text-red-600">computer classes in Kahalgaon</strong> receives an ISO-certified, government-recognized certificate that significantly boosts their career, resume value, and success in job interviews.
                 </p>
 
                 {/* Animated Grid Container */}
@@ -95,8 +95,8 @@ const CertificateGallery = () => {
 
                 <motion.button 
                     whileTap={{ scale: 0.95 }}
-                    onClick={() => alert("Our full academy physical gallery is coming soon! You are welcome to visit our Smart Computer Academy campus in Balbadda, Godda.")}
-                    className="mt-10 bg-red-600 text-white font-extrabold px-8 py-3 rounded-xl hover:bg-gray-900 transition-all duration-300 shadow-md hover:shadow-lg active:scale-95"
+                    onClick={() => alert("Our full academy physical gallery is coming soon! You are welcome to visit our Smart Computer Academy campus at S.S.V. College Road, Kahalgaon.")}
+                    className="mt-10 bg-red-600 text-white font-extrabold px-8 py-3 rounded-xl hover:bg-gray-900 transition-all duration-300 shadow-md hover:shadow-lg active:scale-95 cursor-pointer"
                 >
                     View All Gallery
                 </motion.button>

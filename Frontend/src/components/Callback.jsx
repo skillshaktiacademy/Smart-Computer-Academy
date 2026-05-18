@@ -25,7 +25,7 @@ const Callback = () => {
     
     // Simulate API delay
     setTimeout(() => {
-      alert(`Hii ${formData.name}, Thank you for reaching out to Smart Computer Academy! We will contact you on ${formData.mobile} soon to guide you through your career goals.`);
+      alert(`Hii ${formData.name}, Thank you for reaching out to Smart Computer Academy Kahalgaon! Praveen Sir will contact you on ${formData.mobile} soon to guide you through your career goals.`);
       setIsLoading(false);
       setFormData({
         name: '',
@@ -44,15 +44,15 @@ const Callback = () => {
           Get Career Counseling
         </span>
         <h2 id="support-heading" className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight">
-          Smart Computer Academy – Support & Inquiry Form
+          Smart Computer Academy – Support & Callback Inquiry
         </h2>
         <p className="text-gray-600 mt-3 text-sm sm:text-base max-w-2xl mx-auto font-medium">
-          Need help choosing the right computer course? Leave your details below, and our senior career counselor will call you back shortly.
+          Need help choosing the right software/hardware course or Tally ERP? Leave your details below, and Praveen Sir will call you back shortly.
         </p>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-8 items-stretch">
-        {/* Support Desk Info Card (Glassmorphism) */}
+        {/* Support Desk Info Card (Glassmorphism with Real Kahalgaon Data) */}
         <motion.div 
           whileHover={{ y: -5 }}
           className="bg-white/40 backdrop-blur-xl p-8 rounded-3xl shadow-lg border border-white/50 w-full lg:w-1/2 flex flex-col justify-center items-center text-center transition-all duration-300"
@@ -60,24 +60,27 @@ const Callback = () => {
           <div className="flex flex-col items-center">
             <img
               src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=200"
-              alt="Awdhesh sir - Smart Computer Academy Director"
+              alt="Praveen Sir - Smart Computer Academy Director"
               className="w-28 h-28 rounded-full object-cover mb-4 border-4 border-white/80 shadow-md transform hover:scale-105 transition-transform duration-300"
             />
-            <p className="text-[10px] font-extrabold text-gray-400 uppercase tracking-widest mb-1">Director & Head Counselor</p>
-            <p className="text-2xl font-black text-gray-900 mb-1">Awdhesh Sir</p>
+            <p className="text-[10px] font-extrabold text-gray-400 uppercase tracking-widest mb-1">Academy Founder & Director</p>
+            <p className="text-2xl font-black text-gray-900 mb-1">Praveen Sir</p>
             <p className="text-xs font-bold text-red-600 mb-4 bg-red-100/70 border border-red-200/50 px-3 py-1 rounded-full">
-              SMART COMPUTER ACADEMY SUPPORT
+              SMART COMPUTER ACADEMY KAHALGAON
             </p>
-            <p className="text-xs text-gray-500 mb-6 font-medium">(Available Batches: 10:00 AM - 7:00 PM)</p>
-            <p className="text-sm font-semibold text-gray-700 max-w-xs leading-relaxed">
-              For Free Career Guidance, Admissions & Offline Fee Structure Inquiries
+            <p className="text-xs text-gray-500 mb-6 font-medium">(Regd. By Govt. of India | ISO 9001:2015)</p>
+            <p className="text-sm font-semibold text-gray-700 max-w-xs leading-relaxed mb-2">
+              For Free Career Guidance, Admissions & Offline Fee Structure Inquiries:
+            </p>
+            <p className="text-xs text-gray-500 font-bold mb-4">
+              Address: S.S.V. College Road, Near STS Coaching, Kahalgaon
             </p>
             <motion.a 
               whileHover={{ scale: 1.05 }}
-              href="tel:+918092578834"
-              className="text-2xl sm:text-3xl font-black text-red-600 hover:text-red-700 transition-colors mt-6 block px-6 py-2 bg-red-50/50 rounded-2xl border border-red-100"
+              href="tel:+919905788324"
+              className="text-2xl sm:text-3xl font-black text-red-600 hover:text-red-700 transition-colors mt-2 block px-6 py-2 bg-red-50/50 rounded-2xl border border-red-100 shadow-sm"
             >
-              +91 80925 78834
+              +91 99057 88324
             </motion.a>
           </div>
         </motion.div>
@@ -152,7 +155,7 @@ const Callback = () => {
                   value={formData.city}
                   onChange={handleChange}
                   required
-                  placeholder="e.g. Godda"
+                  placeholder="e.g. Kahalgaon"
                   className="mt-1 block w-full px-4 py-3 border border-white/60 bg-white/50 backdrop-blur-sm rounded-xl shadow-sm focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition duration-200 text-sm font-medium"
                 />
               </div>
@@ -171,18 +174,16 @@ const Callback = () => {
                 className="mt-1 block w-full px-4 py-3 border border-white/60 bg-white/50 backdrop-blur-sm rounded-xl shadow-sm focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition duration-200 text-sm font-medium text-gray-700"
               >
                 <option value="">Select a course</option>
-                <option value="ADCA">ADCA – Advanced Diploma in Computer Applications</option>
-                <option value="DCA">DCA – Diploma in Computer Applications</option>
-                <option value="Tally">Tally Prime + GST</option>
+                <option value="ADCA">ADCA (Advanced Diploma in Computer Applications) - ₹3500</option>
+                <option value="DCA">DCA (Diploma in Computer Applications) - ₹1500</option>
+                <option value="Tally">Tally with GST - ₹2500</option>
+                <option value="DTP">DTP (Desktop Publishing)</option>
+                <option value="DFA">DFA (Diploma in Financial Accounting)</option>
+                <option value="Typing">Hindi & English Typing</option>
+                <option value="DataEntry">Data Entry Operator</option>
                 <option value="WebDev">Full-Stack Web Development</option>
                 <option value="AI">Artificial Intelligence</option>
                 <option value="ChatGPT">ChatGPT + AI Tools</option>
-                <option value="SEO">SEO (Search Engine Optimization)</option>
-                <option value="DataEntry">Data Entry Operator</option>
-                <option value="DFA">DFA (Diploma in Financial Accounting)</option>
-                <option value="Animation">Animation & VFX</option>
-                <option value="AutoCAD">AutoCAD</option>
-                <option value="Coding">Python/Java/C Language Coding</option>
                 <option value="Other">Other Course</option>
               </select>
             </div>
