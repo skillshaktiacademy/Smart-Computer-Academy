@@ -39,8 +39,9 @@ const StudentResult = () => {
   return (
     <>
       <Meta 
-        title="Student Result Lookup" 
-        description="Check your exam results and performance summary using your enrollment number." 
+        title="Online Student Result Portal | Verify Marks & Performance" 
+        description="Check your exam marks, grades, passing percentage, and performance summary online. Enter your Smart Computer Academy enrollment number to view results." 
+        keywords="student result lookup, computer center exam result, Smart Computer Academy marksheet verification, check results online Kahalgaon" 
       />
 
       <div className="bg-gray-50 min-h-screen py-24">
@@ -164,7 +165,7 @@ const StudentResult = () => {
                         </div>
                         
                         <div className="mt-12 text-center text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">
-                          Digitally generated statement • Skill Shakti Academy Examination Cell
+                          Digitally generated statement • Smart Computer Academy Examination Cell
                         </div>
                       </div>
                     </div>

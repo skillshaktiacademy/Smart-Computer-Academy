@@ -108,8 +108,8 @@ const Sidebar = () => {
               exit={{ opacity: 0 }}
               className="flex items-center space-x-2"
             >
-              <div className="w-8 h-8 bg-primary rounded flex items-center justify-center text-white font-bold">SS</div>
-              <span className="font-bold text-primary truncate">Skill Shakti</span>
+              <div className="w-8 h-8 bg-primary rounded flex items-center justify-center text-white font-bold">SCA</div>
+              <span className="font-bold text-primary truncate">Smart Computer</span>
             </motion.div>
           )}
         </AnimatePresence>

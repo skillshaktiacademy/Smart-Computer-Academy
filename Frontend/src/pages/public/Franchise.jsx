@@ -65,8 +65,9 @@ const Franchise = () => {
   return (
     <>
       <Meta 
-        title="Become a Franchise" 
-        description="Join the Skill Shakti Academy network. Start your own computer institute with our proven business model and complete academic support." 
+        title="Become a Partner | Franchise Opportunity Smart Computer Academy" 
+        description="Join the Smart Computer Academy network in Bihar. Open your own IT and software computer training institute with proven low-investment business models." 
+        keywords="computer center franchise Bihar, open computer institute, Smart Computer Academy franchise, start typing coaching center" 
       />
 
       <div className="bg-white">
@@ -121,7 +122,7 @@ const Franchise = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
-                { title: "Brand Identity", desc: "Use the trusted 'Skill Shakti Academy' brand recognized across Bihar.", icon: ShieldCheck },
+                { title: "Brand Identity", desc: "Use the trusted 'Smart Computer Academy' brand recognized across Bihar.", icon: ShieldCheck },
                 { title: "Academic Support", desc: "Access to updated syllabus, course materials, and examination systems.", icon: Building2 },
                 { title: "Marketing Tools", desc: "Get professional flyers, digital marketing support, and leads.", icon: TrendingUp },
                 { title: "Online Dashboard", desc: "Complete management software for students, fees, and results.", icon: Users }

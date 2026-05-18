@@ -75,14 +75,14 @@ const Login = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="w-24 h-24 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-2xl"
           >
-            <span className="text-primary font-black text-5xl">SS</span>
+            <span className="text-primary font-black text-4xl">SCA</span>
           </motion.div>
           <h1 className="text-5xl font-black text-white mb-6 leading-tight">
             Elevate Your <span className="text-accent">Skills</span>, Shape Your Future.
           </h1>
           <p className="text-xl text-gray-300 mb-10 leading-relaxed">
             Access the most advanced computer institute management system in India. 
-            Streamline your learning journey with Skill Shakti Academy.
+            Streamline your learning journey with Smart Computer Academy.
           </p>
           
           <ul className="space-y-4">

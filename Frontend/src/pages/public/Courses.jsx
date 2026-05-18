@@ -1,34 +1,46 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Filter, BookOpen, Clock, Award, ArrowRight, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Meta from "../../components/common/Meta";
 import { publicAPI } from "../../api/public.api";
+import CourseCard from "../../components/course/CourseCard";
+import { mockCoursesData } from "../../data/coursesData";
 
 const Courses = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const { data: coursesData, isLoading } = useQuery({
+  const { data: apiCoursesData, isLoading } = useQuery({
     queryKey: ["all-courses"],
     queryFn: publicAPI.getCourses,
+    staleTime: 10 * 60 * 1000,
+    gcTime: 15 * 60 * 1000,
   });
 
-  const courses = coursesData?.data?.data || [];
-  const categories = ["All", "DCA", "ADCA", "PGDCA", "Tally", "Other"];
+  // Use API courses if available, otherwise fallback to mock data
+  const apiCourses = apiCoursesData?.data?.data || [];
+  const courses = apiCourses.length > 0 ? apiCourses : mockCoursesData;
 
-  const filteredCourses = courses.filter((course) => {
-    const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === "All" || course.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
+  // Use unique categories dynamically from the data + "All" option (memoized)
+  const categories = useMemo(() => ["All", ...new Set(courses.map(c => c.category))], [courses]);
+
+  // Memoized search and filtration to prevent performance degradation with large listings
+  const filteredCourses = useMemo(() => {
+    return courses.filter((course) => {
+      const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory = selectedCategory === "All" || course.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    });
+  }, [courses, searchTerm, selectedCategory]);
 
   return (
     <>
       <Meta 
-        title="Our Courses" 
-        description="Browse our wide range of professional computer courses including DCA, ADCA, PGDCA, and Tally." 
+        title="Professional Computer Courses | DCA, ADCA, Tally Prime & PGDCA" 
+        description="Explore the best computer courses in Kahalgaon at Smart Computer Academy. Highly rated DCA, ADCA, PGDCA, Tally Prime with GST, and typing courses with 100% practical lab training." 
+        keywords="computer courses Kahalgaon, DCA course fees, ADCA course duration, Tally Prime classes Kahalgaon, PGDCA training Bihar, IT coaching center S.S.V. College Road"
       />
 
       <div className="bg-gray-50 min-h-screen pb-24">
@@ -98,53 +110,7 @@ const Courses = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 <AnimatePresence mode="popLayout">
                   {filteredCourses.map((course) => (
-                    <motion.div
-                      layout
-                      key={course._id}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
-                      whileHover={{ y: -10 }}
-                      className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all border border-gray-100 flex flex-col"
-                    >
-                      <div className="h-60 bg-gray-200 relative overflow-hidden group">
-                        <img 
-                          src={course.thumbnail?.url || "/placeholder-course.jpg"} 
-                          alt={course.title} 
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                        />
-                        <div className="absolute top-4 left-4 bg-accent text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
-                          {course.category}
-                        </div>
-                      </div>
-                      <div className="p-8 flex-grow">
-                        <h4 className="text-2xl font-black mb-4 text-gray-900 leading-tight">{course.title}</h4>
-                        <p className="text-gray-500 text-sm line-clamp-2 mb-6 leading-relaxed">
-                          {course.description}
-                        </p>
-                        <div className="grid grid-cols-2 gap-4 mb-8">
-                          <div className="flex items-center text-gray-500 text-xs font-bold uppercase tracking-wider">
-                            <Clock size={16} className="mr-2 text-primary" /> {course.duration}
-                          </div>
-                          <div className="flex items-center text-gray-500 text-xs font-bold uppercase tracking-wider">
-                            <Award size={16} className="mr-2 text-primary" /> Certificated
-                          </div>
-                        </div>
-                        <div className="flex items-center justify-between pt-6 border-t border-gray-50">
-                          <div className="flex flex-col">
-                            <span className="text-[10px] uppercase font-black text-gray-400">Total Fee</span>
-                            <span className="text-primary font-black text-2xl">₹{course.fee}</span>
-                          </div>
-                          <Link 
-                            to={`/courses/${course.slug}`} 
-                            className="btn-primary py-2.5 px-6 text-sm flex items-center space-x-2 group"
-                          >
-                            <span>Details</span>
-                            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                          </Link>
-                        </div>
-                      </div>
-                    </motion.div>
+                    <CourseCard key={course.id || course._id} course={course} />
                   ))}
                 </AnimatePresence>
               </div>

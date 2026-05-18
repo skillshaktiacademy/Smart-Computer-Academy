@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   LayoutGrid, Image as ImageIcon, Maximize2, 
@@ -10,9 +10,9 @@ const Gallery = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const categories = ["All", "Campus", "Events", "Lab", "Students"];
+  const categories = useMemo(() => ["All", "Campus", "Events", "Lab", "Students"], []);
   
-  const images = [
+  const images = useMemo(() => [
     { id: 1, src: "/lab_gallery_1_1778041105484.png", category: "Lab", title: "Modern Computing Lab" },
     { id: 2, src: "/event_gallery_1_1778041129181.png", category: "Events", title: "Convocation Ceremony" },
     { id: 3, src: "/about_institute_1778040888613.png", category: "Campus", title: "Main Campus Exterior" },
@@ -20,13 +20,19 @@ const Gallery = () => {
     // Repeat or add more as needed
     { id: 5, src: "/lab_gallery_1_1778041105484.png", category: "Lab", title: "Advanced IT Infrastructure" },
     { id: 6, src: "/event_gallery_1_1778041129181.png", category: "Events", title: "Student Achievement Awards" },
-  ];
+  ], []);
 
-  const filteredImages = images.filter(img => selectedCategory === "All" || img.category === selectedCategory);
+  const filteredImages = useMemo(() => {
+    return images.filter(img => selectedCategory === "All" || img.category === selectedCategory);
+  }, [images, selectedCategory]);
 
   return (
     <>
-      <Meta title="Academy Gallery" description="Take a visual tour of Skill Shakti Academy. Explore our labs, classrooms, and student events." />
+      <Meta 
+        title="Academy Gallery | Campus & Computing Lab Tour" 
+        description="Take a visual tour of Smart Computer Academy in Kahalgaon. View high-quality images of our computing labs, spacious classrooms, convocation ceremonies, and campus life." 
+        keywords="computer lab Kahalgaon, Smart Computer Academy gallery, Kahalgaon computer center photos, campus tour, educational institute gallery"
+      />
 
       <div className="bg-gray-50 min-h-screen">
         {/* Banner */}
@@ -40,7 +46,7 @@ const Gallery = () => {
               Visual <span className="text-accent italic">Tour</span>.
             </motion.h1>
             <p className="text-gray-300 text-xl max-w-2xl mx-auto leading-relaxed">
-              Explore our world-class infrastructure and life at Skill Shakti Academy.
+              Explore our world-class infrastructure and life at Smart Computer Academy.
             </p>
           </div>
         </div>
@@ -80,6 +86,7 @@ const Gallery = () => {
                   <img 
                     src={img.src} 
                     alt={img.title} 
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">

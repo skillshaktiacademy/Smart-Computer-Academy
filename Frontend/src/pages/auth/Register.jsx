@@ -81,7 +81,7 @@ const Register = () => {
           <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
             <UserPlus size={24} />
           </div>
-          <h2 className="text-2xl font-bold mb-4">Join Skill Shakti Academy</h2>
+          <h2 className="text-2xl font-bold mb-4">Join Smart Computer Academy</h2>
           <p className="text-white/70 mb-8 text-sm">
             Unlock professional courses and certifications to advance your career in technology.
           </p>

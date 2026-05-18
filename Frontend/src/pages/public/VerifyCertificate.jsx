@@ -38,8 +38,9 @@ const VerifyCertificate = () => {
   return (
     <>
       <Meta 
-        title="Verify Certificate" 
-        description="Verify the authenticity of certificates issued by Skill Shakti Academy using the unique certificate number." 
+        title="ISO Certificate Verification Portal | Smart Computer Academy" 
+        description="Verify the authenticity of professional MERN, DCA, ADCA, and Tally Prime + GST certificates issued by Smart Computer Academy Kahalgaon online." 
+        keywords="verify computer certificate, ISO certificate verification, Smart Computer Academy verification, verify computer diploma online" 
       />
 
       <div className="bg-gray-50 min-h-screen py-24">
@@ -56,7 +57,7 @@ const VerifyCertificate = () => {
               </motion.div>
               <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">Certificate Verification</h1>
               <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
-                Skill Shakti Academy certificates are unique and globally verifiable. 
+                Smart Computer Academy certificates are unique and globally verifiable. 
                 Enter the certificate number below to confirm its authenticity.
               </p>
             </div>
@@ -65,7 +66,7 @@ const VerifyCertificate = () => {
             <motion.div 
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100 mb-16"
+              className="bg-white/45 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-white/60 shadow-xl mb-16"
             >
               <form onSubmit={handleVerify} className="flex flex-col md:flex-row gap-6">
                 <div className="flex-grow relative">
@@ -131,7 +132,7 @@ const VerifyCertificate = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 30 }}
-                  className="bg-white rounded-3xl shadow-2xl overflow-hidden border-2 border-success/20 relative"
+                  className="bg-white/45 backdrop-blur-md rounded-3xl shadow-2xl overflow-hidden border border-success/30 relative"
                 >
                   {/* Verified Badge */}
                   <div className="absolute top-0 right-0 p-6">

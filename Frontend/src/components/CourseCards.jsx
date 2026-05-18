@@ -97,25 +97,21 @@ const CourseCards = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
-      className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 text-left"
+      className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left"
     >
       {courses.map((course) => (
         <motion.div
           key={course.id}
           variants={cardVariants}
-          whileHover={{ 
-            y: -6, 
-            boxShadow: "0 12px 30px rgba(0, 0, 0, 0.04)",
-            borderColor: "rgba(220, 38, 38, 0.2)"
-          }}
-          className="bg-white rounded-2xl border border-gray-100/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group"
+          whileHover={{ y: -6 }}
+          className="premium-card group"
         >
-          {/* Course Thumbnail Image */}
-          <div className="h-44 w-full bg-slate-50 overflow-hidden relative">
+          {/* Course Thumbnail Image with aspect 16:9 & rounded corners */}
+          <div className="aspect-video w-full bg-slate-50 overflow-hidden relative rounded-xl">
             <img
               src={course.imageFallback && course.id === 6 ? course.imageFallback : course.image}
               alt={course.title}
-              className="h-full w-full object-cover group-hover:scale-103 transition-transform duration-500"
+              className="premium-card-image"
               loading="lazy"
             />
             {/* Minimal level/duration floating banner */}
@@ -125,20 +121,20 @@ const CourseCards = () => {
           </div>
 
           {/* Card Details */}
-          <div className="p-5 flex flex-col flex-grow">
+          <div className="pt-6 flex flex-col flex-grow">
             {/* Title */}
-            <h3 className="text-sm font-extrabold text-gray-900 mb-2 leading-snug tracking-tight group-hover:text-red-600 transition-colors line-clamp-1">
+            <h3 className="premium-card-title line-clamp-1">
               {course.title}
             </h3>
 
             {/* Shorter, decluttered description */}
-            <p className="text-xs text-gray-500 mb-4 line-clamp-2 leading-relaxed font-medium">
+            <p className="premium-card-desc flex-grow">
               {course.description}
             </p>
 
             {/* Duration and Pricing row */}
-            <div className="flex items-center justify-between pt-3 border-t border-gray-50 mt-auto">
-              <div className="flex items-center gap-1.5 text-gray-400">
+            <div className="flex items-center justify-between pt-4 border-t border-gray-150 mt-auto mb-6">
+              <div className="flex items-center gap-1.5 text-gray-500">
                 <Clock size={13} />
                 <span className="text-[10px] font-bold uppercase tracking-wider">{course.duration.split(" ")[0]} {course.duration.split(" ")[1] || "Months"}</span>
               </div>
@@ -148,11 +144,11 @@ const CourseCards = () => {
               </div>
             </div>
 
-            {/* Clean, premium converted button */}
+            {/* Clean, premium CTA button at the bottom */}
             <motion.button 
               whileTap={{ scale: 0.97 }}
               onClick={() => navigate("/contact")}
-              className="w-full mt-4 bg-red-600 hover:bg-gray-900 text-white text-[10px] font-extrabold uppercase tracking-widest py-3 rounded-xl transition-all duration-300 shadow-sm active:scale-97 text-center cursor-pointer"
+              className="w-full btn-primary py-3 text-xs uppercase tracking-widest rounded-xl font-bold"
             >
               Admission Enquiry
             </motion.button>

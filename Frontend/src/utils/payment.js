@@ -41,7 +41,7 @@ export async function initiatePayment({ courseId, amount, user }) {
       amount: order.amount,
       currency: order.currency || "INR",
       order_id: order.id,
-      name: "Skill Shakti Academy",
+      name: "Smart Computer Academy",
       description: `Course Fee Payment`,
       image: "/logo.png",
       prefill: {

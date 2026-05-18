@@ -204,7 +204,7 @@ const FranchiseManagement = () => {
                       <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Franchise Name</label>
                       <div className="relative">
                         <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                        <input {...register("name")} className="input-field pl-10" placeholder="Skill Shakti Patna" />
+                        <input {...register("name")} className="input-field pl-10" placeholder="Smart Computer Academy" />
                       </div>
                       {errors.name && <p className="text-[10px] text-error mt-1">{errors.name.message}</p>}
                     </div>

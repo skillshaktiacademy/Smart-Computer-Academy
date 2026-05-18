@@ -73,8 +73,9 @@ const Contact = () => {
   return (
     <>
       <Meta 
-        title="Contact Us | Smart Computer Academy Kahalgaon" 
-        description="Get in touch with Smart Computer Academy Kahalgaon. Contact Director Praveen Sir for course details, admission help, Tally certifications, or cyber office inquiries." 
+        title="Contact Us | Smart Computer Academy Kahalgaon Phone & Map" 
+        description="Contact Praveen Sir at Smart Computer Academy Kahalgaon on S.S.V. College Road. Call +91 99057 88324 or submit your admission enquiry online today." 
+        keywords="contact computer institute Kahalgaon, Praveen Sir phone number, Smart Computer Academy address, computer classes near me Kahalgaon" 
       />
 
       {/* Main Container with subtle mesh background and blurred neon nodes */}

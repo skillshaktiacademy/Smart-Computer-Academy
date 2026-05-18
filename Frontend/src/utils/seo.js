@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const SITE_NAME = "Skill Shakti Academy";
+const SITE_NAME = "Smart Computer Academy";
 const SITE_URL  = "https://skillshakti.in";
 const LOGO_URL  = `${SITE_URL}/logo.png`;
 
@@ -47,7 +47,7 @@ export function franchiseJsonLd(franchise) {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
     name: franchise.name,
-    description: `Official center of Skill Shakti Academy in ${franchise.address?.city}`,
+    description: `Official center of Smart Computer Academy in ${franchise.address?.city}`,
     url: `${SITE_URL}/franchises/${franchise.code}`,
     image: franchise.logo?.url || LOGO_URL,
     address: {
@@ -83,7 +83,7 @@ export function breadcrumbJsonLd(items) {
 /* ── Build meta object ──────────────────────────────────────── */
 export function buildMeta({
   title,
-  description = "Skill Shakti Academy – Bihar's #1 Computer Education Institute. DCA, ADCA, Tally & more.",
+  description = "Smart Computer Academy – Bihar's #1 Computer Education Institute. DCA, ADCA, Tally & more.",
   image = LOGO_URL,
   url = SITE_URL,
   type = "website",

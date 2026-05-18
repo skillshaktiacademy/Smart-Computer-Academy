@@ -1,13 +1,13 @@
 import { Helmet } from "react-helmet-async";
 
 const Meta = ({ title, description, keywords }) => {
-  const defaultTitle = "Skill Shakti Academy | Bihar's #1 Computer Institute";
-  const defaultDescription = "Skill Shakti Academy is the leading computer institute in Bihar, providing industry-standard DCA, ADCA, Tally, and PGDCA courses with 100% placement support.";
-  const defaultKeywords = "computer institute Bihar, DCA course, ADCA training, Tally classes, computer coaching, Skill Shakti Academy, professional certification";
+  const defaultTitle = "Smart Computer Academy | Bihar's #1 Computer Institute";
+  const defaultDescription = "Smart Computer Academy is the leading computer institute in Bihar, providing industry-standard DCA, ADCA, Tally, and PGDCA courses with 100% placement support.";
+  const defaultKeywords = "computer institute Bihar, DCA course, ADCA training, Tally classes, computer coaching, Smart Computer Academy, professional certification";
 
   return (
     <Helmet>
-      <title>{title ? `${title} | Skill Shakti Academy` : defaultTitle}</title>
+      <title>{title ? `${title} | Smart Computer Academy` : defaultTitle}</title>
       <meta name="description" content={description || defaultDescription} />
       <meta name="keywords" content={keywords || defaultKeywords} />
       

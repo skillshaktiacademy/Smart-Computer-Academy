@@ -33,14 +33,14 @@ const Homeslider = () => {
         </h1>
 
         {/* Short Subtitle */}
-        <p className="text-sm sm:text-base text-gray-600 max-w-lg leading-relaxed font-medium">
+        <p className="text-lg sm:text-[19px] text-gray-600 max-w-xl leading-[1.6] font-normal">
           Welcome to Kahalgaon's premier IT training institute. We provide 100% practical, industry-focused training in Tally Prime (GST), ADCA, DCA, and Web Development. Build a career that stands out.
         </p>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 pt-4">
           <motion.button 
-            whileHover={{ y: -2, boxShadow: "0 10px 25px -5px rgba(220, 38, 38, 0.4)" }}
+            whileHover={{ y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => {
               const element = document.getElementById("student-choices");
@@ -50,19 +50,19 @@ const Homeslider = () => {
                 navigate("/courses");
               }
             }}
-            className="bg-red-600 text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-xl transition-all duration-300 shadow-md flex items-center justify-center gap-2 cursor-pointer border border-red-500"
+            className="btn-primary px-8 py-4 text-xs uppercase tracking-widest font-bold"
           >
             <span>Explore Courses</span>
             <ArrowRight size={16} />
           </motion.button>
           
           <motion.button 
-            whileHover={{ y: -2, backgroundColor: "#f8fafc" }}
+            whileHover={{ y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => navigate("/contact")}
-            className="border-2 border-gray-200 bg-white text-gray-800 text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-xl transition-all duration-300 shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+            className="btn-secondary px-8 py-4 text-xs uppercase tracking-widest font-bold"
           >
-            <Play size={14} className="text-red-500 fill-red-500" />
+            <Play size={13} className="text-red-500 fill-red-500" />
             <span>Book Free Demo</span>
           </motion.button>
         </div>

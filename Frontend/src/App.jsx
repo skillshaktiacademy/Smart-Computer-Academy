@@ -1,66 +1,77 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route, Navigate, Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Loader2 } from "lucide-react";
 
-// Layouts
+// Loading Fallback Component
+const PageLoader = () => (
+  <div className="h-screen w-full flex items-center justify-center">
+    <Loader2 className="w-10 h-10 animate-spin text-primary" />
+  </div>
+);
+
+// Layouts (Keep eager if they are small and used everywhere)
 import PublicLayout from "./components/layout/PublicLayout";
 import DashboardLayout from "./components/layout/DashboardLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-// Public Pages
-import Home from "./pages/public/Home";
-import Courses from "./pages/public/Courses";
-import CourseDetail from "./pages/public/CourseDetail";
-import About from "./pages/public/About";
-import Gallery from "./pages/public/Gallery";
-import Contact from "./pages/public/Contact";
-import Franchise from "./pages/public/Franchise";
-import VerifyCertificate from "./pages/public/VerifyCertificate";
-import StudentResult from "./pages/public/StudentResult";
+// Public Pages (Lazy Loaded)
+const Home = lazy(() => import("./pages/public/Home"));
+const Courses = lazy(() => import("./pages/public/Courses"));
+const CourseDetail = lazy(() => import("./pages/public/CourseDetail"));
+const About = lazy(() => import("./pages/public/About"));
+const Gallery = lazy(() => import("./pages/public/Gallery"));
+const Contact = lazy(() => import("./pages/public/Contact"));
+const Franchise = lazy(() => import("./pages/public/Franchise"));
+const VerifyCertificate = lazy(() => import("./pages/public/VerifyCertificate"));
+const StudentResult = lazy(() => import("./pages/public/StudentResult"));
+const Enquiry = lazy(() => import("./pages/public/Enquiry"));
 
-// Auth Pages
-import Register from "./pages/auth/Register";
-import Login from "./pages/auth/Login";
-import VerifyOTP from "./pages/auth/VerifyOTP";
-import ForgotPassword from "./pages/auth/ForgotPassword";
-import ResetPassword from "./pages/auth/ResetPassword";
+// Auth Pages (Lazy Loaded)
+const Register = lazy(() => import("./pages/auth/Register"));
+const Login = lazy(() => import("./pages/auth/Login"));
+const VerifyOTP = lazy(() => import("./pages/auth/VerifyOTP"));
+const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
+const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
 
-// Super Admin Pages
-import AdminDashboard from "./pages/dashboard/super_admin/AdminDashboard";
-import FranchiseManagement from "./pages/dashboard/super_admin/FranchiseManagement";
-import CourseManagement from "./pages/dashboard/super_admin/CourseManagement";
-import StudentManagement from "./pages/dashboard/super_admin/StudentManagement";
-import CertificateManagement from "./pages/dashboard/super_admin/CertificateManagement";
-import NoticeManagement from "./pages/dashboard/super_admin/NoticeManagement";
-import AdminReports from "./pages/dashboard/super_admin/AdminReports";
+// Super Admin Pages (Lazy Loaded)
+const AdminDashboard = lazy(() => import("./pages/dashboard/super_admin/AdminDashboard"));
+const FranchiseManagement = lazy(() => import("./pages/dashboard/super_admin/FranchiseManagement"));
+const CourseManagement = lazy(() => import("./pages/dashboard/super_admin/CourseManagement"));
+const StudentManagement = lazy(() => import("./pages/dashboard/super_admin/StudentManagement"));
+const CertificateManagement = lazy(() => import("./pages/dashboard/super_admin/CertificateManagement"));
+const NoticeManagement = lazy(() => import("./pages/dashboard/super_admin/NoticeManagement"));
+const AdminReports = lazy(() => import("./pages/dashboard/super_admin/AdminReports"));
 
-// Franchise Pages
-import FranchiseDashboard from "./pages/dashboard/franchise/FranchiseDashboard";
-import StudentAdmission from "./pages/dashboard/franchise/StudentAdmission";
-import FranchiseStudents from "./pages/dashboard/franchise/FranchiseStudents";
-import FeeCollection from "./pages/dashboard/franchise/FeeCollection";
-import FranchiseAttendance from "./pages/dashboard/franchise/FranchiseAttendance";
-import FranchiseExams from "./pages/dashboard/franchise/FranchiseExams";
-import FranchiseMaterials from "./pages/dashboard/franchise/FranchiseMaterials";
+// Franchise Pages (Lazy Loaded)
+const FranchiseDashboard = lazy(() => import("./pages/dashboard/franchise/FranchiseDashboard"));
+const StudentAdmission = lazy(() => import("./pages/dashboard/franchise/StudentAdmission"));
+const FranchiseStudents = lazy(() => import("./pages/dashboard/franchise/FranchiseStudents"));
+const FeeCollection = lazy(() => import("./pages/dashboard/franchise/FeeCollection"));
+const FranchiseAttendance = lazy(() => import("./pages/dashboard/franchise/FranchiseAttendance"));
+const FranchiseExams = lazy(() => import("./pages/dashboard/franchise/FranchiseExams"));
+const FranchiseMaterials = lazy(() => import("./pages/dashboard/franchise/FranchiseMaterials"));
 
-// Teacher Pages
-import TeacherDashboard from "./pages/dashboard/teacher/TeacherDashboard";
-import TeacherAttendance from "./pages/dashboard/teacher/TeacherAttendance";
-import TeacherResults from "./pages/dashboard/teacher/TeacherResults";
-import TeacherMaterials from "./pages/dashboard/teacher/TeacherMaterials";
+// Teacher Pages (Lazy Loaded)
+const TeacherDashboard = lazy(() => import("./pages/dashboard/teacher/TeacherDashboard"));
+const TeacherAttendance = lazy(() => import("./pages/dashboard/teacher/TeacherAttendance"));
+const TeacherResults = lazy(() => import("./pages/dashboard/teacher/TeacherResults"));
+const TeacherMaterials = lazy(() => import("./pages/dashboard/teacher/TeacherMaterials"));
 
-// Student Pages
-import StudentDashboard from "./pages/dashboard/student/StudentDashboard";
-import MyAttendance from "./pages/dashboard/student/MyAttendance";
-import MyResults from "./pages/dashboard/student/MyResults";
-import MyCertificates from "./pages/dashboard/student/MyCertificates";
-import MyFees from "./pages/dashboard/student/MyFees";
-import MyMaterials from "./pages/dashboard/student/MyMaterials";
+// Student Pages (Lazy Loaded)
+const StudentDashboard = lazy(() => import("./pages/dashboard/student/StudentDashboard"));
+const MyAttendance = lazy(() => import("./pages/dashboard/student/MyAttendance"));
+const MyResults = lazy(() => import("./pages/dashboard/student/MyResults"));
+const MyCertificates = lazy(() => import("./pages/dashboard/student/MyCertificates"));
+const MyFees = lazy(() => import("./pages/dashboard/student/MyFees"));
+const MyMaterials = lazy(() => import("./pages/dashboard/student/MyMaterials"));
 
 function App() {
   return (
     <>
-      <Routes>
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
         {/* Public Routes */}
         <Route element={<PublicLayout />}>
           <Route path="/" element={<Home />} />
@@ -72,6 +83,7 @@ function App() {
           <Route path="/franchise" element={<Franchise />} />
           <Route path="/verify-certificate" element={<VerifyCertificate />} />
           <Route path="/student-result" element={<StudentResult />} />
+          <Route path="/enquiry/:slug" element={<Enquiry />} />
         </Route>
 
         {/* Auth Routes */}
@@ -140,6 +152,7 @@ function App() {
           <Link to="/" className="text-primary font-bold hover:underline">Go Back Home</Link>
         </div>} />
       </Routes>
+    </Suspense>
 
       <ToastContainer
         position="top-right"
