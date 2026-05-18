@@ -12,6 +12,7 @@ import {
   BookOpen, Star, GraduationCap, ArrowRight,
   Sparkles, CheckCircle2, ChevronRight, PhoneCall
 } from 'lucide-react';
+import ImageSlider from '../../components/Slider';
 
 const pageVariants = {
   hidden: { opacity: 0 },
@@ -75,6 +76,13 @@ function Home() {
 
   return (
     <>
+
+     {/* image slider section  */}
+        <div>
+          <ImageSlider />
+        </div>
+
+        
       <Meta 
         title="Smart Computer Academy Kahalgaon | ISO Certified Technical Training Center" 
         description="Premium vocational computer education center on S.S.V. College Road, Kahalgaon. Learn ADCA, DCA, Tally Prime + GST, coding and web skills with 100% practical lab training."
@@ -92,8 +100,11 @@ function Home() {
         <div className="absolute top-40 right-[-10%] w-[500px] h-[500px] bg-red-500/[0.02] rounded-full blur-[140px] pointer-events-none -z-10 animate-pulse"></div>
         <div className="absolute bottom-[30%] left-[-10%] w-[500px] h-[500px] bg-blue-500/[0.02] rounded-full blur-[140px] pointer-events-none -z-10"></div>
         
+
+
+        
         {/* Section 1: Modern SaaS Split-Layout Hero */}
-        <motion.div variants={sectionVariants} className="max-w-7xl mx-auto w-full z-10 pt-4">
+        <motion.div variants={sectionVariants} className="max-w-7xl mx-auto w-full z-10">
           <Homeslider />
         </motion.div>
 

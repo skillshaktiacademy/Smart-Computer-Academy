@@ -1,43 +1,69 @@
 {
   "seo": {
     "home": {
-      "title": "Skill Shakti Academy | #1 Computer Institute in Bihar | DCA, ADCA, Tally",
-      "description": "Join Skill Shakti Academy, Bihar's most trusted computer education center. ISO Certified diploma courses in DCA, ADCA, PGDCA, Tally with GST. Start your career today!",
-      "keywords": "computer institute Bihar, DCA course Bihar, ADCA Bihar, computer diploma Bihar, Skill Shakti Academy, computer coaching Patna, computer classes Gaya"
+      "title": "Smart Computer Academy Kahalgaon | ISO Certified Technical Training Center",
+      "description": "Join Smart Computer Academy, Kahalgaon's most trusted computer education center. ISO Certified diploma courses in DCA, ADCA, PGDCA, Tally with GST. Start your career today!",
+      "keywords": "computer institute Kahalgaon, DCA course Kahalgaon, ADCA Kahalgaon, computer diploma Kahalgaon, Smart Computer Academy, computer coaching Kahalgaon, computer classes Kahalgaon"
     },
     "courses": {
-      "title": "Computer Courses & Diplomas | Skill Shakti Academy Bihar",
+      "title": "Computer Courses & Diplomas | Smart Computer Academy Kahalgaon",
       "description": "Explore our government recognized computer courses. From 2-month certificate to 1-year diploma. Learn DCA, ADCA, Tally, Web Design and more.",
       "keywords": "DCA syllabus, ADCA course fees, Tally with GST Bihar, computer diploma courses, professional IT training"
     },
     "about": {
-      "title": "About Skill Shakti Academy | Leading IT Training in Bihar",
-      "description": "Skill Shakti Academy is dedicated to digital literacy in Bihar. With 15+ years of excellence, we empower students with job-oriented computer skills.",
-      "keywords": "best computer center Bihar, computer education mission, Skill Shakti Academy history"
+      "title": "About Smart Computer Academy | Leading IT Training in Bihar",
+      "description": "Smart Computer Academy is dedicated to digital literacy in Bihar. With 15+ years of excellence, we empower students with job-oriented computer skills.",
+      "keywords": "best computer center Bihar, computer education mission, Smart Computer Academy history"
     },
     "franchise": {
-      "title": "Start Computer Franchise in Bihar | Skill Shakti Academy Business",
-      "description": "Become a partner in Bihar's digital revolution. Open your own Skill Shakti Academy franchise. Low investment, high returns, and full academic support.",
+      "title": "Start Computer Franchise in Bihar | Smart Computer Academy Business",
+      "description": "Become a partner in Bihar's digital revolution. Open your own Smart Computer Academy franchise. Low investment, high returns, and full academic support.",
       "keywords": "computer franchise Bihar, open computer center, education business opportunity, low investment franchise"
     },
     "contact": {
-      "title": "Contact Skill Shakti Academy | Locations in Bihar",
-      "description": "Get in touch for admissions or franchise queries. Visit our Patna head office or call us at +91 9876543210. Bihar's best IT academy.",
-      "keywords": "computer institute address Patna, Skill Shakti contact number, admission helpline"
+      "title": "Contact Smart Computer Academy | Kahalgaon",
+      "description": "Get in touch for admissions or franchise queries. Visit our Kahalgaon head office or call us at +91 8789302254. Kahalgaon's best IT academy.",
+      "keywords": "computer institute address Kahalgaon, Smart Computer Academy contact number, admission helpline"
     },
     "verifyCertificate": {
-      "title": "Verify Student Certificate | Skill Shakti Academy Official",
-      "description": "Check the authenticity of Skill Shakti Academy certificates online. QR-code based instant verification for employers and students.",
-      "keywords": "certificate verification, verify computer diploma, Skill Shakti student search"
+      "title": "Verify Student Certificate | Smart Computer Academy Official",
+      "description": "Check the authenticity of Smart Computer Academy certificates online. QR-code based instant verification for employers and students.",
+      "keywords": "certificate verification, verify computer diploma, Smart Computer Academy student search"
     }
   },
   "hero": {
     "badge": "Bihar ka #1 Computer Institute",
     "headline": "Digital Saksharta se <span class='text-accent'>Atmanirbhar</span> Bihar Tak.",
-    "subheadline": "Ab har ghar se banega ek Computer Expert. Skill Shakti Academy lekar aaya hai industry-leading courses sabse saste fees mein.",
+    "subheadline": "Ab har ghar se banega ek Computer Expert. Smart Computer Academy lekar aaya hai industry-leading courses sabse saste fees mein.",
     "cta1": "View Courses",
     "cta2": "Verify Certificate"
   },
+  "sliders": [
+    {
+      "id": 1,
+      "image": "/src/assets/images/slidebar/1.jpg",
+      "linkUrl": "/courses",
+      "linkLabel": "Courses Dekhen"
+    },
+    {
+      "id": 2,
+      "image": "/src/assets/images/slidebar/2.jpg",
+      "linkUrl": "/courses/tally-gst",
+      "linkLabel": "Tally Course Dekhen"
+    },
+    {
+      "id": 3,
+      "image": "/src/assets/images/slidebar/3.jpg",
+      "linkUrl": "/contact",
+      "linkLabel": "Abhi Sampark Karen"
+    },
+    {
+      "id": 4,
+      "image": "/src/assets/images/slidebar/4.jpg",
+      "linkUrl": "/courses/adca",
+      "linkLabel": "ADCA Course Dekhen"
+    }
+  ],
   "stats": [
     { "label": "Students Enrolled", "value": "15,000+", "icon": "Users" },
     { "label": "Franchise Centers", "value": "120+", "icon": "Building2" },
@@ -46,7 +72,7 @@
   ],
   "about": {
     "heading": "Empowering Bihar Through Digital Education.",
-    "paragraph1": "Skill Shakti Academy Bihar ka ek agarni computer education institute hai jo pichle 15 saalo se logo ko digital yug ke liye taiyar kar raha hai. Hamara uddeshya har student ko technical skills se mazboot banana hai.",
+    "paragraph1": "Smart Computer Academy Bihar ka ek agarni computer education institute hai jo pichle 15 saalo se logo ko digital yug ke liye taiyar kar raha hai. Hamara uddeshya har student ko technical skills se mazboot banana hai.",
     "paragraph2": "Hum srif degree nahi, job-ready skills dete hai. Hamare DCA aur ADCA courses Bihar ke students ke liye vishesh roop se design kiye gaye hai taki wo sarkari aur private jobs mein safal ho sake.",
     "mission": "Bihar ke har block aur gaon tak gunvatta-purna (quality) computer shiksha pahunchana.",
     "vision": "Bihar ko India ka digital hub banana aur yuvaon ko berozgari se mukti dilana."
@@ -59,7 +85,7 @@
   ],
   "courses": [
     {
-      "title": "DCA - Diploma in Computer Applications",
+      "title": "DCA - Diploma in Computer A pplications",
       "slug": "dca",
       "duration": "6 Months",
       "fee": 3500,
