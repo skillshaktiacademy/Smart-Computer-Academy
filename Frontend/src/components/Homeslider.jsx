@@ -1,137 +1,140 @@
-import React, { useState, useEffect } from 'react';
+import React from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, Laptop, Award, ShieldCheck, Play } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Homeslider = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const slides = [
-    {
-      id: 1,
-      image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=1200",
-      title: "Web Development",
-      description: "Become a full-stack web developer by learning HTML, CSS, JavaScript, React, Node.js, and more with live projects."
-    },
-    {
-      id: 2,
-      image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1200",
-      title: "Tally with GST",
-      description: "Master Tally ERP 9 / Tally Prime with GST for effective accounting, taxation, and business inventory."
-    },
-    {
-      id: 3,
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
-      title: "SEO (Search Engine Optimization)",
-      description: "Learn the art of optimizing websites for search engines to increase visibility, organic search traffic, and ranking."
-    },
-    {
-      id: 4,
-      image: "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&q=80&w=1200",
-      title: "Video Editing",
-      description: "Learn the fundamentals of professional video editing using industry-standard software like Premiere Pro and After Effects."
-    },
-    {
-      id: 5,
-      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1200",
-      title: "ADCA (Advanced Diploma in Computer Application)",
-      description: "Gain complete computer knowledge with practical training in MS Office, Internet, Tally, and essential IT tools."
-    }
-  ];
-
-  // Auto-slide every 4 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [slides.length]);
-
-  const goToSlide = (index) => {
-    setCurrentSlide(index);
-  };
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
+  const navigate = useNavigate();
 
   return (
-    <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden rounded-2xl shadow-2xl mb-8 group">
-      {/* Images with Ken Burns effect transition */}
-      <div className="relative w-full h-full">
-        {slides.map((slide, index) => (
-          <div
-            key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
-            }`}
+    <div className="w-full py-8 md:py-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+      
+      {/* Left Column: High-Impact Typography & CTA */}
+      <motion.div 
+        initial={{ opacity: 0, x: -30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ type: "spring", stiffness: 80, damping: 15 }}
+        className="lg:col-span-6 space-y-6 text-left"
+      >
+        {/* Modern Trust Badge */}
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-red-50 border border-red-100 rounded-full text-red-600 text-[10px] font-black uppercase tracking-widest shadow-sm">
+          <ShieldCheck size={12} className="text-red-600" />
+          <span>ISO 9001:2015 Certified Center</span>
+        </div>
+
+        {/* Main Heading */}
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-[1.08]">
+          Build Your Career With <span className="text-red-600">Modern Computer</span> Skills
+        </h1>
+
+        {/* Short Subtitle */}
+        <p className="text-xs sm:text-sm text-gray-500 max-w-lg leading-relaxed font-medium">
+          Industry-focused practical training with government-certified courses. Master Tally Prime with GST, ADCA, DCA, and web coding under expert instructors on S.S.V. College Road, Kahalgaon.
+        </p>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 pt-2">
+          <motion.button 
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => {
+              const element = document.getElementById("student-choices");
+              if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+              } else {
+                navigate("/courses");
+              }
+            }}
+            className="bg-red-600 hover:bg-gray-900 text-white text-xs font-bold uppercase tracking-widest px-7 py-4 rounded-xl transition-all duration-300 shadow-sm flex items-center justify-center gap-2 cursor-pointer"
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
-            <img
-              src={slide.image}
-              alt={slide.title}
-              className={`w-full h-full object-cover transform transition-transform duration-10000 ${
-                index === currentSlide ? 'scale-105' : 'scale-100'
-              }`}
-              loading="lazy"
-            />
+            <span>Explore Courses</span>
+            <ArrowRight size={14} />
+          </motion.button>
+          
+          <motion.button 
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => navigate("/contact")}
+            className="border border-gray-200 bg-white hover:bg-slate-50 text-gray-700 text-xs font-bold uppercase tracking-widest px-7 py-4 rounded-xl transition-all duration-300 shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <Play size={12} className="text-gray-400 fill-gray-400" />
+            <span>Free Demo Class</span>
+          </motion.button>
+        </div>
 
-            {/* Overlay Text */}
-            <div className="absolute inset-0 flex items-end z-20">
-              <div className="p-6 md:p-12 text-white max-w-3xl">
-                <span className="inline-block px-3 py-1 bg-red-600 text-xs font-bold uppercase tracking-wider rounded mb-3">
-                  Smart Computer Academy
-                </span>
-                <h3 className="text-2xl md:text-4xl lg:text-5xl font-black mb-3 leading-tight drop-shadow-md">
-                  {slide.title}
-                </h3>
-                <p className="text-sm md:text-lg text-gray-200 font-medium drop-shadow-sm max-w-xl leading-relaxed">
-                  {slide.description}
-                </p>
-              </div>
-            </div>
+        {/* Stats Row */}
+        <div className="pt-6 border-t border-gray-100 flex items-center gap-8">
+          <div>
+            <h4 className="text-xl font-black text-gray-900">5,000+</h4>
+            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Trained Students</p>
           </div>
-        ))}
-      </div>
+          <div className="w-px h-8 bg-gray-200" />
+          <div>
+            <h4 className="text-xl font-black text-gray-900">98%</h4>
+            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Practical Success</p>
+          </div>
+          <div className="w-px h-8 bg-gray-200" />
+          <div>
+            <h4 className="text-xl font-black text-gray-900">100%</h4>
+            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Online Verified</p>
+          </div>
+        </div>
 
-      {/* Navigation Arrows */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-red-600/80 text-white p-3 rounded-full transition-all duration-300 z-30 opacity-0 group-hover:opacity-100 hover:scale-110 blur-backdrop"
-        aria-label="Previous Slide"
+      </motion.div>
+
+      {/* Right Column: Clean SaaS Mockup Illustration */}
+      <motion.div 
+        initial={{ opacity: 0, x: 30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ type: "spring", stiffness: 80, damping: 15 }}
+        className="lg:col-span-6 relative flex justify-center items-center"
       >
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
+        {/* Gradient Behind Image */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-red-500/10 to-blue-500/5 rounded-3xl blur-[40px] pointer-events-none -z-10" />
 
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-red-600/80 text-white p-3 rounded-full transition-all duration-300 z-30 opacity-0 group-hover:opacity-100 hover:scale-110 blur-backdrop"
-        aria-label="Next Slide"
-      >
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
-
-      {/* Dots Pagination */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-30">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentSlide
-                ? 'bg-red-600 w-8'
-                : 'bg-white/50 hover:bg-white/80'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
+        {/* High Quality Minimal Hero Image */}
+        <div className="w-full max-w-md lg:max-w-none rounded-3xl overflow-hidden shadow-xl border border-white/60 bg-white/20 aspect-[4/3] relative">
+          <img 
+            src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=800" 
+            alt="Smart computer education mockup lab" 
+            className="w-full h-full object-cover"
           />
-        ))}
-      </div>
+          {/* Subtle Overlay to match SaaS aesthetics */}
+          <div className="absolute inset-0 bg-slate-950/5 pointer-events-none" />
+
+          {/* Floating Premium Card (SaaS Style) */}
+          <motion.div 
+            animate={{ y: [0, -6, 0] }}
+            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+            className="absolute bottom-5 left-5 bg-white/95 backdrop-blur-md px-4 py-3 rounded-2xl border border-white/80 shadow-md flex items-center gap-3 max-w-[240px]"
+          >
+            <div className="w-8 h-8 bg-red-50 rounded-xl flex items-center justify-center text-red-600 flex-shrink-0">
+              <Laptop size={16} />
+            </div>
+            <div>
+              <h5 className="text-xs font-black text-gray-900">Hands-on Labs</h5>
+              <p className="text-[10px] text-gray-500 font-semibold">1-to-1 computer practical access.</p>
+            </div>
+          </motion.div>
+
+          {/* Floating Verified Badge */}
+          <motion.div 
+            animate={{ y: [0, 6, 0] }}
+            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 1 }}
+            className="absolute top-5 right-5 bg-white/95 backdrop-blur-md px-4 py-3 rounded-2xl border border-white/80 shadow-md flex items-center gap-3 max-w-[220px]"
+          >
+            <div className="w-8 h-8 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 flex-shrink-0">
+              <Award size={16} />
+            </div>
+            <div>
+              <h5 className="text-xs font-black text-gray-900">Govt. Registered</h5>
+              <p className="text-[10px] text-gray-500 font-semibold">UDYAM-BR-07-00328832</p>
+            </div>
+          </motion.div>
+        </div>
+
+      </motion.div>
+
     </div>
   );
 };

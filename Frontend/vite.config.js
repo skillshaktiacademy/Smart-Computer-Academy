@@ -1,21 +1,12 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
-import { compression } from 'vite-plugin-compression2';
 import path from 'path';
 
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    compression({
-      algorithm: 'gzip',
-      exclude: [/\.(br)$/, /\.(gz)$/],
-    }),
-    compression({
-      algorithm: 'brotliCompress',
-      exclude: [/\.(br)$/, /\.(gz)$/],
-    }),
   ],
   resolve: {
     alias: {
@@ -24,14 +15,8 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    minify: 'terser',
+    minify: 'esbuild',
     sourcemap: false,
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
     rollupOptions: {
       output: {
         manualChunks: {
@@ -49,3 +34,4 @@ export default defineConfig({
     host: true,
   },
 });
+

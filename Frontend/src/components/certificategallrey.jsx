@@ -5,19 +5,16 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
+    transition: { staggerChildren: 0.08 }
   }
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, scale: 0.95, y: 20 },
+  hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
-    scale: 1, 
     y: 0,
-    transition: { type: "spring", stiffness: 100, damping: 15 } 
+    transition: { type: "spring", stiffness: 80, damping: 15 } 
   }
 };
 
@@ -46,19 +43,19 @@ const CertificateGallery = () => {
     ];
 
     return (
-        <section className="bg-white/30 backdrop-blur-xl px-6 py-16 sm:px-8 lg:px-16 rounded-3xl shadow-lg bg-white/30 backdrop-blur-xl border border-white/50 my-8">
-            <div className="max-w-screen-xl mx-auto text-center">
-                <span className="inline-block px-3 py-1 bg-red-100 text-red-600 text-xs font-bold uppercase tracking-wider rounded-full mb-3">
+        <section className="bg-white py-16 border border-gray-100 rounded-3xl shadow-sm my-8">
+            <div className="max-w-7xl mx-auto px-6 text-center">
+                <span className="inline-block px-3 py-1 bg-red-50 border border-red-100 text-red-600 text-[10px] font-extrabold uppercase tracking-widest rounded-full mb-3">
                     Our Recognition & Pride
                 </span>
-                <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4 tracking-tight">
+                <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4 tracking-tight leading-tight">
                     Institute Certificate & Gallery
                 </h2>
-                <p className="text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed text-sm sm:text-base font-medium">
+                <p className="text-gray-500 mb-10 max-w-2xl mx-auto leading-relaxed text-xs sm:text-sm font-medium">
                     Every student completing our <strong className="font-extrabold text-red-600">computer classes in Kahalgaon</strong> receives an ISO-certified, government-recognized certificate that significantly boosts their career, resume value, and success in job interviews.
                 </p>
 
-                {/* Animated Grid Container */}
+                {/* Clean Responsive Grid */}
                 <motion.div 
                     variants={containerVariants}
                     initial="hidden"
@@ -71,22 +68,22 @@ const CertificateGallery = () => {
                             key={cert.id} 
                             variants={itemVariants}
                             whileHover={{ 
-                                y: -8, 
-                                scale: 1.02,
-                                boxShadow: "0 20px 30px rgba(0, 0, 0, 0.08)" 
+                                y: -6, 
+                                boxShadow: "0 12px 25px rgba(0, 0, 0, 0.04)",
+                                borderColor: "rgba(220, 38, 38, 0.2)"
                             }}
-                            className="group relative rounded-2xl overflow-hidden shadow-md border border-white/40 aspect-[4/3] bg-slate-50/50 cursor-pointer"
+                            className="group relative rounded-2xl overflow-hidden shadow-sm border border-gray-100 aspect-[4/3] bg-slate-50 cursor-pointer transition-all duration-300"
                         >
                             <img
                                 src={cert.image}
                                 alt={cert.alt}
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
                                 loading="lazy"
                             />
-                            {/* Premium Blur-Overlay tag on hover */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
-                                <span className="text-white text-xs font-bold tracking-wide text-center leading-relaxed drop-shadow-md">
-                                    {cert.alt}
+                            {/* Minimal thin Bottom Tag on hover (Stripe style) */}
+                            <div className="absolute bottom-0 left-0 right-0 bg-white/95 border-t border-gray-100/50 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex items-center justify-center">
+                                <span className="text-gray-800 text-[10px] font-extrabold uppercase tracking-wider text-center line-clamp-1">
+                                    {cert.alt.split(" in ")[0]}
                                 </span>
                             </div>
                         </motion.div>
@@ -94,9 +91,9 @@ const CertificateGallery = () => {
                 </motion.div>
 
                 <motion.button 
-                    whileTap={{ scale: 0.95 }}
+                    whileTap={{ scale: 0.96 }}
                     onClick={() => alert("Our full academy physical gallery is coming soon! You are welcome to visit our Smart Computer Academy campus at S.S.V. College Road, Kahalgaon.")}
-                    className="mt-10 bg-red-600 text-white font-extrabold px-8 py-3 rounded-xl hover:bg-gray-900 transition-all duration-300 shadow-md hover:shadow-lg active:scale-95 cursor-pointer"
+                    className="mt-10 bg-red-600 hover:bg-gray-900 text-white text-[10px] font-extrabold uppercase tracking-widest px-8 py-3.5 rounded-xl transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
                 >
                     View All Gallery
                 </motion.button>

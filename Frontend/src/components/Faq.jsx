@@ -36,16 +36,16 @@ const Faq = () => {
   };
 
   return (
-    <section className="px-6 py-16 sm:px-8 lg:px-16 rounded-3xl shadow-lg bg-white/30 backdrop-blur-xl border border-white/50 my-8">
-      <div className="max-w-4xl mx-auto">
+    <section className="bg-white py-16 border border-gray-100 rounded-3xl shadow-sm my-8">
+      <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-12">
-          <span className="inline-block px-3 py-1 bg-red-100 text-red-600 text-xs font-bold uppercase tracking-wider rounded-full mb-3">
+          <span className="inline-block px-3 py-1 bg-red-50 border border-red-100 text-red-600 text-[10px] font-extrabold uppercase tracking-widest rounded-full mb-3">
             Have Questions?
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight leading-tight">
             Frequently Asked Questions
           </h2>
-          <p className="text-gray-600 mt-3 text-sm sm:text-base leading-relaxed font-medium">
+          <p className="text-gray-500 mt-3 text-xs sm:text-sm leading-relaxed font-medium">
             Find answers to common questions about our courses, government certifications, low fee structures, and lab practicals in Kahalgaon.
           </p>
         </div>
@@ -58,23 +58,23 @@ const Faq = () => {
                 key={index} 
                 className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
                   isOpen 
-                    ? 'border-red-200/80 bg-white/60 shadow-md' 
-                    : 'border-white/60 bg-white/20 hover:bg-white/30'
+                    ? 'border-red-200 bg-white shadow-sm' 
+                    : 'border-gray-100 bg-slate-50/50 hover:bg-slate-50'
                 }`}
               >
                 <button
                   onClick={() => toggleAccordion(index)}
-                  className="w-full flex items-center justify-between p-5 text-left font-bold text-gray-900 transition-colors duration-200 hover:text-red-600 outline-none cursor-pointer"
+                  className="w-full flex items-center justify-between p-5 text-left font-extrabold text-gray-900 transition-colors duration-200 hover:text-red-600 outline-none cursor-pointer"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-sm sm:text-base pr-4 font-extrabold">{item.question}</span>
-                  <span className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300 ${
+                  <span className="text-xs sm:text-sm pr-4 font-black tracking-tight leading-snug">{item.question}</span>
+                  <span className={`flex-shrink-0 w-7 h-7 rounded-xl flex items-center justify-center border transition-all duration-300 ${
                     isOpen 
                       ? 'border-red-600 bg-red-600 text-white rotate-180' 
-                      : 'border-white/80 bg-white/50 text-gray-500 shadow-sm'
+                      : 'border-gray-200 bg-white text-gray-400 shadow-sm'
                   }`}>
                     <svg 
-                      className="w-4 h-4" 
+                      className="w-3.5 h-3.5" 
                       fill="none" 
                       stroke="currentColor" 
                       viewBox="0 0 24 24"
@@ -82,7 +82,7 @@ const Faq = () => {
                       <path 
                         strokeLinecap="round" 
                         strokeLinejoin="round" 
-                        strokeWidth={2.5} 
+                        strokeWidth={3} 
                         d="M19 9l-7 7-7-7" 
                       />
                     </svg>
@@ -99,7 +99,7 @@ const Faq = () => {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.25, ease: "easeInOut" }}
                     >
-                      <div className="p-5 text-xs sm:text-sm text-gray-600 leading-relaxed bg-white/40 border-t border-white/50 font-medium">
+                      <div className="p-5 text-xs sm:text-sm text-gray-500 leading-relaxed bg-white border-t border-gray-100/50 font-medium">
                         {item.answer}
                       </div>
                     </motion.div>
