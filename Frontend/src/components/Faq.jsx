@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const faqData = [
   {
@@ -35,16 +36,16 @@ const Faq = () => {
   };
 
   return (
-    <section className="px-6 py-16 sm:px-8 lg:px-16 rounded-2xl shadow-sm border border-gray-100 my-8">
+    <section className="px-6 py-16 sm:px-8 lg:px-16 rounded-3xl shadow-lg bg-white/30 backdrop-blur-xl border border-white/50 my-8">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <span className="inline-block px-3 py-1 bg-red-100 text-red-600 text-xs font-bold uppercase tracking-wider rounded-full mb-3">
             Have Questions?
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-gray-900">
+          <h2 className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight">
             Frequently Asked Questions
           </h2>
-          <p className="text-gray-600 mt-3 text-sm sm:text-base leading-relaxed">
+          <p className="text-gray-600 mt-3 text-sm sm:text-base leading-relaxed font-medium">
             Find answers to common questions about our courses, certifications, batch timings, and training methods at Smart Computer Academy.
           </p>
         </div>
@@ -57,20 +58,20 @@ const Faq = () => {
                 key={index} 
                 className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
                   isOpen 
-                    ? 'border-red-200 bg-red-50/10 shadow-md' 
-                    : 'border-gray-200 hover:border-gray-300 bg-white'
+                    ? 'border-red-200/80 bg-white/60 shadow-md' 
+                    : 'border-white/60 bg-white/20 hover:bg-white/30'
                 }`}
               >
                 <button
                   onClick={() => toggleAccordion(index)}
-                  className="w-full flex items-center justify-between p-5 text-left font-bold text-gray-900 transition-colors duration-200 hover:text-red-600"
+                  className="w-full flex items-center justify-between p-5 text-left font-bold text-gray-900 transition-colors duration-200 hover:text-red-600 outline-none"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-base sm:text-lg pr-4">{item.question}</span>
+                  <span className="text-sm sm:text-base pr-4 font-extrabold">{item.question}</span>
                   <span className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300 ${
                     isOpen 
                       ? 'border-red-600 bg-red-600 text-white rotate-180' 
-                      : 'border-gray-300 text-gray-500'
+                      : 'border-white/80 bg-white/50 text-gray-500 shadow-sm'
                   }`}>
                     <svg 
                       className="w-4 h-4" 
@@ -88,15 +89,22 @@ const Faq = () => {
                   </span>
                 </button>
 
-                <div 
-                  className={`transition-all duration-500 ease-in-out overflow-hidden ${
-                    isOpen ? 'max-h-[500px] opacity-100 border-t border-gray-100' : 'max-h-0 opacity-0'
-                  }`}
-                >
-                  <div className="p-5 text-sm sm:text-base text-gray-600 leading-relaxed bg-white/50">
-                    {item.answer}
-                  </div>
-                </div>
+                {/* Animated collapse/expand via Framer Motion */}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key="content"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                    >
+                      <div className="p-5 text-xs sm:text-sm text-gray-600 leading-relaxed bg-white/40 border-t border-white/50 font-medium">
+                        {item.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}

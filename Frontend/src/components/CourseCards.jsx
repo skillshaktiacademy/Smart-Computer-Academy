@@ -1,4 +1,6 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { BookOpen, Award, ArrowRight } from "lucide-react";
 
 const courses = [
   {
@@ -6,11 +8,7 @@ const courses = [
     title: "🖥️ ADCA – Advanced Diploma in Computer Applications",
     image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=400",
     duration: "12 Months",
-    highlights: [
-      "DCA + Advanced Excel",
-      "Accounting with Tally Prime",
-      "C, C++ Programming Basics",
-    ],
+    highlights: ["DCA + Advanced Excel", "Accounting with Tally Prime", "C, C++ Programming Basics"],
     description: "Advanced course for career in IT & corporate office jobs.",
   },
   {
@@ -50,11 +48,7 @@ const courses = [
     title: "🤖 ChatGPT + AI Tools",
     image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=400",
     duration: "2 Months",
-    highlights: [
-      "ChatGPT Advanced Prompting",
-      "AI Productivity Tools",
-      "Content Creation & Automations",
-    ],
+    highlights: ["ChatGPT Advanced Prompting", "AI Productivity Tools", "Content Creation & Automations"],
     description: "Use AI to boost learning, professional productivity & business.",
   },
   {
@@ -62,11 +56,7 @@ const courses = [
     title: "💻 DCA – Diploma in Computer Applications",
     image: "https://images.unsplash.com/photo-1588702547837-2c02f2a850cf?auto=format&fit=crop&q=80&w=400",
     duration: "6 Months",
-    highlights: [
-      "MS Office (Word, Excel, PowerPoint)",
-      "Internet, Emails & Web Skills",
-      "Basic Hardware & OS Fundamentals",
-    ],
+    highlights: ["MS Office (Word, Excel, PowerPoint)", "Internet, Emails & Web Skills", "Basic Hardware & OS Fundamentals"],
     description: "Beginners और job seekers के लिए complete computer knowledge.",
   },
   {
@@ -127,7 +117,7 @@ const courses = [
   },
   {
     id: 15,
-    title: "🛠️ AutoCAD (2D Drafting & 3D Design)",
+    title: "🛠️ AutoCAD (2D Drafting & 3D)",
     image: "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&q=80&w=400",
     duration: "6 Months",
     highlights: ["2D Blueprints & Drafting", "3D Architecture Modelling", "Civil/Mechanical layouts"],
@@ -143,71 +133,104 @@ const courses = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05
+    }
+  }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { type: "spring", stiffness: 100, damping: 15 } 
+  }
+};
+
 const CourseCards = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 text-left">
+    <motion.div 
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 text-left"
+    >
       {courses.map((course) => (
-        <div
+        <motion.div
           key={course.id}
-          className="bg-white rounded-2xl border border-gray-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col overflow-hidden group"
+          variants={cardVariants}
+          whileHover={{ 
+            y: -10, 
+            boxShadow: "0 20px 40px rgba(220, 38, 38, 0.08)",
+            borderColor: "rgba(220, 38, 38, 0.3)"
+          }}
+          className="bg-white/40 backdrop-blur-xl rounded-2xl border border-white/50 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group"
         >
           {/* Image */}
-          <div className="h-44 w-full bg-gray-50 overflow-hidden relative">
+          <div className="h-44 w-full bg-slate-50/50 overflow-hidden relative">
             <img
               src={course.image}
               alt={course.title}
-              className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500"
+              className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
               loading="lazy"
             />
-            <div className="absolute top-3 right-3 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+            <div className="absolute top-3 right-3 bg-red-600/90 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
               {course.duration}
             </div>
           </div>
 
           {/* Card Content */}
-          <div className="p-5 flex flex-col flex-grow">
+          <div className="p-5 flex flex-col flex-grow bg-white/10">
             {/* Title */}
-            <h3 className="text-lg font-extrabold text-gray-900 mb-2 leading-snug group-hover:text-red-600 transition-colors">
+            <h3 className="text-base font-extrabold text-gray-900 mb-2 leading-snug group-hover:text-red-600 transition-colors">
               {course.title}
             </h3>
 
             {/* Description */}
-            <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+            <p className="text-xs text-gray-600 mb-4 line-clamp-2 leading-relaxed font-medium">
               {course.description}
             </p>
 
             {/* Highlights */}
             <div className="mb-5 flex-grow">
-              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Key Highlights</p>
+              <p className="text-[10px] font-extrabold text-gray-400 uppercase tracking-widest mb-2">Key Highlights</p>
               <ul className="space-y-1.5">
                 {course.highlights.map((point, index) => (
                   <li key={index} className="text-xs text-gray-700 flex items-start">
                     <span className="text-red-500 mr-2 font-black">•</span>
-                    <span>{point}</span>
+                    <span className="font-medium">{point}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Buttons */}
-            <div className="flex gap-3 mt-auto pt-4 border-t border-gray-50">
-              <button 
+            {/* Buttons with Micro-interactions */}
+            <div className="flex gap-3 mt-auto pt-4 border-t border-gray-100/50">
+              <motion.button 
+                whileTap={{ scale: 0.95 }}
                 onClick={() => alert(`Inquiry submitted for ${course.title}. We will contact you soon!`)}
-                className="flex-1 bg-red-600 text-white text-sm font-bold py-2.5 px-4 rounded-xl hover:bg-gray-900 transition-all duration-300 shadow-md hover:shadow-lg active:scale-95"
+                className="flex-grow-[2] bg-red-600 text-white text-xs font-bold py-2.5 px-4 rounded-xl hover:bg-gray-900 transition-all duration-300 shadow-sm active:scale-95 text-center"
               >
                 Enquiry
-              </button>
-              <button 
+              </motion.button>
+              <motion.button 
+                whileTap={{ scale: 0.95 }}
                 onClick={() => alert(`Details of course: ${course.title}\nDuration: ${course.duration}\nHighlights: ${course.highlights.join(", ")}`)}
-                className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-bold py-2.5 px-4 rounded-xl transition-all duration-300 active:scale-95"
+                className="flex-grow bg-slate-100/80 hover:bg-slate-200/90 text-gray-800 text-xs font-bold py-2.5 px-3 rounded-xl transition-all duration-300 active:scale-95 text-center"
               >
                 Details
-              </button>
+              </motion.button>
             </div>
           </div>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 
