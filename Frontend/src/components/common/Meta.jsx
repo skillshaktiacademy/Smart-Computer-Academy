@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 
 const SITE_NAME = "Smart Computer Academy";
-const SITE_URL = "https://skillshakti.in"; // Default production URL
+const SITE_URL = "https://www.smartcomputeracademy.in"; // Default production URL
 const DEFAULT_IMAGE = "/logo.jpg"; // Path to standard logo
 
 /**

@@ -5,7 +5,7 @@ import { mockCoursesData } from './src/data/coursesData.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const SITE_URL = 'https://skillshakti.in';
+const SITE_URL = 'https://www.smartcomputeracademy.in';
 
 const staticPages = [
   '',

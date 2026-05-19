@@ -4,7 +4,7 @@
  */
 
 export const SITE_NAME = "Smart Computer Academy";
-export const SITE_URL  = "https://skillshakti.in";
+export const SITE_URL  = "https://www.smartcomputeracademy.in";
 export const LOGO_URL  = `${SITE_URL}/logo.jpg`;
 
 /**

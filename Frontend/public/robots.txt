@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://skillshakti.in/sitemap.xml
+Sitemap: https://www.smartcomputeracademy.in/sitemap.xml
 
 Disallow: /dashboard/
 Disallow: /admin/
