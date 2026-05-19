@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Loader2 } from "lucide-react";
+import { Analytics } from "@vercel/analytics/react";
 
 // Loading Fallback Component
 const PageLoader = () => (
@@ -166,6 +167,7 @@ function App() {
         pauseOnHover
         theme="colored"
       />
+      <Analytics />
     </>
   );
 }
