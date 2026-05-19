@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Loader2 } from "lucide-react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 // Loading Fallback Component
 const PageLoader = () => (
@@ -70,6 +71,7 @@ const MyMaterials = lazy(() => import("./pages/dashboard/student/MyMaterials"));
 function App() {
   return (
     <>
+      <SpeedInsights />
       <Suspense fallback={<PageLoader />}>
         <Routes>
         {/* Public Routes */}
