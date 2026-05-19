@@ -44,7 +44,7 @@ const Callback = () => {
           Get Career Counseling
         </span>
         <h2 id="support-heading" className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight">
-          Smart Computer Academy – Support & Callback Inquiry
+          Smart Computer Academy – Support &amp; Callback Inquiry
         </h2>
         <p className="text-gray-600 mt-3 text-sm sm:text-base max-w-2xl mx-auto font-medium">
           Need help choosing the right software/hardware course or Tally ERP? Leave your details below, and Praveen Sir will call you back shortly.
@@ -52,35 +52,70 @@ const Callback = () => {
       </div>
 
       <div className="flex flex-col lg:flex-row gap-8 items-stretch">
-        {/* Support Desk Info Card (Glassmorphism with Real Kahalgaon Data) */}
+        {/* Support Desk Info Card */}
         <motion.div 
           whileHover={{ y: -5 }}
-          className="bg-white/40 backdrop-blur-xl p-8 rounded-3xl shadow-lg border border-white/50 w-full lg:w-1/2 flex flex-col justify-center items-center text-center transition-all duration-300"
+          className="bg-white/40 backdrop-blur-xl p-6 sm:p-10 rounded-3xl shadow-lg border border-white/50 w-full lg:w-1/2 flex flex-col justify-center items-center text-center transition-all duration-300"
         >
-          <div className="flex flex-col items-center">
-            <img
-              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=200"
-              alt="Praveen Sir - Smart Computer Academy Director"
-              className="w-28 h-28 rounded-full object-cover mb-4 border-4 border-white/80 shadow-md transform hover:scale-105 transition-transform duration-300"
-            />
-            <p className="text-[10px] font-extrabold text-gray-400 uppercase tracking-widest mb-1">Academy Founder & Director</p>
-            <p className="text-2xl font-black text-gray-900 mb-1">Praveen Sir</p>
-            <p className="text-xs font-bold text-red-600 mb-4 bg-red-100/70 border border-red-200/50 px-3 py-1 rounded-full">
+          <div className="flex flex-col items-center w-full">
+            {/* Avatar with gradient ring */}
+            <div className="relative mb-6 mx-auto">
+              <div className="w-40 h-40 sm:w-44 sm:h-44 rounded-full p-[4px] bg-gradient-to-tr from-red-500 via-orange-400 to-yellow-300 shadow-2xl mx-auto">
+                <img
+                  src="/praveen-sir.jpg"
+                  alt="Praveen Sir - Smart Computer Academy Director"
+                  className="w-full h-full rounded-full object-cover border-4 border-white"
+                  style={{ objectPosition: 'center 15%' }}
+                  onError={(e) => {
+                    e.target.src = 'https://ui-avatars.com/api/?name=Praveen+Sir&background=dc2626&color=fff&size=200&bold=true';
+                  }}
+                />
+              </div>
+              {/* Online / available badge */}
+              <span
+                className="absolute bottom-2 right-2 w-5 h-5 bg-green-500 border-2 border-white rounded-full shadow-md"
+                title="Available for calls"
+              ></span>
+            </div>
+
+            <p className="text-[10px] font-extrabold text-gray-400 uppercase tracking-widest mb-1">
+              Academy Founder &amp; Director
+            </p>
+            <p className="text-2xl sm:text-3xl font-black text-gray-900 mb-1">Praveen Sir</p>
+            <p className="text-xs font-bold text-red-600 mb-2 bg-red-100/70 border border-red-200/50 px-3 py-1 rounded-full">
               SMART COMPUTER ACADEMY KAHALGAON
             </p>
-            <p className="text-xs text-gray-500 mb-6 font-medium">(Regd. By Govt. of India | ISO 9001:2015)</p>
-            <p className="text-sm font-semibold text-gray-700 max-w-xs leading-relaxed mb-2">
-              For Free Career Guidance, Admissions & Offline Fee Structure Inquiries:
+            <p className="text-[10px] text-gray-500 mb-5 font-medium">
+              (Regd. By Govt. of India | ISO 9001:2015)
             </p>
-            <p className="text-xs text-gray-500 font-bold mb-4">
-              Address: S.S.V. College Road, Near STS Coaching, Kahalgaon
+
+            {/* Expertise pills */}
+            <div className="flex flex-wrap justify-center gap-2 mb-5 w-full">
+              <span className="text-[11px] font-semibold bg-blue-50 text-blue-700 border border-blue-100 px-3 py-1 rounded-full">
+                💻 Computer Courses
+              </span>
+              <span className="text-[11px] font-semibold bg-green-50 text-green-700 border border-green-100 px-3 py-1 rounded-full">
+                📊 Tally ERP
+              </span>
+              <span className="text-[11px] font-semibold bg-purple-50 text-purple-700 border border-purple-100 px-3 py-1 rounded-full">
+                🤖 AI / Web Dev
+              </span>
+            </div>
+
+            <p className="text-xs sm:text-sm font-semibold text-gray-700 max-w-xs leading-relaxed mb-2">
+              For Free Career Guidance, Admissions &amp; Offline Fee Structure Inquiries:
             </p>
-            <motion.a 
+            <p className="text-xs text-gray-500 font-bold mb-4 px-2">
+              📍 S.S.V. College Road, Near STS Coaching, Kahalgaon
+            </p>
+
+            <motion.a
               whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
               href="tel:+919905788324"
-              className="text-2xl sm:text-3xl font-black text-red-600 hover:text-red-700 transition-colors mt-2 block px-6 py-2 bg-red-50/50 rounded-2xl border border-red-100 shadow-sm"
+              className="text-xl sm:text-2xl font-black text-red-600 hover:text-red-700 transition-colors mt-2 block px-6 py-3 bg-red-50/50 rounded-2xl border border-red-100 shadow-sm w-full sm:w-auto text-center"
             >
-              +91 99057 88324
+              📞 +91 99057 88324
             </motion.a>
           </div>
         </motion.div>
@@ -88,7 +123,7 @@ const Callback = () => {
         {/* Call Back Form (Glassmorphism) */}
         <motion.form 
           whileHover={{ y: -5 }}
-          className="bg-white/40 backdrop-blur-xl p-8 rounded-3xl shadow-lg border border-white/50 w-full lg:w-1/2 space-y-5 flex flex-col justify-between transition-all duration-300" 
+          className="bg-white/40 backdrop-blur-xl p-6 sm:p-8 rounded-3xl shadow-lg border border-white/50 w-full lg:w-1/2 space-y-5 flex flex-col justify-between transition-all duration-300" 
           aria-label="Call Back Request Form" 
           onSubmit={handleFormSubmit}
         >
@@ -179,7 +214,7 @@ const Callback = () => {
                 <option value="Tally">Tally with GST - ₹2500</option>
                 <option value="DTP">DTP (Desktop Publishing)</option>
                 <option value="DFA">DFA (Diploma in Financial Accounting)</option>
-                <option value="Typing">Hindi & English Typing</option>
+                <option value="Typing">Hindi &amp; English Typing</option>
                 <option value="DataEntry">Data Entry Operator</option>
                 <option value="WebDev">Full-Stack Web Development</option>
                 <option value="AI">Artificial Intelligence</option>

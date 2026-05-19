@@ -8,6 +8,8 @@ import { publicAPI } from "../../api/public.api";
 import CourseCard from "../../components/course/CourseCard";
 import { mockCoursesData } from "../../data/coursesData";
 
+import { breadcrumbJsonLd } from "../../utils/seo";
+
 const Courses = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -35,12 +37,18 @@ const Courses = () => {
     });
   }, [courses, searchTerm, selectedCategory]);
 
+  const coursesSchema = breadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Courses", path: "/courses" }
+  ]);
+
   return (
     <>
       <Meta 
         title="Professional Computer Courses | DCA, ADCA, Tally Prime & PGDCA" 
         description="Explore the best computer courses in Kahalgaon at Smart Computer Academy. Highly rated DCA, ADCA, PGDCA, Tally Prime with GST, and typing courses with 100% practical lab training." 
         keywords="computer courses Kahalgaon, DCA course fees, ADCA course duration, Tally Prime classes Kahalgaon, PGDCA training Bihar, IT coaching center S.S.V. College Road"
+        schema={coursesSchema}
       />
 
       <div className="bg-gray-50 min-h-screen pb-24">

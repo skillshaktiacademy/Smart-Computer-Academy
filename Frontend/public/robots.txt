@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://skillshakti.in/sitemap.xml
+
+Disallow: /dashboard/
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/

@@ -13,6 +13,8 @@ import Meta from "../../components/common/Meta";
 import { publicAPI } from "../../api/public.api";
 import { mockCoursesData } from "../../data/coursesData";
 
+import { breadcrumbJsonLd } from "../../utils/seo";
+
 const Enquiry = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -58,6 +60,16 @@ const Enquiry = () => {
     window.open(`https://wa.me/918789302254?text=${encodeURIComponent(message)}`, "_blank");
   };
 
+  const enquirySchema = useMemo(() => {
+    if (!course) return null;
+    return breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Courses", path: "/courses" },
+      { name: course.title, path: `/courses/${course.slug}` },
+      { name: "Enquiry", path: `/enquiry/${course.slug}` }
+    ]);
+  }, [course]);
+
   if (loadingCourse) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
@@ -80,8 +92,8 @@ const Enquiry = () => {
           </div>
           <h2 className="text-3xl font-black text-gray-900 mb-4">Request Received!</h2>
           <p className="text-gray-600 mb-8 leading-relaxed">
-            Thank you for your interest in <span className="font-bold text-gray-900">{course?.title}</span>. 
-            Our academic counselor will get in touch with you shortly.
+             Thank you for your interest in <span className="font-bold text-gray-900">{course?.title}</span>. 
+             Our academic counselor will get in touch with you shortly.
           </p>
           <div className="flex flex-col space-y-4">
             <Link to="/courses" className="btn-primary w-full py-4 rounded-xl text-lg font-bold">
@@ -105,6 +117,7 @@ const Enquiry = () => {
         title={`Enquire Now | Admission Inquiry for ${course?.title || "Computer Course"}`} 
         description={`Submit your admission inquiry or request a call back for the ${course?.title || "computer course"} at Smart Computer Academy Kahalgaon. Get fee structures and details.`} 
         keywords={`enquiry ${course?.title || "course"}, computer academy Kahalgaon admissions, call back Smart Computer Academy`} 
+        schema={enquirySchema}
       />
       
       <div className="min-h-screen bg-gray-50 pt-24 pb-12">

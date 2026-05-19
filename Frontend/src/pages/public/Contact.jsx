@@ -36,6 +36,8 @@ const sectionVariants = {
   }
 };
 
+import { breadcrumbJsonLd, faqJsonLd } from "../../utils/seo";
+
 const Contact = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -58,7 +60,7 @@ const Contact = () => {
   const faqData = [
     {
       question: "How can I book a free demo class at Smart Computer Academy?",
-      answer: "You can book a free demo class by submitting the contact form on this page or by calling Director Praveen Sir directly at +91 99057 88324. We welcome you to visit our S.S.V. College Road campus to experience our individual PC labs!"
+      answer: "You can book a free demo class by submitting the contact form on this page or by calling Director Praveen Sir directly at +91 80925 78834. We welcome you to visit our S.S.V. College Road campus to experience our individual PC labs!"
     },
     {
       question: "Are there any installment options for Tally or ADCA fees?",
@@ -70,12 +72,21 @@ const Contact = () => {
     }
   ];
 
+  const contactSchemaMarkup = [
+    breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Contact Us", path: "/contact" }
+    ]),
+    faqJsonLd(faqData)
+  ];
+
   return (
     <>
       <Meta 
-        title="Contact Us | Smart Computer Academy Kahalgaon Phone & Map" 
-        description="Contact Praveen Sir at Smart Computer Academy Kahalgaon on S.S.V. College Road. Call +91 99057 88324 or submit your admission enquiry online today." 
-        keywords="contact computer institute Kahalgaon, Praveen Sir phone number, Smart Computer Academy address, computer classes near me Kahalgaon" 
+        title="Contact Us | Phone, Address & Map Kahalgaon" 
+        description="Contact Praveen Sir at Smart Computer Academy Kahalgaon on S.S.V. College Road. Call +91 80925 78834 or submit your admission enquiry online today." 
+        keywords="contact computer institute Kahalgaon, Praveen Sir phone number, Smart Computer Academy address, computer classes near me Kahalgaon"
+        schema={contactSchemaMarkup}
       />
 
       {/* Main Container with subtle mesh background and blurred neon nodes */}

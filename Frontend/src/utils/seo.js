@@ -1,123 +1,182 @@
-import { useEffect } from "react";
+/**
+ * Enterprise SEO & Structured Data Constants and Builders
+ * Provides standardized templates for Schema.org JSON-LD injection
+ */
 
-const SITE_NAME = "Smart Computer Academy";
-const SITE_URL  = "https://skillshakti.in";
-const LOGO_URL  = `${SITE_URL}/logo.png`;
+export const SITE_NAME = "Smart Computer Academy";
+export const SITE_URL  = "https://skillshakti.in";
+export const LOGO_URL  = `${SITE_URL}/logo.jpg`;
 
-/* ── Slug preview (mirrors backend slugify logic) ───────────── */
-export function generateSlug(text = "") {
-  return text
-    .toString()
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-]/g, "")    // remove special chars
-    .replace(/[\s_]+/g, "-")     // spaces/underscores → hyphens
-    .replace(/--+/g, "-")        // collapse multiple hyphens
-    .replace(/^-+|-+$/g, "");    // trim leading/trailing hyphens
-}
-
-/* ── Course JSON-LD ─────────────────────────────────────────── */
-export function courseJsonLd(course) {
+/**
+ * 1. Website Schema (Sitelinks Searchbox support)
+ */
+export function websiteJsonLd() {
   return {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    name: course.title,
-    description: course.description,
-    url: `${SITE_URL}/courses/${course.slug}`,
-    image: course.thumbnail?.url || LOGO_URL,
-    provider: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: SITE_URL,
-      logo: { "@type": "ImageObject", url: LOGO_URL },
-    },
-    offers: {
-      "@type": "Offer",
-      price: course.fee ?? 0,
-      priceCurrency: "INR",
-      availability: "https://schema.org/InStock",
-      url: `${SITE_URL}/courses/${course.slug}`,
+    "@type": "WebSite",
+    "name": SITE_NAME,
+    "url": SITE_URL,
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": `${SITE_URL}/courses?search={search_term_string}`,
+      "query-input": "required name=search_term_string"
     }
-  };
-}
-
-/* ── Franchise JSON-LD ──────────────────────────────────────── */
-export function franchiseJsonLd(franchise) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    name: franchise.name,
-    description: `Official center of Smart Computer Academy in ${franchise.address?.city}`,
-    url: `${SITE_URL}/franchises/${franchise.code}`,
-    image: franchise.logo?.url || LOGO_URL,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: franchise.address?.street,
-      addressLocality: franchise.address?.city,
-      addressRegion: franchise.address?.state,
-      postalCode: franchise.address?.pincode,
-      addressCountry: "IN",
-    },
-    parentOrganization: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: SITE_URL,
-    },
-  };
-}
-
-/* ── Breadcrumb JSON-LD ─────────────────────────────────────── */
-export function breadcrumbJsonLd(items) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: items.map((item, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      name: item.name,
-      item: `${SITE_URL}${item.path}`,
-    })),
-  };
-}
-
-/* ── Build meta object ──────────────────────────────────────── */
-export function buildMeta({
-  title,
-  description = "Smart Computer Academy – Bihar's #1 Computer Education Institute. DCA, ADCA, Tally & more.",
-  image = LOGO_URL,
-  url = SITE_URL,
-  type = "website",
-  noindex = false,
-}) {
-  const fullTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
-
-  return {
-    title: fullTitle,
-    metas: [
-      { name: "description",        content: description },
-      { name: "robots",             content: noindex ? "noindex,nofollow" : "index,follow" },
-      { property: "og:type",        content: type },
-      { property: "og:title",       content: fullTitle },
-      { property: "og:description", content: description },
-      { property: "og:image",       content: image },
-      { property: "og:url",         content: url },
-      { property: "og:site_name",   content: SITE_NAME },
-      { name: "twitter:card",        content: "summary_large_image" },
-      { name: "twitter:title",       content: fullTitle },
-      { name: "twitter:description", content: description },
-      { name: "twitter:image",       content: image },
-    ],
-    canonical: url,
   };
 }
 
 /**
- * Hook for SEO debugging
+ * 2. Organization Schema
  */
-export function useSEO({ title, url }) {
-  useEffect(() => {
-    if (import.meta.env.DEV) {
-      console.debug("[SEO Update]", { title, url });
+export function organizationJsonLd() {
+  return {
+    "@type": "EducationalOrganization",
+    "name": SITE_NAME,
+    "url": SITE_URL,
+    "logo": LOGO_URL,
+    "sameAs": [
+      "https://www.facebook.com/smartcomputeracademy",
+      "https://www.youtube.com/@smartcomputeracademy",
+      "https://www.instagram.com/smartcomputeracademy"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-8092578834",
+      "contactType": "admissions",
+      "areaServed": "IN",
+      "availableLanguage": ["Hindi", "English"]
     }
-  }, [title, url]);
+  };
+}
+
+/**
+ * 3. Local Business (Educational Institute) Schema
+ */
+export function localBusinessJsonLd() {
+  return {
+    "@type": "CollegeOrUniversity",
+    "@id": `${SITE_URL}/#institute`,
+    "name": SITE_NAME,
+    "url": SITE_URL,
+    "logo": LOGO_URL,
+    "image": `${SITE_URL}/praveen-sir.jpg`,
+    "telephone": "+91-8092578834",
+    "priceRange": "₹₹",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "S.S.V. College Road, Near Bal Badda",
+      "addressLocality": "Kahalgaon",
+      "addressRegion": "Bihar",
+      "postalCode": "813203",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 25.2679,
+      "longitude": 87.2185
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "07:00",
+      "closes": "18:00"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "248"
+    }
+  };
+}
+
+/**
+ * 4. Course Detailed Schema
+ */
+export function courseJsonLd(course) {
+  return {
+    "@type": "Course",
+    "name": course.title,
+    "description": course.shortDescription || course.description,
+    "url": `${SITE_URL}/courses/${course.slug}`,
+    "image": course.image || LOGO_URL,
+    "provider": {
+      "@type": "Organization",
+      "name": SITE_NAME,
+      "url": SITE_URL,
+      "logo": { "@type": "ImageObject", "url": LOGO_URL }
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": course.fee || 3500,
+      "priceCurrency": "INR",
+      "availability": "https://schema.org/InStock",
+      "url": `${SITE_URL}/courses/${course.slug}`
+    },
+    "educationalLevel": course.level || "Beginner to Advanced",
+    "about": course.skills || []
+  };
+}
+
+/**
+ * 5. Breadcrumb Schema
+ */
+export function breadcrumbJsonLd(items) {
+  return {
+    "@type": "BreadcrumbList",
+    "itemListElement": items.map((item, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": item.name,
+      "item": `${SITE_URL}${item.path}`
+    }))
+  };
+}
+
+/**
+ * 6. FAQ Page Schema
+ */
+export function faqJsonLd(faqs = []) {
+  if (!faqs || faqs.length === 0) return null;
+  return {
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question || faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer || faq.a
+      }
+    }))
+  };
+}
+
+/**
+ * 7. Franchise Schema
+ */
+export function franchiseJsonLd(franchise) {
+  return {
+    "@type": "EducationalOrganization",
+    "name": franchise.name,
+    "description": `Official center of Smart Computer Academy in ${franchise.address?.city || 'Bihar'}`,
+    "url": `${SITE_URL}/franchises/${franchise.code}`,
+    "image": franchise.logo?.url || LOGO_URL,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": franchise.address?.street || "",
+      "addressLocality": franchise.address?.city || "",
+      "addressRegion": franchise.address?.state || "Bihar",
+      "postalCode": franchise.address?.pincode || "",
+      "addressCountry": "IN"
+    },
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": SITE_NAME,
+      "url": SITE_URL
+    }
+  };
 }

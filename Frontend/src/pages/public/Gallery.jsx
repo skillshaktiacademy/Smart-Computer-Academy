@@ -4,7 +4,9 @@ import {
   LayoutGrid, Image as ImageIcon, Maximize2, 
   X, Filter, ChevronLeft, ChevronRight 
 } from "lucide-react";
+import { breadcrumbJsonLd } from "../../utils/seo";
 import Meta from "../../components/common/Meta";
+
 
 const Gallery = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -26,12 +28,18 @@ const Gallery = () => {
     return images.filter(img => selectedCategory === "All" || img.category === selectedCategory);
   }, [images, selectedCategory]);
 
+  const gallerySchema = breadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Gallery", path: "/gallery" }
+  ]);
+
   return (
     <>
       <Meta 
         title="Academy Gallery | Campus & Computing Lab Tour" 
         description="Take a visual tour of Smart Computer Academy in Kahalgaon. View high-quality images of our computing labs, spacious classrooms, convocation ceremonies, and campus life." 
         keywords="computer lab Kahalgaon, Smart Computer Academy gallery, Kahalgaon computer center photos, campus tour, educational institute gallery"
+        schema={gallerySchema}
       />
 
       <div className="bg-gray-50 min-h-screen">

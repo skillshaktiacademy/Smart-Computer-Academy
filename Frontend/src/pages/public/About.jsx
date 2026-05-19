@@ -33,6 +33,8 @@ const cardHoverEffect = {
   transition: { duration: 0.3 }
 };
 
+import { breadcrumbJsonLd } from "../../utils/seo";
+
 const About = () => {
   const navigate = useNavigate();
 
@@ -76,11 +78,18 @@ const About = () => {
     }
   ];
 
+  const aboutSchema = breadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "About Us", path: "/about" }
+  ]);
+
   return (
     <>
       <Meta 
         title="About Us | Smart Computer Academy Kahalgaon" 
-        description="Learn about Smart Computer Academy Kahalgaon. Read our founder Praveen Sir's vision, explore our ISO certified lab training infrastructure, and see student achievements." 
+        description="Learn about Smart Computer Academy Kahalgaon. Read our founder Praveen Sir's vision, explore our ISO certified lab training infrastructure, and see student achievements."
+        keywords="about Smart Computer Academy, computer classes Kahalgaon, Praveen Sir director, computer training institute Kahalgaon"
+        schema={aboutSchema}
       />
 
       {/* Main Container with subtle mesh background and blurred neon nodes */}
@@ -203,12 +212,20 @@ const About = () => {
           className="max-w-7xl mx-auto w-full z-10"
         >
           <div className="bg-white/40 backdrop-blur-xl p-8 sm:p-12 rounded-3xl border border-white/50 shadow-lg flex flex-col md:flex-row gap-8 items-center">
-            <div className="w-40 h-40 sm:w-56 sm:h-56 bg-slate-50/50 rounded-full overflow-hidden flex-shrink-0 border-4 border-white/80 shadow-md">
-              <img 
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=300" 
-                alt="Praveen Sir Director Smart Computer Academy"
-                className="w-full h-full object-cover"
-              />
+            {/* Director Photo with gradient ring */}
+            <div className="relative flex-shrink-0 mx-auto md:mx-0">
+              <div className="w-44 h-44 sm:w-56 sm:h-56 rounded-full p-[4px] bg-gradient-to-tr from-red-500 via-orange-400 to-yellow-300 shadow-2xl">
+                <img 
+                  src="/praveen-sir.jpg" 
+                  alt="Praveen Sir - Director Smart Computer Academy Kahalgaon"
+                  className="w-full h-full rounded-full object-cover border-4 border-white"
+                  style={{ objectPosition: 'center 15%' }}
+                  onError={(e) => {
+                    e.target.src = 'https://ui-avatars.com/api/?name=Praveen+Sir&background=dc2626&color=fff&size=200&bold=true';
+                  }}
+                />
+              </div>
+              <span className="absolute bottom-2 right-2 w-5 h-5 bg-green-500 border-2 border-white rounded-full shadow-md" title="Available"></span>
             </div>
             <div className="flex-grow text-center md:text-left space-y-4">
               <span className="inline-block px-3 py-1 bg-red-100 text-red-600 text-[10px] font-extrabold uppercase tracking-widest rounded-full">

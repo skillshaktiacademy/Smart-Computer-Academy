@@ -9,6 +9,8 @@ import Meta from "../../components/common/Meta";
 import api from "../../api/axios";
 import { toast } from "react-toastify";
 
+import { breadcrumbJsonLd } from "../../utils/seo";
+
 const VerifyCertificate = () => {
   const [certificateNo, setCertificateNo] = useState("");
   const [certificateData, setCertificateData] = useState(null);
@@ -35,12 +37,18 @@ const VerifyCertificate = () => {
     }
   };
 
+  const verifySchema = breadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Verify Certificate", path: "/verify-certificate" }
+  ]);
+
   return (
     <>
       <Meta 
         title="ISO Certificate Verification Portal | Smart Computer Academy" 
         description="Verify the authenticity of professional MERN, DCA, ADCA, and Tally Prime + GST certificates issued by Smart Computer Academy Kahalgaon online." 
         keywords="verify computer certificate, ISO certificate verification, Smart Computer Academy verification, verify computer diploma online" 
+        schema={verifySchema}
       />
 
       <div className="bg-gray-50 min-h-screen py-24">

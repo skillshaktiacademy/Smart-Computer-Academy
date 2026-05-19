@@ -21,6 +21,8 @@ const inquirySchema = z.object({
   message: z.string().min(10, "Please provide more details about your inquiry"),
 });
 
+import { breadcrumbJsonLd, faqJsonLd } from "../../utils/seo";
+
 const FAQItem = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -62,12 +64,26 @@ const Franchise = () => {
     }
   };
 
+  const franchiseSchemaMarkup = [
+    breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Franchise Partnership", path: "/franchise" }
+    ]),
+    faqJsonLd([
+      { question: "What is the minimum space required?", answer: "You need a minimum of 500-800 sq. ft. area with space for a lab (10+ computers), a classroom, and an office/reception area." },
+      { question: "What is the total investment?", answer: "The investment varies based on location and center size, typically ranging from 2 Lakhs to 5 Lakhs, including license fees and setup." },
+      { question: "Do I need to be a computer expert?", answer: "No, you don't need to be an expert. We provide complete training for you and your staff, along with academic support." },
+      { question: "How much time does it take to start?", answer: "The entire process from application to launch typically takes 2 to 4 weeks depending on center readiness." }
+    ])
+  ];
+
   return (
     <>
       <Meta 
         title="Become a Partner | Franchise Opportunity Smart Computer Academy" 
         description="Join the Smart Computer Academy network in Bihar. Open your own IT and software computer training institute with proven low-investment business models." 
-        keywords="computer center franchise Bihar, open computer institute, Smart Computer Academy franchise, start typing coaching center" 
+        keywords="computer center franchise Bihar, open computer institute, Smart Computer Academy franchise, start typing coaching center"
+        schema={franchiseSchemaMarkup}
       />
 
       <div className="bg-white">

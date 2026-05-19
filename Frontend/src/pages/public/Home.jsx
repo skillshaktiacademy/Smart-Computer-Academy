@@ -19,14 +19,17 @@ const pageVariants = {
   visible: { opacity: 1, transition: { staggerChildren: 0.08 } }
 };
 
+import { localBusinessJsonLd, websiteJsonLd, organizationJsonLd } from "../../utils/seo";
+
 function Home() {
   return (
     <>
       {/* ── SEO Metadata ── */}
       <Meta
-        title="Smart Computer Academy Kahalgaon | ISO Certified Technical Training Center"
+        title="ISO Certified Technical Training Center Kahalgaon"
         description="Premium vocational computer education center in Kahalgaon. Learn ADCA, DCA, Tally Prime + GST, coding, and web skills with 100% practical lab training. ISO 9001:2015 Certified."
-        keywords="computer classes Kahalgaon, ADCA DCA Kahalgaon, Tally Prime GST coaching, Python programming Kahalgaon, computer courses Bihar"
+        keywords="computer classes Kahalgaon, ADCA DCA Kahalgaon, Tally Prime GST coaching, Python programming Kahalgaon, computer courses Bihar, Smart Computer Academy Kahalgaon"
+        schema={[localBusinessJsonLd(), websiteJsonLd(), organizationJsonLd()]}
       />
 
       {/* ── Page Container ── */}

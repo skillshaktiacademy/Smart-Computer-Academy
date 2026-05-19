@@ -11,6 +11,8 @@ import Meta from "../../components/common/Meta";
 import { publicAPI } from "../../api/public.api";
 import { mockCoursesData } from "../../data/coursesData";
 
+import { courseJsonLd, breadcrumbJsonLd, faqJsonLd } from "../../utils/seo";
+
 const CourseDetail = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -27,6 +29,19 @@ const CourseDetail = () => {
   const apiCourse = courseData?.data?.data;
   const mockCourse = useMemo(() => mockCoursesData.find(c => c.slug === slug), [slug]);
   const course = apiCourse || mockCourse;
+
+  const courseSchemas = useMemo(() => {
+    if (!course) return null;
+    return [
+      courseJsonLd(course),
+      breadcrumbJsonLd([
+        { name: "Home", path: "/" },
+        { name: "Courses", path: "/courses" },
+        { name: course.title, path: `/courses/${course.slug}` }
+      ]),
+      faqJsonLd(course.faqs)
+    ].filter(Boolean);
+  }, [course]);
 
   if (isLoading) {
     return (
@@ -51,9 +66,10 @@ const CourseDetail = () => {
   return (
     <>
       <Meta 
-        title={`${course.seo?.metaTitle || course.title} | Course Details`} 
+        title={`${course.seo?.metaTitle || course.title}`} 
         description={course.seo?.metaDescription || course.shortDescription || course.description} 
         keywords={course.seo?.keywords?.length > 0 ? course.seo.keywords.join(', ') : `${course.title}, computer courses Kahalgaon, DCA training, ADCA certified course`} 
+        schema={courseSchemas}
       />
 
       <div className="bg-gray-50 min-h-screen pb-24">

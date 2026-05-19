@@ -9,6 +9,8 @@ import Meta from "../../components/common/Meta";
 import api from "../../api/axios";
 import { toast } from "react-toastify";
 
+import { breadcrumbJsonLd } from "../../utils/seo";
+
 const StudentResult = () => {
   const [enrollmentNo, setEnrollmentNo] = useState("");
   const [resultData, setResultData] = useState(null);
@@ -36,12 +38,18 @@ const StudentResult = () => {
     }
   };
 
+  const resultSchema = breadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Online Results", path: "/student-result" }
+  ]);
+
   return (
     <>
       <Meta 
         title="Online Student Result Portal | Verify Marks & Performance" 
         description="Check your exam marks, grades, passing percentage, and performance summary online. Enter your Smart Computer Academy enrollment number to view results." 
         keywords="student result lookup, computer center exam result, Smart Computer Academy marksheet verification, check results online Kahalgaon" 
+        schema={resultSchema}
       />
 
       <div className="bg-gray-50 min-h-screen py-24">
