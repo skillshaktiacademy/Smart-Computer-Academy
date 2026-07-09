@@ -1,9 +1,23 @@
 import mongoose from 'mongoose';
+import dns from 'dns';
 import logger from './logger.js';
 import dotenv from 'dotenv';
 import { DB_NAME } from '../constants.js';
 
 dotenv.config();
+
+// Some machines use a loopback-only DNS resolver (e.g. a local proxy/VPN) that
+// refuses SRV queries, which breaks mongodb+srv:// connection strings with
+// "querySrv ECONNREFUSED". In that case, fall back to public DNS so Atlas SRV
+// records resolve. This is a no-op on hosts with a normal DNS configuration.
+try {
+  const servers = dns.getServers();
+  if (servers.length && servers.every((s) => s.startsWith('127.') || s === '::1')) {
+    dns.setServers(['8.8.8.8', '1.1.1.1']);
+  }
+} catch {
+  /* ignore DNS reconfiguration errors */
+}
 
 const MAX_RETRIES = 5;
 const RETRY_INTERVAL = 5000; // 5 seconds
