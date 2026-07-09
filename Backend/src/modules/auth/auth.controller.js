@@ -11,10 +11,15 @@ import { uploadOnCloudinary, deleteFromCloudinary } from "../../config/cloudinar
 import jwt from "jsonwebtoken";
 import { nanoid } from "nanoid";
 
+const isProduction = process.env.NODE_ENV === "production";
+
+// In production the SPA and API are usually hosted on different domains, so the
+// auth cookies must be cross-site: `sameSite: "none"` + `secure: true` (HTTPS).
+// Locally (http) use `lax` so cookies still work across localhost ports.
 const cookieOptions = {
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
-  sameSite: "strict",
+  secure: isProduction,
+  sameSite: isProduction ? "none" : "lax",
 };
 
 /**
@@ -141,13 +146,10 @@ const login = asyncHandler(async (req, res) => {
     $or: [{ email }, { phone }],
   });
 
-  if (!user) {
-    throw new ApiError(404, "User does not exist");
-  }
-
-  const isPasswordValid = await user.isPasswordCorrect(password);
-  if (!isPasswordValid) {
-    throw new ApiError(401, "Invalid user credentials");
+  // Use a single generic error for both "no such user" and "wrong password"
+  // so the endpoint can't be used to enumerate registered accounts.
+  if (!user || !(await user.isPasswordCorrect(password))) {
+    throw new ApiError(401, "Invalid credentials");
   }
 
   if (!user.isEmailVerified) {
@@ -234,24 +236,29 @@ const forgotPassword = asyncHandler(async (req, res) => {
   const { email } = req.body;
 
   const user = await User.findOne({ email });
-  if (!user) {
-    throw new ApiError(404, "User not found");
+
+  // Only act if the account exists, but always return the same response so the
+  // endpoint can't reveal which emails are registered.
+  if (user) {
+    const resetToken = nanoid(32);
+    user.passwordResetToken = resetToken;
+    user.passwordResetExpiry = Date.now() + 30 * 60 * 1000; // 30 mins
+    await user.save({ validateBeforeSave: false });
+
+    const resetUrl = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
+
+    await sendEmail({
+      email: user.email,
+      subject: "Reset your password - Skill Shakti Academy",
+      html: resetPasswordTemplate(resetUrl, user.name),
+    });
   }
 
-  const resetToken = nanoid(32);
-  user.passwordResetToken = resetToken;
-  user.passwordResetExpiry = Date.now() + 30 * 60 * 1000; // 30 mins
-  await user.save({ validateBeforeSave: false });
-
-  const resetUrl = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
-
-  await sendEmail({
-    email: user.email,
-    subject: "Reset your password - Skill Shakti Academy",
-    html: resetPasswordTemplate(resetUrl, user.name),
-  });
-
-  return res.status(200).json(new ApiResponse(200, {}, "Password reset link sent to your email"));
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(200, {}, "If an account with that email exists, a password reset link has been sent.")
+    );
 });
 
 /**

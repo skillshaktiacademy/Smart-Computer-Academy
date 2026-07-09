@@ -33,21 +33,8 @@ app.use(morgan(morganFormat, {
   },
 }));
 
-// Routes
-app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/franchises", franchiseRouter);
-app.use("/api/v1/students", studentRouter);
-app.use("/api/v1/courses", courseRouter);
-app.use("/api/v1/attendance", attendanceRouter);
-app.use("/api/v1/fees", feeRouter);
-app.use("/api/v1/exams", examRouter);
-app.use("/api/v1/certificates", certificateRouter);
-app.use("/api/v1/notices", noticeRouter);
-app.use("/api/v1/materials", materialRouter);
-app.use("/api/v1/public", publicRouter);
-app.use("/api/v1/enrollments", enrollmentRouter);
-app.use("/api/v1/results", resultRouter);
-app.use("/api/v1/dashboard", dashboardRouter);
+// Mount all versioned API routes via the central route registry
+app.use(API_PREFIX, apiRouter);
 
 // Health check
 app.get("/health", (req, res) => {

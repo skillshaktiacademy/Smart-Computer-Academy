@@ -60,7 +60,7 @@ const dashboardRoutes = [
       },
       // Franchise section
       {
-        element: <ProtectedRoute allowedRoles={["franchise"]} />,
+        element: <ProtectedRoute allowedRoles={["franchise_owner"]} />,
         children: [
           {
             path: "franchise",

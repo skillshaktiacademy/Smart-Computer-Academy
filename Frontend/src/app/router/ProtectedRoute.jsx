@@ -1,12 +1,6 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-
-const ROLE_HOME = {
-  student:    "/dashboard/student",
-  teacher:    "/dashboard/teacher",
-  franchise:  "/dashboard/franchise",
-  super_admin: "/dashboard/super_admin",
-};
+import { getRoleHome } from "../../lib/roles";
 
 export default function ProtectedRoute({ allowedRoles = [] }) {
   const { user, isAuthenticated } = useSelector((state) => state.auth);
@@ -19,8 +13,7 @@ export default function ProtectedRoute({ allowedRoles = [] }) {
 
   // 2. Role not allowed → redirect to their own dashboard
   if (allowedRoles.length > 0 && !allowedRoles.includes(user.role)) {
-    const home = ROLE_HOME[user.role] ?? "/";
-    return <Navigate to={home} replace />;
+    return <Navigate to={getRoleHome(user.role)} replace />;
   }
 
   // 3. Authorised → render child routes

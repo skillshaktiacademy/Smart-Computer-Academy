@@ -1,9 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// The access token is intentionally NOT persisted to localStorage (that would
+// expose it to XSS). It lives in memory only; auth also flows through the
+// httpOnly cookie, and the axios interceptor silently refreshes the token
+// after a page reload. Only non-sensitive `user` data is persisted so the UI
+// can restore role/session state.
 const initialState = {
   user: JSON.parse(localStorage.getItem("user")) || null,
-  token: localStorage.getItem("token") || null,
-  isAuthenticated: !!localStorage.getItem("token"),
+  token: null,
+  isAuthenticated: !!localStorage.getItem("user"),
   isLoading: false,
 };
 
@@ -18,12 +23,13 @@ const authSlice = createSlice({
       const { user, token } = action.payload;
       if (user) {
         state.user = user;
+        state.isAuthenticated = true;
         localStorage.setItem("user", JSON.stringify(user));
       }
       if (token) {
+        // in-memory only — deliberately not written to localStorage
         state.token = token;
         state.isAuthenticated = true;
-        localStorage.setItem("token", token);
       }
     },
     logout: (state) => {

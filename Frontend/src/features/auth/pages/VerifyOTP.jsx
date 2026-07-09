@@ -6,6 +6,7 @@ import { authAPI } from "../api/auth.api";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../store/authSlice";
+import { getRoleHome } from "../../../lib/roles";
 
 const VerifyOTP = () => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -79,7 +80,7 @@ const VerifyOTP = () => {
       
       dispatch(setCredentials({ user, token: accessToken }));
       toast.success("Email verified successfully! Welcome.");
-      navigate(`/dashboard/${user.role}`);
+      navigate(getRoleHome(user.role));
     } catch (error) {
       toast.error(error.response?.data?.message || "Invalid OTP");
     } finally {

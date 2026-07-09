@@ -8,6 +8,7 @@ import { Eye, EyeOff, Loader2, CheckCircle, GraduationCap, Building, UserCheck, 
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../store/authSlice";
 import { authAPI } from "../api/auth.api";
+import { getRoleHome } from "../../../lib/roles";
 import { toast } from "react-toastify";
 
 const loginSchema = z.object({
@@ -45,7 +46,7 @@ const Login = () => {
       toast.success(`Welcome back, ${user.name}!`);
       
       // Redirect based on role
-      navigate(`/dashboard/${user.role}`);
+      navigate(getRoleHome(user.role));
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed. Please check your credentials.");
     } finally {

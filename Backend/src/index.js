@@ -9,14 +9,12 @@ dotenv.config({ path: `./${envPath}` });
 dotenv.config({ path: "./.env" }); // Fallback
 
 console.log(`📄  Loaded env: ${envPath}  [NODE_ENV=${process.env.NODE_ENV || "development"}]`);
-console.log(`📄  Loaded env: .env  [NODE_ENV=${process.env.NODE_ENV || "development"}]`);
 
 // Basic validation
 const requiredEnv = [
-  "MONGODB_URI", 
-  "ACCESS_TOKEN_SECRET", 
-  "REFRESH_TOKEN_SECRET", 
-  "RESET_PASSWORD_SECRET"
+  "MONGODB_URI",
+  "ACCESS_TOKEN_SECRET",
+  "REFRESH_TOKEN_SECRET",
 ];
 const missing = requiredEnv.filter(k => !process.env[k]);
 if (missing.length > 0) {
@@ -32,7 +30,7 @@ connectDB()
   .then(() => {
     app.listen(PORT, () => {
       console.log(`\n⚙️  Server  →  http://localhost:${PORT}  [${process.env.NODE_ENV || "development"}]`);
-      console.log(`🔗  Health  →  http://localhost:${PORT}/api/v1/health\n`);
+      console.log(`🔗  Health  →  http://localhost:${PORT}/health\n`);
     });
     
     app.on("error", (error) => {
@@ -42,4 +40,5 @@ connectDB()
   })
   .catch((err) => {
     logger.error("MONGO db connection failed !!! ", err);
+    process.exit(1);
   });
