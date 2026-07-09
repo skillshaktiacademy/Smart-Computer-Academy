@@ -5,7 +5,7 @@ import * as z from "zod";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Lock, Loader2, CheckCircle } from "lucide-react";
-import { authAPI } from "../../api/auth.api";
+import { authAPI } from "../api/auth.api";
 import { toast } from "react-toastify";
 
 const schema = z.object({

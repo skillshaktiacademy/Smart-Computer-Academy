@@ -5,11 +5,11 @@ import {
   CheckCircle2, User, BookOpen, Calendar, 
   Building2, Award, Printer, Download, QrCode
 } from "lucide-react";
-import Meta from "../../components/common/Meta";
-import api from "../../api/axios";
+import Meta from "../../../components/common/Meta";
+import api from "../../../lib/axios";
 import { toast } from "react-toastify";
 
-import { breadcrumbJsonLd } from "../../utils/seo";
+import { breadcrumbJsonLd } from "../../../utils/seo";
 
 const VerifyCertificate = () => {
   const [certificateNo, setCertificateNo] = useState("");

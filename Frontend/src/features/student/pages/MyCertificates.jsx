@@ -4,7 +4,7 @@ import {
   ShieldCheck, Calendar, ShieldAlert,
   Search, Filter, Globe, Share2, Rocket
 } from "lucide-react";
-import api from "../../../api/axios";
+import api from "../../../lib/axios";
 import { motion } from "framer-motion";
 
 const MyCertificates = () => {

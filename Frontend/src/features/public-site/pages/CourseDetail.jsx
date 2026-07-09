@@ -7,11 +7,11 @@ import {
   ChevronDown, ChevronUp, Share2, ArrowLeft,
   Calendar, CreditCard, ShieldCheck, Loader2, Star, Users, ExternalLink, PlayCircle
 } from "lucide-react";
-import Meta from "../../components/common/Meta";
-import { publicAPI } from "../../api/public.api";
-import { mockCoursesData } from "../../data/coursesData";
+import Meta from "../../../components/common/Meta";
+import { publicAPI } from "../api/public.api";
+import { mockCoursesData } from "../data/coursesData";
 
-import { courseJsonLd, breadcrumbJsonLd, faqJsonLd } from "../../utils/seo";
+import { courseJsonLd, breadcrumbJsonLd, faqJsonLd } from "../../../utils/seo";
 
 const CourseDetail = () => {
   const { slug } = useParams();

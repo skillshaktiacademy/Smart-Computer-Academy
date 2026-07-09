@@ -9,8 +9,8 @@ import {
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import Meta from "../../components/common/Meta";
-import { publicAPI } from "../../api/public.api";
+import Meta from "../../../components/common/Meta";
+import { publicAPI } from "../api/public.api";
 import { toast } from "react-toastify";
 
 const inquirySchema = z.object({
@@ -21,7 +21,7 @@ const inquirySchema = z.object({
   message: z.string().min(10, "Please provide more details about your inquiry"),
 });
 
-import { breadcrumbJsonLd, faqJsonLd } from "../../utils/seo";
+import { breadcrumbJsonLd, faqJsonLd } from "../../../utils/seo";
 
 const FAQItem = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);

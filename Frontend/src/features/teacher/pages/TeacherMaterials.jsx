@@ -8,7 +8,7 @@ import {
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import api from "../../../api/axios";
+import api from "../../../lib/axios";
 import { toast } from "react-toastify";
 import { motion, AnimatePresence } from "framer-motion";
 import DataTable from "../../../components/ui/DataTable";

@@ -6,8 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Eye, EyeOff, Loader2, CheckCircle, GraduationCap, Building, UserCheck, ShieldCheck, LogIn } from "lucide-react";
 import { useDispatch } from "react-redux";
-import { setCredentials } from "../../store/slices/authSlice";
-import { authAPI } from "../../api/auth.api";
+import { setCredentials } from "../store/authSlice";
+import { authAPI } from "../api/auth.api";
 import { toast } from "react-toastify";
 
 const loginSchema = z.object({

@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { ShieldCheck, Loader2, RefreshCw, ChevronLeft } from "lucide-react";
-import { authAPI } from "../../api/auth.api";
+import { authAPI } from "../api/auth.api";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { setCredentials } from "../../store/slices/authSlice";
+import { setCredentials } from "../store/authSlice";
 
 const VerifyOTP = () => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);

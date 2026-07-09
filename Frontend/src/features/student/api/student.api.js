@@ -1,4 +1,4 @@
-import api from "./axios";
+import api from "../../../lib/axios";
 
 export const studentAPI = {
   getProfile: (enrollmentNo) => api.get(`/students/${enrollmentNo}`),

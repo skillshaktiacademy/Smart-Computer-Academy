@@ -5,7 +5,7 @@ import {
   Calendar, Search, Loader2, Save,
   ChevronLeft, ChevronRight, CheckCircle2
 } from "lucide-react";
-import api from "../../../api/axios";
+import api from "../../../lib/axios";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Faq from '../Faq';
+import Faq from './Faq';
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 30 },

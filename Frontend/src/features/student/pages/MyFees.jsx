@@ -5,7 +5,7 @@ import {
   AlertCircle, ChevronRight, DollarSign,
   CheckCircle2, Clock
 } from "lucide-react";
-import api from "../../../api/axios";
+import api from "../../../lib/axios";
 import { motion } from "framer-motion";
 
 const MyFees = () => {

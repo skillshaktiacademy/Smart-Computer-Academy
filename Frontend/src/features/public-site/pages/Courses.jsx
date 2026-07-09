@@ -3,12 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Filter, BookOpen, Clock, Award, ArrowRight, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
-import Meta from "../../components/common/Meta";
-import { publicAPI } from "../../api/public.api";
-import CourseCard from "../../components/course/CourseCard";
-import { mockCoursesData } from "../../data/coursesData";
+import Meta from "../../../components/common/Meta";
+import { publicAPI } from "../api/public.api";
+import CourseCard from "../components/CourseCard";
+import { mockCoursesData } from "../data/coursesData";
 
-import { breadcrumbJsonLd } from "../../utils/seo";
+import { breadcrumbJsonLd } from "../../../utils/seo";
 
 const Courses = () => {
   const [searchTerm, setSearchTerm] = useState("");

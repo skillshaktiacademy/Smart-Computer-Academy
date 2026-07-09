@@ -10,7 +10,7 @@ import {
   ResponsiveContainer, PieChart, Pie, Cell, 
   LineChart, Line, Legend, AreaChart, Area
 } from "recharts";
-import { adminAPI } from "../../../api/admin.api";
+import { adminAPI } from "../api/admin.api";
 import { motion } from "framer-motion";
 
 const COLORS = ['#1a3c6e', '#f59e0b', '#10b981', '#ef4444', '#8b5cf6'];

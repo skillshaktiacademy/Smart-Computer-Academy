@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageSlider from '../Slider';
+import ImageSlider from './ImageSlider';
 import Homeslider from './Homeslider';
 
 /**

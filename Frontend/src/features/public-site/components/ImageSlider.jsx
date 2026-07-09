@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import img1 from '../assets/images/slidebar/1.jpg';
-import img2 from '../assets/images/slidebar/2.jpg';
-import img3 from '../assets/images/slidebar/3.jpg';
-import img4 from '../assets/images/slidebar/4.jpg';
+import img1 from '../../../assets/images/slidebar/1.jpg';
+import img2 from '../../../assets/images/slidebar/2.jpg';
+import img3 from '../../../assets/images/slidebar/3.jpg';
+import img4 from '../../../assets/images/slidebar/4.jpg';
 import siteContent from '../data/siteContent.json';
 
 // Map image paths from JSON to actual imported assets

@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import api from "../../../api/axios";
+import api from "../../../lib/axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 

@@ -8,8 +8,8 @@ import {
   Tooltip, ResponsiveContainer, AreaChart, Area
 } from "recharts";
 import StatsCard from "../../../components/ui/StatsCard";
-import { adminAPI } from "../../../api/admin.api";
-import { dashboardAPI } from "../../../api/dashboard.api";
+import { adminAPI } from "../api/admin.api";
+import { dashboardAPI } from "../api/dashboard.api";
 import { motion } from "framer-motion";
 
 const AdminDashboard = () => {

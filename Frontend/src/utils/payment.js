@@ -1,4 +1,4 @@
-import api from "../api/axios";
+import api from "../lib/axios";
 
 const RAZORPAY_SCRIPT = "https://checkout.razorpay.com/v1/checkout.js";
 

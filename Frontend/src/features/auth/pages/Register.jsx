@@ -5,8 +5,8 @@ import * as z from "zod";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { UserPlus, Loader2, Building, GraduationCap, ChevronLeft, CheckCircle } from "lucide-react";
-import { authAPI } from "../../api/auth.api";
-import { publicAPI } from "../../api/public.api";
+import { authAPI } from "../api/auth.api";
+import { publicAPI } from "../../public-site/api/public.api";
 import { toast } from "react-toastify";
 
 const registerSchema = z.object({

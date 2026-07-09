@@ -4,8 +4,8 @@ import {
   LayoutGrid, Image as ImageIcon, Maximize2, 
   X, Filter, ChevronLeft, ChevronRight 
 } from "lucide-react";
-import { breadcrumbJsonLd } from "../../utils/seo";
-import Meta from "../../components/common/Meta";
+import { breadcrumbJsonLd } from "../../../utils/seo";
+import Meta from "../../../components/common/Meta";
 
 
 const Gallery = () => {

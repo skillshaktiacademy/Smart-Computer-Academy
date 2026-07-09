@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import CourseCards from '../CourseCards';
+import CourseCards from './CourseCards';
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 30 },

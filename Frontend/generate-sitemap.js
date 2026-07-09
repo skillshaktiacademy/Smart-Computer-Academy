@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { mockCoursesData } from './src/data/coursesData.js';
+import { mockCoursesData } from './src/features/public-site/data/coursesData.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

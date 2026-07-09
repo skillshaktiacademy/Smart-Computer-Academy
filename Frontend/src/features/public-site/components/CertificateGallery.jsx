@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { ZoomIn, ArrowRight, Award } from 'lucide-react';
 
 // Import local slidebar images
-import cert1 from '../assets/images/slidebar/1.jpg';
-import cert2 from '../assets/images/slidebar/2.jpg';
-import cert3 from '../assets/images/slidebar/3.jpg';
-import cert4 from '../assets/images/slidebar/4.jpg';
+import cert1 from '../../../assets/images/slidebar/1.jpg';
+import cert2 from '../../../assets/images/slidebar/2.jpg';
+import cert3 from '../../../assets/images/slidebar/3.jpg';
+import cert4 from '../../../assets/images/slidebar/4.jpg';
 
 const containerVariants = {
   hidden: { opacity: 0 },

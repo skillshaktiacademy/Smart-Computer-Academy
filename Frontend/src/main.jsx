@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
 import { store } from "./store";
-import App from "./App.jsx";
+import App from "./app/App.jsx";
 import "./index.css";
 
 const queryClient = new QueryClient({

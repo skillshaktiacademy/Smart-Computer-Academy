@@ -5,11 +5,11 @@ import {
   GraduationCap, ClipboardList, TrendingUp, 
   Award, CheckCircle2, XCircle
 } from "lucide-react";
-import Meta from "../../components/common/Meta";
-import api from "../../api/axios";
+import Meta from "../../../components/common/Meta";
+import api from "../../../lib/axios";
 import { toast } from "react-toastify";
 
-import { breadcrumbJsonLd } from "../../utils/seo";
+import { breadcrumbJsonLd } from "../../../utils/seo";
 
 const StudentResult = () => {
   const [enrollmentNo, setEnrollmentNo] = useState("");

@@ -6,8 +6,8 @@ import {
   Download, UserCheck, UserX, Loader2,
   Building2, Eye
 } from "lucide-react";
-import { adminAPI } from "../../../api/admin.api";
-import { publicAPI } from "../../../api/public.api";
+import { adminAPI } from "../api/admin.api";
+import { publicAPI } from "../../public-site/api/public.api";
 import DataTable from "../../../components/ui/DataTable";
 import { motion } from "framer-motion";
 

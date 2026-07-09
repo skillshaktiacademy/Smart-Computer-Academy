@@ -5,7 +5,7 @@ import {
   Trash2, Download, Printer, UserPlus,
   Building2, BookOpen, UserCircle, Loader2
 } from "lucide-react";
-import api from "../../../api/axios";
+import api from "../../../lib/axios";
 import DataTable from "../../../components/ui/DataTable";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";

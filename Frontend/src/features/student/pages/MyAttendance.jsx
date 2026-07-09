@@ -4,7 +4,7 @@ import {
   ChevronLeft, ChevronRight, Filter,
   TrendingUp, TrendingDown, Info
 } from "lucide-react";
-import api from "../../../api/axios";
+import api from "../../../lib/axios";
 import { motion } from "framer-motion";
 import { useState } from "react";
 

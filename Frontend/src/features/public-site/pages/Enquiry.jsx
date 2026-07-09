@@ -9,11 +9,11 @@ import {
   MapPin, GraduationCap, BookOpen, MonitorPlay,
   ArrowLeft, CheckCircle, Loader2
 } from "lucide-react";
-import Meta from "../../components/common/Meta";
-import { publicAPI } from "../../api/public.api";
-import { mockCoursesData } from "../../data/coursesData";
+import Meta from "../../../components/common/Meta";
+import { publicAPI } from "../api/public.api";
+import { mockCoursesData } from "../data/coursesData";
 
-import { breadcrumbJsonLd } from "../../utils/seo";
+import { breadcrumbJsonLd } from "../../../utils/seo";
 
 const Enquiry = () => {
   const { slug } = useParams();

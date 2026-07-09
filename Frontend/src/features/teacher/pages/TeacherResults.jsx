@@ -5,7 +5,7 @@ import {
   CheckCircle2, Loader2, Save, Target,
   BookOpen, ChevronRight, AlertCircle, TrendingUp
 } from "lucide-react";
-import api from "../../../api/axios";
+import api from "../../../lib/axios";
 import { toast } from "react-toastify";
 import { motion, AnimatePresence } from "framer-motion";
 

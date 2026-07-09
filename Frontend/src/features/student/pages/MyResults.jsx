@@ -4,7 +4,7 @@ import {
   CheckCircle2, XCircle, ChevronRight,
   Target, GraduationCap, Medal
 } from "lucide-react";
-import api from "../../../api/axios";
+import api from "../../../lib/axios";
 import { motion } from "framer-motion";
 
 const MyResults = () => {

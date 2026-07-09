@@ -5,7 +5,7 @@ import * as z from "zod";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Mail, Loader2, ArrowLeft, Send } from "lucide-react";
-import { authAPI } from "../../api/auth.api";
+import { authAPI } from "../api/auth.api";
 import { toast } from "react-toastify";
 
 const schema = z.object({

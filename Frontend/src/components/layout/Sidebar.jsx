@@ -7,7 +7,7 @@ import {
   ChevronLeft, ChevronRight, Menu, BellRing, UserCircle
 } from "lucide-react";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../store/slices/authSlice";
+import { logout } from "../../features/auth/store/authSlice";
 import { toggleSidebar } from "../../store/slices/uiSlice";
 import { motion, AnimatePresence } from "framer-motion";
 

@@ -6,7 +6,7 @@ import {
   BookOpen, ShieldCheck, Star, 
   Laptop, Compass, PhoneCall, ArrowRight 
 } from "lucide-react";
-import Meta from "../../components/common/Meta";
+import Meta from "../../../components/common/Meta";
 import { useNavigate } from "react-router-dom";
 
 const pageVariants = {
@@ -33,7 +33,7 @@ const cardHoverEffect = {
   transition: { duration: 0.3 }
 };
 
-import { breadcrumbJsonLd } from "../../utils/seo";
+import { breadcrumbJsonLd } from "../../../utils/seo";
 
 const About = () => {
   const navigate = useNavigate();

@@ -6,7 +6,7 @@ import {
   CheckCircle2, AlertCircle, Printer, Download,
   ArrowRight, ShieldCheck
 } from "lucide-react";
-import api from "../../../api/axios";
+import api from "../../../lib/axios";
 import { toast } from "react-toastify";
 import { motion, AnimatePresence } from "framer-motion";
 

@@ -1,5 +1,5 @@
 
-import api from "./axios";
+import api from "../../../lib/axios";
 
 export const teacherAPI = {
   getFranchiseStudents: () => api.get("/students"),

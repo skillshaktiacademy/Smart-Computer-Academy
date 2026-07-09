@@ -6,7 +6,7 @@ import {
   Loader2, Calendar, User, BookOpen,
   CheckCircle2, XCircle
 } from "lucide-react";
-import { adminAPI } from "../../../api/admin.api";
+import { adminAPI } from "../api/admin.api";
 import DataTable from "../../../components/ui/DataTable";
 import ConfirmDialog from "../../../components/ui/ConfirmDialog";
 import { toast } from "react-toastify";

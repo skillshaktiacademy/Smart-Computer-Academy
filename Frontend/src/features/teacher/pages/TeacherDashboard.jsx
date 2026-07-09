@@ -5,7 +5,7 @@ import {
   Target, Award, FileText
 } from "lucide-react";
 import StatsCard from "../../../components/ui/StatsCard";
-import api from "../../../api/axios";
+import api from "../../../lib/axios";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 

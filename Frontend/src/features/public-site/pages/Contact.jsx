@@ -8,7 +8,7 @@ import {
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import Meta from "../../components/common/Meta";
+import Meta from "../../../components/common/Meta";
 import { useNavigate } from "react-router-dom";
 
 const contactSchema = z.object({
@@ -36,7 +36,7 @@ const sectionVariants = {
   }
 };
 
-import { breadcrumbJsonLd, faqJsonLd } from "../../utils/seo";
+import { breadcrumbJsonLd, faqJsonLd } from "../../../utils/seo";
 
 const Contact = () => {
   const navigate = useNavigate();

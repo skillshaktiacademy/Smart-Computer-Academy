@@ -5,7 +5,7 @@ import {
   LayoutGrid, List, File, ExternalLink,
   Box, AlertCircle
 } from "lucide-react";
-import api from "../../../api/axios";
+import api from "../../../lib/axios";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 

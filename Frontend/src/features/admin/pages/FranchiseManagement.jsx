@@ -8,7 +8,7 @@ import {
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { adminAPI } from "../../../api/admin.api";
+import { adminAPI } from "../api/admin.api";
 import { toast } from "react-toastify";
 import DataTable from "../../../components/ui/DataTable";
 import ConfirmDialog from "../../../components/ui/ConfirmDialog";

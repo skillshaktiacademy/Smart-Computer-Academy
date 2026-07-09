@@ -1,25 +1,25 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Meta from '../../components/common/Meta';
+import Meta from '../../../components/common/Meta';
 
-// ── Home Section Components (all in components/home/) ──
-import HeroSliderSection from '../../components/home/HeroSliderSection';
-import AccreditationStrip from '../../components/home/AccreditationStrip';
-import CoursesSection from '../../components/home/CoursesSection';
-import WhyChooseUsSection from '../../components/home/WhyChooseUsSection';
-import StatsSection from '../../components/home/StatsSection';
-import TestimonialsSection from '../../components/home/TestimonialsSection';
-import CertificateSection from '../../components/home/CertificateSection';
-import FaqSection from '../../components/home/FaqSection';
-import AdmissionCtaSection from '../../components/home/AdmissionCtaSection';
-import CallbackSection from '../../components/home/CallbackSection';
+// ── Home Section Components (feature-local: public-site/components) ──
+import HeroSliderSection from '../components/HeroSliderSection';
+import AccreditationStrip from '../components/AccreditationStrip';
+import CoursesSection from '../components/CoursesSection';
+import WhyChooseUsSection from '../components/WhyChooseUsSection';
+import StatsSection from '../components/StatsSection';
+import TestimonialsSection from '../components/TestimonialsSection';
+import CertificateSection from '../components/CertificateSection';
+import FaqSection from '../components/FaqSection';
+import AdmissionCtaSection from '../components/AdmissionCtaSection';
+import CallbackSection from '../components/CallbackSection';
 
 const pageVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.08 } }
 };
 
-import { localBusinessJsonLd, websiteJsonLd, organizationJsonLd } from "../../utils/seo";
+import { localBusinessJsonLd, websiteJsonLd, organizationJsonLd } from "../../../utils/seo";
 
 function Home() {
   return (
