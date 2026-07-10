@@ -41,4 +41,4 @@ const feeSchema = new Schema(
   }
 );
 
-export const Fee = mongoose.model("Fee", feeSchema);
+export const Fee = mongoose.models.Fee || mongoose.model("Fee", feeSchema);

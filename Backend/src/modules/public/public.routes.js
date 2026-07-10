@@ -2,7 +2,6 @@ import { Router } from "express";
 import {
   submitInquiry,
   getPublicCourses,
-  verifyCertificate,
   getGallery,
   getTestimonials,
   getPublicFranchises,
@@ -12,9 +11,12 @@ const router = Router();
 
 router.post("/contact", submitInquiry);
 router.get("/courses", getPublicCourses);
-router.get("/verify-certificate/:certificateNumber", verifyCertificate);
 router.get("/gallery", getGallery);
 router.get("/testimonials", getTestimonials);
 router.get("/franchises", getPublicFranchises);
+
+// Certificate verification lives at GET /api/v1/certificates/verify/:certificateNo
+// (see certificate.routes.js) — this module's old duplicate/broken
+// verify-certificate handler has been removed.
 
 export default router;

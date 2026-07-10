@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
+import { generatePrefixedId } from "../../shared/utils/generator.utils.js";
 
 const studentSchema = new Schema(
   {
@@ -44,6 +45,17 @@ const studentSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
+    /**
+     * Links this academic profile to the student's own login account.
+     * Null until a franchise admits + provisions login credentials for
+     * this student (see student.service.js, Phase 4) — a self-registered
+     * `student`-role User with no Student record yet is a valid, empty state.
+     */
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      default: null,
+    },
     isActive: {
       type: Boolean,
       default: true,
@@ -55,13 +67,14 @@ const studentSchema = new Schema(
 );
 
 /**
- * Pre-save hook to generate enrollment number (SSA-YYYY-XXXXX)
+ * Pre-save hook to generate enrollment number (SSA-YYYY-XXXXX) via the
+ * atomic Counter collection (avoids the race condition of a
+ * countDocuments()-based read-then-write).
  */
 studentSchema.pre("save", async function (next) {
   if (!this.enrollmentNo) {
     const year = new Date().getFullYear();
-    const count = await mongoose.model("Student").countDocuments();
-    const sequence = (count + 1).toString().padStart(5, "0");
+    const sequence = await generatePrefixedId(`student-${year}`);
     this.enrollmentNo = `SSA-${year}-${sequence}`;
   }
   next();
@@ -69,4 +82,4 @@ studentSchema.pre("save", async function (next) {
 
 studentSchema.plugin(mongooseAggregatePaginate);
 
-export const Student = mongoose.model("Student", studentSchema);
+export const Student = mongoose.models.Student || mongoose.model("Student", studentSchema);

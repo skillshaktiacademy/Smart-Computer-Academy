@@ -45,4 +45,4 @@ const attendanceSchema = new Schema(
 
 attendanceSchema.plugin(mongooseAggregatePaginate);
 
-export const Attendance = mongoose.model("Attendance", attendanceSchema);
+export const Attendance = mongoose.models.Attendance || mongoose.model("Attendance", attendanceSchema);

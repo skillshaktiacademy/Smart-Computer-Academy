@@ -1,11 +1,12 @@
 import { z } from "zod";
+import { ALL_ROLES } from "../../shared/constants/roles.js";
 
 export const registerSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
   phone: z.string().regex(/^\d{10}$/, "Phone number must be 10 digits"),
   password: z.string().min(8, "Password must be at least 8 characters"),
-  role: z.enum(["super_admin", "franchise_owner", "teacher", "student"]).optional(),
+  role: z.enum(ALL_ROLES).optional(),
   franchiseId: z.string().optional(),
 });
 

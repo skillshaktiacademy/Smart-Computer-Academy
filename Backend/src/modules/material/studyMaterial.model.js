@@ -33,4 +33,4 @@ const studyMaterialSchema = new Schema(
   }
 );
 
-export const StudyMaterial = mongoose.model("StudyMaterial", studyMaterialSchema);
+export const StudyMaterial = mongoose.models.StudyMaterial || mongoose.model("StudyMaterial", studyMaterialSchema);

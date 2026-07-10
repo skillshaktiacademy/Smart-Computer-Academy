@@ -44,4 +44,4 @@ const examSchema = new Schema(
   }
 );
 
-export const Exam = mongoose.model("Exam", examSchema);
+export const Exam = mongoose.models.Exam || mongoose.model("Exam", examSchema);

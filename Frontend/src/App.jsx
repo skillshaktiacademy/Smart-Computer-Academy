@@ -109,7 +109,7 @@ function App() {
           </Route>
 
           {/* Franchise Section */}
-          <Route element={<ProtectedRoute allowedRoles={["franchise"]} />}>
+          <Route element={<ProtectedRoute allowedRoles={["franchise_owner"]} />}>
             <Route path="franchise">
               <Route index element={<FranchiseDashboard />} />
               <Route path="admission" element={<StudentAdmission />} />

@@ -6,41 +6,27 @@ import {
   updateFranchiseStatus,
   getFranchiseStats,
 } from "./franchise.controller.js";
-import { verifyJWT, roleGuard } from "../../middlewares/auth.middleware.js";
-import { upload } from "../../middlewares/upload.middleware.js";
-import { createFranchiseSchema, updateFranchiseSchema } from "./franchise.validator.js";
-import { ApiError } from "../../utils/ApiError.js";
+import { verifyJWT, roleGuard } from "../../shared/middlewares/auth.middleware.js";
+import { upload } from "../../shared/middlewares/upload.middleware.js";
+import { ROLES } from "../../shared/constants/roles.js";
 
 const router = Router();
-
-/**
- * Middleware to validate request body using Zod schema
- */
-const validate = (schema) => (req, res, next) => {
-  try {
-    schema.parse(req.body);
-    next();
-  } catch (error) {
-    const errorMessage = error.errors?.map((err) => err.message).join(", ") || error.message;
-    next(new ApiError(400, errorMessage));
-  }
-};
 
 router.use(verifyJWT);
 
 // Super Admin only: Create franchise + owner
-router.post("/", roleGuard(["super_admin"]), validate(createFranchiseSchema), createFranchise);
+router.post("/", roleGuard([ROLES.SUPER_ADMIN]), createFranchise);
 
 // Super Admin: List all; Franchise Owner: their own
-router.get("/", roleGuard(["super_admin", "franchise_owner"]), getAllFranchises);
+router.get("/", roleGuard([ROLES.SUPER_ADMIN, ROLES.FRANCHISE_OWNER]), getAllFranchises);
 
 // Update details
-router.patch("/:id", roleGuard(["super_admin", "franchise_owner"]), upload.single("logo"), validate(updateFranchiseSchema), updateFranchise);
+router.patch("/:id", roleGuard([ROLES.SUPER_ADMIN, ROLES.FRANCHISE_OWNER]), upload.single("logo"), updateFranchise);
 
 // Super Admin only: Update status
-router.patch("/:id/status", roleGuard(["super_admin"]), updateFranchiseStatus);
+router.patch("/:id/status", roleGuard([ROLES.SUPER_ADMIN]), updateFranchiseStatus);
 
 // Get stats
-router.get("/:id/stats", roleGuard(["super_admin", "franchise_owner"]), getFranchiseStats);
+router.get("/:id/stats", roleGuard([ROLES.SUPER_ADMIN, ROLES.FRANCHISE_OWNER]), getFranchiseStats);
 
 export default router;

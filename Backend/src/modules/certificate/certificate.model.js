@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import { generatePrefixedId } from "../../shared/utils/generator.utils.js";
 
 const certificateSchema = new Schema(
   {
@@ -48,16 +49,18 @@ const certificateSchema = new Schema(
 );
 
 /**
- * Pre-save hook to generate certificate number (SSA/CERT/YYYY/XXXXX)
+ * Pre-save hook to generate certificate number (SSA/CERT/YYYY/XXXXX) via the
+ * atomic Counter collection (avoids the race condition of a
+ * countDocuments()-based read-then-write, and guarantees the number is
+ * final before any QR code is generated against it).
  */
 certificateSchema.pre("save", async function (next) {
   if (!this.certificateNo) {
     const year = new Date().getFullYear();
-    const count = await mongoose.model("Certificate").countDocuments();
-    const sequence = (count + 1).toString().padStart(5, "0");
+    const sequence = await generatePrefixedId(`certificate-${year}`);
     this.certificateNo = `SSA/CERT/${year}/${sequence}`;
   }
   next();
 });
 
-export const Certificate = mongoose.model("Certificate", certificateSchema);
+export const Certificate = mongoose.models.Certificate || mongoose.model("Certificate", certificateSchema);

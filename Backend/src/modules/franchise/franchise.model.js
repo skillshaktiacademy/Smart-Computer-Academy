@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
+import { generatePrefixedId } from "../../shared/utils/generator.utils.js";
 
 const franchiseSchema = new Schema(
   {
@@ -63,15 +64,16 @@ const franchiseSchema = new Schema(
 );
 
 /**
- * Pre-save hook to generate a unique franchise code
+ * Pre-save hook to generate a unique franchise code via the atomic
+ * Counter collection (avoids the race condition of a countDocuments() read).
  */
 franchiseSchema.pre("save", async function () {
   if (!this.code) {
-    const count = await mongoose.model("Franchise").countDocuments();
-    this.code = `SSA-F-${(count + 1).toString().padStart(4, "0")}`;
+    const seq = await generatePrefixedId("franchise", { pad: 4 });
+    this.code = `SSA-F-${seq}`;
   }
 });
 
 franchiseSchema.plugin(mongooseAggregatePaginate);
 
-export const Franchise = mongoose.model("Franchise", franchiseSchema);
+export const Franchise = mongoose.models.Franchise || mongoose.model("Franchise", franchiseSchema);

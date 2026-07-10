@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { setCredentials } from "../../store/slices/authSlice";
 import { authAPI } from "../../api/auth.api";
 import { toast } from "react-toastify";
+import { getRoleHome } from "../../utils/roleHome";
 
 const loginSchema = z.object({
   identifier: z.string().min(1, "Email or phone is required"),
@@ -45,7 +46,7 @@ const Login = () => {
       toast.success(`Welcome back, ${user.name}!`);
       
       // Redirect based on role
-      navigate(`/dashboard/${user.role}`);
+      navigate(getRoleHome(user.role));
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed. Please check your credentials.");
     } finally {
@@ -155,7 +156,7 @@ const Login = () => {
             <div>
               <div className="flex justify-between items-center mb-2">
                 <label className="text-sm font-semibold text-gray-700">Password</label>
-                <Link to="/forgot-password Bird" className="text-sm font-bold text-primary hover:underline">
+                <Link to="/forgot-password" className="text-sm font-bold text-primary hover:underline">
                   Forgot Password?
                 </Link>
               </div>

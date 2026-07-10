@@ -1,13 +1,15 @@
 import { Router } from "express";
-import { submitResults, getStudentResults, getExamResults } from "./exam.controller.js";
-import { verifyJWT, roleGuard } from "../../middlewares/auth.middleware.js";
+import { submitResults, getStudentResults, getMyResults, getExamResults } from "./result.controller.js";
+import { verifyJWT, roleGuard } from "../../shared/middlewares/auth.middleware.js";
+import { ROLES } from "../../shared/constants/roles.js";
 
 const router = Router();
 
 router.use(verifyJWT);
 
-router.post("/", roleGuard(["teacher"]), submitResults);
+router.post("/", roleGuard([ROLES.TEACHER]), submitResults);
+router.get("/my-results", roleGuard([ROLES.STUDENT]), getMyResults);
 router.get("/student/:id", getStudentResults);
-router.get("/exam/:examId", roleGuard(["super_admin", "franchise_owner", "teacher"]), getExamResults);
+router.get("/exam/:examId", roleGuard([ROLES.SUPER_ADMIN, ROLES.FRANCHISE_OWNER, ROLES.TEACHER]), getExamResults);
 
 export default router;

@@ -69,4 +69,4 @@ courseSchema.pre("save", function (next) {
 
 courseSchema.plugin(mongooseAggregatePaginate);
 
-export const Course = mongoose.model("Course", courseSchema);
+export const Course = mongoose.models.Course || mongoose.model("Course", courseSchema);

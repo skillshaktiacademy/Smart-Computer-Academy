@@ -1,33 +1,11 @@
-import { StudyMaterial } from "./studyMaterial.model.js";
-import { ApiResponse } from "../../utils/ApiResponse.js";
-import { ApiError } from "../../utils/ApiError.js";
-import { asyncHandler } from "../../utils/asyncHandler.js";
-import { uploadOnCloudinary } from "../../config/cloudinary.js";
+import { MaterialService } from "./material.service.js";
+import { ApiResponse, asyncHandler } from "../../shared/utils/api.utils.js";
 
 /**
  * Upload study material
  */
 export const uploadMaterial = asyncHandler(async (req, res) => {
-  const { title, description, courseId, fileType } = req.body;
-
-  if (!req.file) {
-    throw new ApiError(400, "File is required");
-  }
-
-  const uploadedFile = await uploadOnCloudinary(req.file.path);
-  if (!uploadedFile) {
-    throw new ApiError(400, "Error uploading file to Cloudinary");
-  }
-
-  const material = await StudyMaterial.create({
-    title,
-    description,
-    courseId,
-    file: { url: uploadedFile.url, public_id: uploadedFile.public_id },
-    fileType,
-    franchiseId: req.user.franchiseId,
-  });
-
+  const material = await MaterialService.uploadMaterial(req.body, req.user, req.file);
   return res.status(201).json(new ApiResponse(201, material, "Study material uploaded successfully"));
 });
 
@@ -35,7 +13,22 @@ export const uploadMaterial = asyncHandler(async (req, res) => {
  * Get study material for a course
  */
 export const getCourseMaterial = asyncHandler(async (req, res) => {
-  const { courseId } = req.params;
-  const materials = await StudyMaterial.find({ courseId }).sort({ createdAt: -1 });
+  const materials = await MaterialService.getCourseMaterial(req.params.courseId);
   return res.status(200).json(new ApiResponse(200, materials, "Study materials fetched"));
+});
+
+/**
+ * Self-service: materials for the logged-in student's enrolled courses
+ */
+export const getMyCourseMaterials = asyncHandler(async (req, res) => {
+  const materials = await MaterialService.getMyCourseMaterials(req.user._id);
+  return res.status(200).json(new ApiResponse(200, materials, "My course materials fetched"));
+});
+
+/**
+ * Franchise/teacher's own center's materials
+ */
+export const getMyCenterMaterials = asyncHandler(async (req, res) => {
+  const materials = await MaterialService.getMyCenterMaterials(req.user);
+  return res.status(200).json(new ApiResponse(200, materials, "Center materials fetched"));
 });

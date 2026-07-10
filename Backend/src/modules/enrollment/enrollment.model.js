@@ -43,6 +43,11 @@ const enrollmentSchema = new Schema(
       enum: ["active", "completed", "dropped"],
       default: "active",
     },
+    appliedCoupon: {
+      couponId: { type: Schema.Types.ObjectId, ref: "Coupon" },
+      code: String,
+      discountAmount: Number,
+    },
   },
   {
     timestamps: true,
@@ -65,4 +70,4 @@ enrollmentSchema.pre("save", function (next) {
 
 enrollmentSchema.plugin(mongooseAggregatePaginate);
 
-export const Enrollment = mongoose.model("Enrollment", enrollmentSchema);
+export const Enrollment = mongoose.models.Enrollment || mongoose.model("Enrollment", enrollmentSchema);

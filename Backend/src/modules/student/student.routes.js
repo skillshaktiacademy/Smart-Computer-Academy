@@ -2,40 +2,40 @@ import { Router } from "express";
 import {
   getAllStudents,
   addStudent,
+  getMyCenterStudents,
   getStudentByEnrollmentNo,
   updateStudent,
   getStudentCertificate,
 } from "./student.controller.js";
-import { verifyJWT, roleGuard } from "../../middlewares/auth.middleware.js";
-import { upload } from "../../middlewares/upload.middleware.js";
-import { addStudentSchema } from "./student.validator.js";
-import { ApiError } from "../../utils/ApiError.js";
+import { verifyJWT, roleGuard } from "../../shared/middlewares/auth.middleware.js";
+import { upload } from "../../shared/middlewares/upload.middleware.js";
+import { ROLES } from "../../shared/constants/roles.js";
 
 const router = Router();
-
-const validate = (schema) => (req, res, next) => {
-  try {
-    schema.parse(req.body);
-    next();
-  } catch (error) {
-    const errorMessage = error.errors?.map((err) => err.message).join(", ") || error.message;
-    next(new ApiError(400, errorMessage));
-  }
-};
 
 router.use(verifyJWT);
 
 // Franchise Owner/Teacher only: Add new student
-router.post("/", roleGuard(["franchise_owner", "teacher"]), upload.single("photo"), validate(addStudentSchema), addStudent);
+router.post("/", roleGuard([ROLES.FRANCHISE_OWNER, ROLES.TEACHER]), upload.single("photo"), addStudent);
 
 // List all (Role based)
-router.get("/", roleGuard(["super_admin", "franchise_owner", "teacher"]), getAllStudents);
+router.get("/", roleGuard([ROLES.SUPER_ADMIN, ROLES.FRANCHISE_OWNER, ROLES.TEACHER]), getAllStudents);
+
+// Franchise/teacher's own center's students — must come before the
+// "/:enrollmentNo" catch-all param route below.
+router.get("/my-center", roleGuard([ROLES.FRANCHISE_OWNER, ROLES.TEACHER]), getMyCenterStudents);
+router.get("/my-students", roleGuard([ROLES.FRANCHISE_OWNER, ROLES.TEACHER]), getMyCenterStudents);
 
 // Get by Enrollment Number
 router.get("/:enrollmentNo", getStudentByEnrollmentNo);
 
 // Update student info
-router.patch("/:id", roleGuard(["super_admin", "franchise_owner", "teacher"]), upload.single("photo"), validate(addStudentSchema.partial()), updateStudent);
+router.patch(
+  "/:id",
+  roleGuard([ROLES.SUPER_ADMIN, ROLES.FRANCHISE_OWNER, ROLES.TEACHER]),
+  upload.single("photo"),
+  updateStudent
+);
 
 // Get/View Certificate
 router.get("/:id/certificate", getStudentCertificate);

@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { ALL_ROLES, ROLES } from "../../shared/constants/roles.js";
 
 const userSchema = new Schema(
   {
@@ -29,8 +30,8 @@ const userSchema = new Schema(
     },
     role: {
       type: String,
-      enum: ["super_admin", "franchise_owner", "teacher", "student"],
-      default: "student",
+      enum: { values: ALL_ROLES, message: "{VALUE} is not a valid role" },
+      default: ROLES.STUDENT,
     },
     franchiseId: {
       type: Schema.Types.ObjectId,
@@ -123,4 +124,4 @@ userSchema.methods.generateRefreshToken = function () {
   );
 };
 
-export const User = mongoose.model("User", userSchema);
+export const User = mongoose.models.User || mongoose.model("User", userSchema);

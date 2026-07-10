@@ -1,45 +1,33 @@
-import dotenv from "dotenv";
-import connectDB from "./config/db.js";
-import { app } from "./app.js";
-import logger from "./config/logger.js";
+import { loadEnv, validateEnv } from "./shared/utils/env.utils.js";
 
-// Load environment variables
-const envPath = process.env.NODE_ENV === "development" ? ".env.development" : ".env";
-dotenv.config({ path: `./${envPath}` });
-dotenv.config({ path: "./.env" }); // Fallback
+// Load and validate environment variables BEFORE any other local module is
+// imported. Static ESM imports are hoisted above module-body statements, so
+// `import { app } from "./app.js"` (which reads process.env.CORS_ORIGIN at
+// cors() setup time) must be a dynamic import here — otherwise it would
+// evaluate before loadEnv() ever runs, and CORS_ORIGIN would always be
+// undefined regardless of what's in .env.
+loadEnv();
+const env = validateEnv();
 
-console.log(`📄  Loaded env: ${envPath}  [NODE_ENV=${process.env.NODE_ENV || "development"}]`);
-console.log(`📄  Loaded env: .env  [NODE_ENV=${process.env.NODE_ENV || "development"}]`);
+const { connectDB } = await import("./shared/db/DbConnect.js");
+const { app } = await import("./app.js");
+const { default: logger } = await import("./shared/utils/logger.js");
 
-// Basic validation
-const requiredEnv = [
-  "MONGODB_URI", 
-  "ACCESS_TOKEN_SECRET", 
-  "REFRESH_TOKEN_SECRET", 
-  "RESET_PASSWORD_SECRET"
-];
-const missing = requiredEnv.filter(k => !process.env[k]);
-if (missing.length > 0) {
-  console.error(`❌  Missing environment variables: ${missing.join(", ")}`);
-  process.exit(1);
-}
-console.log(`✅  Environment variables validated.`);
+const PORT = env.PORT || 5000;
 
-const PORT = process.env.PORT || 5000;
-
-// Connect to Database and start server
 connectDB()
   .then(() => {
-    app.listen(PORT, () => {
-      console.log(`\n⚙️  Server  →  http://localhost:${PORT}  [${process.env.NODE_ENV || "development"}]`);
-      console.log(`🔗  Health  →  http://localhost:${PORT}/api/v1/health\n`);
+    const server = app.listen(PORT, () => {
+      logger.info(`Server running on http://localhost:${PORT} [${env.NODE_ENV}]`);
+      logger.info(`Health check: http://localhost:${PORT}/health`);
     });
-    
-    app.on("error", (error) => {
-      console.error("❌  Express server error: ", error);
+
+    server.on("error", (error) => {
+      logger.error(`Express server error: ${error.message}`);
       throw error;
     });
   })
   .catch((err) => {
-    logger.error("MONGO db connection failed !!! ", err);
+    logger.error(`MongoDB connection failed: ${err.message}`);
+    process.exit(1);
   });

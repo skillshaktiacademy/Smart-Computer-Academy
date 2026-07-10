@@ -6,32 +6,21 @@ import {
   deleteCourse,
   getCourseBySlug,
 } from "./course.controller.js";
-import { verifyJWT, roleGuard } from "../../middlewares/auth.middleware.js";
-import { upload } from "../../middlewares/upload.middleware.js";
-import { courseSchema } from "./course.validator.js";
-import { ApiError } from "../../utils/ApiError.js";
+import { verifyJWT, roleGuard } from "../../shared/middlewares/auth.middleware.js";
+import { upload } from "../../shared/middlewares/upload.middleware.js";
+import { ROLES } from "../../shared/constants/roles.js";
 
 const router = Router();
-
-const validate = (schema) => (req, res, next) => {
-  try {
-    schema.parse(req.body);
-    next();
-  } catch (error) {
-    const errorMessage = error.errors?.map((err) => err.message).join(", ") || error.message;
-    next(new ApiError(400, errorMessage));
-  }
-};
 
 // Public routes
 router.get("/", getAllCourses);
 router.get("/:slug", getCourseBySlug);
 
 // Protected routes (Super Admin only)
-router.use(verifyJWT, roleGuard(["super_admin"]));
+router.use(verifyJWT, roleGuard([ROLES.SUPER_ADMIN]));
 
-router.post("/", upload.single("thumbnail"), validate(courseSchema), createCourse);
-router.patch("/:id", upload.single("thumbnail"), validate(courseSchema.partial()), updateCourse);
+router.post("/", upload.single("thumbnail"), createCourse);
+router.patch("/:id", upload.single("thumbnail"), updateCourse);
 router.delete("/:id", deleteCourse);
 
 export default router;

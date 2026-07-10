@@ -1,14 +1,15 @@
 import api from "./axios";
+import { ENDPOINTS } from "../constants/apiEndpoints";
 
 export const authAPI = {
-  login: (credentials) => api.post("/auth/login", credentials),
-  register: (data) => api.post("/auth/register", data),
-  logout: () => api.post("/auth/logout"),
-  verifyOTP: (data) => api.post("/auth/verify", data),
-  resendOTP: (data) => api.post("/auth/resend", data),
-  forgotPassword: (data) => api.post("/auth/forgot-password", data),
-  resetPassword: (token, data) => api.post(`/auth/reset-password/${token}`, data),
-  getCurrentUser: () => api.get("/auth/current-user"),
-  updateProfile: (data) => api.patch("/auth/update-profile", data),
-  changePassword: (data) => api.post("/auth/change-password", data),
+  login: (credentials) => api.post(ENDPOINTS.AUTH.LOGIN, credentials),
+  register: (data) => api.post(ENDPOINTS.AUTH.REGISTER, data),
+  logout: () => api.post(ENDPOINTS.AUTH.LOGOUT),
+  verifyOTP: (data) => api.post(ENDPOINTS.AUTH.VERIFY, data),
+  resendOTP: (data) => api.post(ENDPOINTS.AUTH.RESEND, data),
+  forgotPassword: (data) => api.post(ENDPOINTS.AUTH.FORGOT_PASSWORD, data),
+  resetPassword: (token, data) => api.post(ENDPOINTS.AUTH.RESET_PASSWORD(token), data),
+  getCurrentUser: () => api.get(ENDPOINTS.AUTH.CURRENT_USER),
+  updateProfile: (data) => api.patch(ENDPOINTS.AUTH.UPDATE_PROFILE, data),
+  changePassword: (data) => api.post(ENDPOINTS.AUTH.CHANGE_PASSWORD, data),
 };

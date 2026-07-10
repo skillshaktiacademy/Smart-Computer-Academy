@@ -6,6 +6,7 @@ export const enrollmentSchema = z.object({
   totalFee: z.number().optional(),
   enrollmentDate: z.string().optional(),
   expectedCompletionDate: z.string().optional(),
+  couponCode: z.string().optional(),
 });
 
 export const updateFeeSchema = z.object({

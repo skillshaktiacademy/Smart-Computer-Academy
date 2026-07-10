@@ -30,4 +30,4 @@ const noticeSchema = new Schema(
   }
 );
 
-export const Notice = mongoose.model("Notice", noticeSchema);
+export const Notice = mongoose.models.Notice || mongoose.model("Notice", noticeSchema);

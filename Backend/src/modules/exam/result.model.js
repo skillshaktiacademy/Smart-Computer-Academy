@@ -76,4 +76,4 @@ resultSchema.pre("save", async function (next) {
   next();
 });
 
-export const Result = mongoose.model("Result", resultSchema);
+export const Result = mongoose.models.Result || mongoose.model("Result", resultSchema);
