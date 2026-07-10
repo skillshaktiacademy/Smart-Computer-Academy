@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { 
-  LayoutDashboard, Users, BookOpen, GraduationCap, 
-  FileText, Award, Bell, Box, BarChart3, 
+import {
+  LayoutDashboard, Users, BookOpen, GraduationCap,
+  FileText, Award, Bell, Box, BarChart3,
   CalendarCheck, CreditCard, ClipboardList, LogOut,
-  ChevronLeft, ChevronRight, Menu, BellRing, UserCircle
+  ChevronLeft, ChevronRight, Menu, BellRing, UserCircle, Ticket
 } from "lucide-react";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../store/slices/authSlice";
@@ -60,6 +60,7 @@ const Sidebar = () => {
       { label: "Exams", icon: FileText, path: "/dashboard/super_admin/exams" },
       { label: "Certificates", icon: Award, path: "/dashboard/super_admin/certificates" },
       { label: "Notices", icon: Bell, path: "/dashboard/super_admin/notices" },
+      { label: "Coupons", icon: Ticket, path: "/dashboard/super_admin/coupons" },
       { label: "Materials", icon: Box, path: "/dashboard/super_admin/materials" },
       { label: "Reports", icon: BarChart3, path: "/dashboard/super_admin/reports" },
     ],

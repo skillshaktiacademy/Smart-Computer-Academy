@@ -42,6 +42,7 @@ const CourseManagement = lazy(() => import("./pages/dashboard/super_admin/Course
 const StudentManagement = lazy(() => import("./pages/dashboard/super_admin/StudentManagement"));
 const CertificateManagement = lazy(() => import("./pages/dashboard/super_admin/CertificateManagement"));
 const NoticeManagement = lazy(() => import("./pages/dashboard/super_admin/NoticeManagement"));
+const CouponManagement = lazy(() => import("./pages/dashboard/super_admin/CouponManagement"));
 const AdminReports = lazy(() => import("./pages/dashboard/super_admin/AdminReports"));
 
 // Franchise Pages (Lazy Loaded)
@@ -104,6 +105,7 @@ function App() {
               <Route path="students" element={<StudentManagement />} />
               <Route path="certificates" element={<CertificateManagement />} />
               <Route path="notices" element={<NoticeManagement />} />
+              <Route path="coupons" element={<CouponManagement />} />
               <Route path="reports" element={<AdminReports />} />
             </Route>
           </Route>

@@ -6,7 +6,7 @@ import {
   Building2, Award, Printer, Download, QrCode
 } from "lucide-react";
 import Meta from "../../components/common/Meta";
-import api from "../../api/axios";
+import { publicAPI } from "../../api/public.api";
 import { toast } from "react-toastify";
 
 import { breadcrumbJsonLd } from "../../utils/seo";
@@ -26,7 +26,7 @@ const VerifyCertificate = () => {
     setCertificateData(null);
     
     try {
-      const response = await api.get(`/public/verify-certificate/${certificateNo}`);
+      const response = await publicAPI.verifyCertificate(certificateNo);
       setCertificateData(response.data.data);
       toast.success("Certificate verified successfully!");
     } catch (err) {

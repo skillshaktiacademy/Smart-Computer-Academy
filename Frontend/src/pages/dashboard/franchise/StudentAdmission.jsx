@@ -10,6 +10,8 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "../../../api/axios";
+import { publicAPI } from "../../../api/public.api";
+import { franchiseAPI } from "../../../api/franchise.api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -25,22 +27,26 @@ const studentSchema = z.object({
   courseId: z.string().min(1, "Course is required"),
   admissionFee: z.coerce.number().min(0),
   totalFee: z.coerce.number().min(0),
+  couponCode: z.string().optional().or(z.literal("")),
 });
 
 const StudentAdmission = () => {
   const [step, setStep] = useState(1);
   const [files, setFiles] = useState({ photo: null, aadhar: null });
+  const [couponPreview, setCouponPreview] = useState(null);
+  const [couponError, setCouponError] = useState("");
+  const [isCheckingCoupon, setIsCheckingCoupon] = useState(false);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const { data: coursesData } = useQuery({
     queryKey: ["courses-list"],
-    queryFn: () => api.get("/public/courses"),
+    queryFn: () => publicAPI.getCourses(),
   });
 
   const courses = coursesData?.data?.data || [];
 
-  const { register, handleSubmit, formState: { errors, isValid }, watch, setValue } = useForm({
+  const { register, handleSubmit, formState: { errors, isValid }, watch, setValue, getValues } = useForm({
     resolver: zodResolver(studentSchema),
     defaultValues: { gender: "Male" }
   });
@@ -53,18 +59,53 @@ const StudentAdmission = () => {
     if (selectedCourse) setValue("totalFee", selectedCourse.fee);
   }, [selectedCourseId]);
 
+  const handleCheckCoupon = async () => {
+    const code = getValues("couponCode");
+    if (!code) return;
+
+    setIsCheckingCoupon(true);
+    setCouponError("");
+    setCouponPreview(null);
+    try {
+      const response = await franchiseAPI.validateCoupon({
+        code,
+        courseId: selectedCourseId,
+        totalFee: selectedCourse?.fee,
+      });
+      setCouponPreview(response.data.data);
+      toast.success("Coupon applied!");
+    } catch (err) {
+      setCouponError(err.response?.data?.message || "Invalid coupon code");
+    } finally {
+      setIsCheckingCoupon(false);
+    }
+  };
+
   const mutation = useMutation({
-    mutationFn: (data) => {
+    mutationFn: async (data) => {
       const formData = new FormData();
-      Object.entries(data).forEach(([key, value]) => formData.append(key, value));
+      Object.entries(data).forEach(([key, value]) => {
+        if (key !== "courseId" && key !== "admissionFee" && key !== "totalFee" && key !== "couponCode") {
+          formData.append(key, value);
+        }
+      });
       if (files.photo) formData.append("photo", files.photo);
       if (files.aadhar) formData.append("aadhar", files.aadhar);
-      return api.post("/students", formData, {
+
+      const studentRes = await api.post("/students", formData, {
         headers: { "Content-Type": "multipart/form-data" }
+      });
+      const student = studentRes.data.data;
+
+      return franchiseAPI.createEnrollment({
+        studentId: student._id,
+        courseId: data.courseId,
+        totalFee: data.totalFee,
+        couponCode: data.couponCode || undefined,
       });
     },
     onSuccess: () => {
-      toast.success("Student admitted successfully!");
+      toast.success("Student admitted and enrolled successfully!");
       queryClient.invalidateQueries(["franchise-stats"]);
       navigate("/dashboard/franchise/students");
     },
@@ -247,11 +288,41 @@ const StudentAdmission = () => {
                   </div>
                 </div>
 
+                <div>
+                  <label className="block text-xs font-black text-gray-400 uppercase mb-2">Coupon / Scholarship Code (optional)</label>
+                  <div className="flex gap-3">
+                    <input
+                      {...register("couponCode")}
+                      className="input-field py-3 uppercase"
+                      placeholder="e.g. WELCOME10"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleCheckCoupon}
+                      disabled={isCheckingCoupon || !selectedCourseId}
+                      className="px-6 py-3 font-bold text-primary bg-primary/10 rounded-xl hover:bg-primary/20 transition-all whitespace-nowrap"
+                    >
+                      {isCheckingCoupon ? <Loader2 className="animate-spin" size={18} /> : "Apply"}
+                    </button>
+                  </div>
+                  {couponError && <p className="text-[10px] text-error mt-2">{couponError}</p>}
+                  {couponPreview && (
+                    <p className="text-xs font-bold text-success mt-2">
+                      Discount applied: ₹{couponPreview.discount} off
+                    </p>
+                  )}
+                </div>
+
                 {selectedCourse && (
                   <div className="bg-gray-50 p-8 rounded-3xl border border-gray-100 flex items-center justify-between">
                     <div>
                       <h4 className="text-sm font-black text-gray-400 uppercase mb-2 tracking-widest">Total Course Fee</h4>
-                      <p className="text-4xl font-black text-primary">₹{selectedCourse.fee}</p>
+                      <p className="text-4xl font-black text-primary">
+                        ₹{couponPreview ? selectedCourse.fee - couponPreview.discount : selectedCourse.fee}
+                      </p>
+                      {couponPreview && (
+                        <p className="text-xs font-bold text-gray-400 line-through">₹{selectedCourse.fee}</p>
+                      )}
                     </div>
                     <div className="text-right">
                       <p className="text-xs font-bold text-gray-500 mb-1">Includes all study materials</p>
