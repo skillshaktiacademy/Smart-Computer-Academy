@@ -9,7 +9,7 @@ import { loadEnv, validateEnv } from "./shared/utils/env.utils.js";
 loadEnv();
 const env = validateEnv();
 
-const { connectDB } = await import("./shared/db/DbConnect.js");
+const { default: connectDB } = await import("./shared/db/DbConnect.js");
 const { app } = await import("./app.js");
 const { default: logger } = await import("./shared/utils/logger.js");
 
