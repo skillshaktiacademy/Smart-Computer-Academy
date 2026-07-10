@@ -159,7 +159,7 @@ export class AuthService {
     if (phone) user.phone = phone;
 
     if (file) {
-      const avatar = await uploadOnCloudinary(file.path);
+      const avatar = await uploadOnCloudinary(file.path, { folder: "images/avatars", resourceType: "image" });
       if (!avatar) throw new ApiError(400, "Error while uploading avatar");
 
       if (user.avatar?.public_id) {

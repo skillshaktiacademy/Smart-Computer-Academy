@@ -11,10 +11,31 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+/** Every upload lands under this root, then a media-type subfolder (see resolveMediaType). */
+const ROOT_FOLDER = "smart_computer_academy";
+
 /**
- * Uploads a local file to Cloudinary and deletes the local file after upload
+ * Maps a file's mimetype to the Cloudinary resource_type it must be uploaded
+ * as, and the top-level media folder it belongs in — so images, videos,
+ * audio, and documents (PDFs etc.) never land in the same folder. Cloudinary
+ * has no separate "audio" resource_type; audio files are uploaded as
+ * resource_type "video" (its transcoding pipeline handles both) but still
+ * get their own "audio" folder for organization.
+ * @param {string} [mimetype]
+ * @returns {{resourceType: string, mediaFolder: string}}
+ */
+export function resolveMediaType(mimetype = "") {
+  if (mimetype.startsWith("image/")) return { resourceType: "image", mediaFolder: "images" };
+  if (mimetype.startsWith("video/")) return { resourceType: "video", mediaFolder: "videos" };
+  if (mimetype.startsWith("audio/")) return { resourceType: "video", mediaFolder: "audio" };
+  return { resourceType: "raw", mediaFolder: "documents" };
+}
+
+/**
+ * Uploads a local file to Cloudinary and deletes the local file after upload.
  * @param {string} localFilePath
- * @param {{resourceType?: string}} [options]
+ * @param {{resourceType?: string, folder?: string}} [options] - folder is a
+ *   sub-path under ROOT_FOLDER, e.g. "images/students" or "documents/certificates".
  * @returns {Promise<object|null>}
  */
 const uploadOnCloudinary = async (localFilePath, options = {}) => {
@@ -23,7 +44,7 @@ const uploadOnCloudinary = async (localFilePath, options = {}) => {
 
     const response = await cloudinary.uploader.upload(localFilePath, {
       resource_type: options.resourceType || "auto",
-      folder: "smart_computer_academy",
+      folder: `${ROOT_FOLDER}/${options.folder || "misc"}`,
     });
 
     fs.unlinkSync(localFilePath);
@@ -40,7 +61,8 @@ const uploadOnCloudinary = async (localFilePath, options = {}) => {
 /**
  * Uploads an in-memory buffer to Cloudinary (no local temp file involved).
  * @param {Buffer} buffer
- * @param {{resourceType?: string, folder?: string}} [options]
+ * @param {{resourceType?: string, folder?: string}} [options] - folder is a
+ *   sub-path under ROOT_FOLDER, e.g. "documents/certificates".
  * @returns {Promise<object|null>}
  */
 const uploadBufferToCloudinary = (buffer, options = {}) => {
@@ -48,7 +70,7 @@ const uploadBufferToCloudinary = (buffer, options = {}) => {
     const uploadStream = cloudinary.uploader.upload_stream(
       {
         resource_type: options.resourceType || "auto",
-        folder: options.folder || "smart_computer_academy",
+        folder: `${ROOT_FOLDER}/${options.folder || "misc"}`,
       },
       (error, result) => {
         if (error) {

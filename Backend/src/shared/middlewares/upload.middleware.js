@@ -35,6 +35,29 @@ const upload = multer({
 });
 
 /**
+ * Study materials (unlike avatars/photos/logos/thumbnails) are explicitly
+ * modeled as pdf/video/image per StudyMaterial.fileType — the shared `upload`
+ * above rejects everything but images, which silently blocked teachers from
+ * ever uploading a PDF or video material. This filter allows the actual
+ * media types the feature is meant to support, with a size limit generous
+ * enough for short lecture videos.
+ */
+const materialFileFilter = (req, file, cb) => {
+  const allowed = /^(image|video|audio)\//.test(file.mimetype) || file.mimetype === "application/pdf";
+  if (allowed) {
+    cb(null, true);
+  } else {
+    cb(new ApiError(400, "Only images, videos, audio, or PDF files are allowed"), false);
+  }
+};
+
+const materialUpload = multer({
+  storage,
+  fileFilter: materialFileFilter,
+  limits: { fileSize: 100 * 1024 * 1024 }, // 100MB — accommodates short lecture videos
+});
+
+/**
  * Middleware to resize uploaded avatar to 200x200 using sharp
  */
 export const resizeAvatar = async (req, res, next) => {
@@ -77,4 +100,4 @@ export const cleanupTempFiles = (files) => {
   list.forEach(cleanupTempFile);
 };
 
-export { upload };
+export { upload, materialUpload };

@@ -114,7 +114,7 @@ export class FranchiseService {
     if (affiliationCertificateNo) franchise.affiliationCertificateNo = affiliationCertificateNo;
 
     if (file) {
-      const logo = await uploadOnCloudinary(file.path);
+      const logo = await uploadOnCloudinary(file.path, { folder: "images/franchises", resourceType: "image" });
       if (logo) franchise.logo = { url: logo.url, public_id: logo.public_id };
     }
 

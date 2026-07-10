@@ -129,7 +129,7 @@ export class CertificateService {
       const page = await browser.newPage();
       await page.setContent(htmlContent);
       const pdfBuffer = await page.pdf({ format: "A4", landscape: true, printBackground: true });
-      uploaded = await uploadBufferToCloudinary(pdfBuffer, { resourceType: "raw", folder: "smart_computer_academy/certificates" });
+      uploaded = await uploadBufferToCloudinary(pdfBuffer, { resourceType: "raw", folder: "documents/certificates" });
     } finally {
       await browser.close();
     }

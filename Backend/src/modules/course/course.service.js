@@ -25,7 +25,7 @@ export class CourseService {
 
     let thumbnail = null;
     if (file) {
-      const uploaded = await uploadOnCloudinary(file.path);
+      const uploaded = await uploadOnCloudinary(file.path, { folder: "images/courses", resourceType: "image" });
       if (uploaded) thumbnail = { url: uploaded.url, public_id: uploaded.public_id };
     }
 
@@ -55,7 +55,7 @@ export class CourseService {
     if (typeof isActive !== "undefined") course.isActive = isActive;
 
     if (file) {
-      const uploaded = await uploadOnCloudinary(file.path);
+      const uploaded = await uploadOnCloudinary(file.path, { folder: "images/courses", resourceType: "image" });
       if (uploaded) course.thumbnail = { url: uploaded.url, public_id: uploaded.public_id };
     }
 

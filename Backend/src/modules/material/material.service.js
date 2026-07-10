@@ -2,13 +2,20 @@ import { StudyMaterial } from "./studyMaterial.model.js";
 import { Student } from "../student/student.model.js";
 import { Enrollment } from "../enrollment/enrollment.model.js";
 import { ApiError } from "../../shared/utils/api.utils.js";
-import { uploadOnCloudinary } from "../../shared/config/cloudinary.config.js";
+import { uploadOnCloudinary, resolveMediaType } from "../../shared/config/cloudinary.config.js";
 
 export class MaterialService {
   static async uploadMaterial({ title, description, courseId, fileType }, requestingUser, file) {
     if (!file) throw new ApiError(400, "File is required");
 
-    const uploadedFile = await uploadOnCloudinary(file.path);
+    // Route by the file's actual mimetype (not the client-supplied fileType
+    // string) so images/videos/audio/PDFs always land in their own
+    // top-level Cloudinary folder regardless of what the form field said.
+    const { resourceType, mediaFolder } = resolveMediaType(file.mimetype);
+    const uploadedFile = await uploadOnCloudinary(file.path, {
+      resourceType,
+      folder: `${mediaFolder}/materials`,
+    });
     if (!uploadedFile) throw new ApiError(400, "Error uploading file to Cloudinary");
 
     return StudyMaterial.create({
@@ -16,7 +23,7 @@ export class MaterialService {
       description,
       courseId,
       file: { url: uploadedFile.url, public_id: uploadedFile.public_id },
-      fileType,
+      fileType: fileType || mediaFolder,
       franchiseId: requestingUser.franchiseId,
     });
   }

@@ -49,7 +49,7 @@ export class StudentService {
 
     let photo = null;
     if (file) {
-      const uploaded = await uploadOnCloudinary(file.path);
+      const uploaded = await uploadOnCloudinary(file.path, { folder: "images/students", resourceType: "image" });
       if (uploaded) photo = { url: uploaded.url, public_id: uploaded.public_id };
     }
 
@@ -144,7 +144,7 @@ export class StudentService {
     if (typeof isActive !== "undefined") student.isActive = isActive;
 
     if (file) {
-      const uploaded = await uploadOnCloudinary(file.path);
+      const uploaded = await uploadOnCloudinary(file.path, { folder: "images/students", resourceType: "image" });
       if (uploaded) student.photo = { url: uploaded.url, public_id: uploaded.public_id };
     }
 
