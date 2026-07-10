@@ -13,7 +13,7 @@ export const markAttendance = asyncHandler(async (req, res) => {
  * Get attendance history of a student
  */
 export const getStudentAttendance = asyncHandler(async (req, res) => {
-  const attendance = await AttendanceService.getStudentAttendance(req.params.id);
+  const attendance = await AttendanceService.getStudentAttendance(req.params.id, req.user);
   return res.status(200).json(new ApiResponse(200, attendance, "Student attendance history fetched"));
 });
 

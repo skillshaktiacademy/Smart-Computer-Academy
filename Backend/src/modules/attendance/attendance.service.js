@@ -4,6 +4,7 @@ import { Student } from "../student/student.model.js";
 import { ApiError } from "../../shared/utils/api.utils.js";
 import { NotificationService } from "../../shared/services/notification.service.js";
 import logger from "../../shared/utils/logger.js";
+import { assertCanAccessStudent } from "../../shared/utils/access.utils.js";
 
 export class AttendanceService {
   /**
@@ -59,7 +60,9 @@ export class AttendanceService {
     return marked;
   }
 
-  static async getStudentAttendance(studentId) {
+  static async getStudentAttendance(studentId, requestingUser) {
+    const student = await Student.findById(studentId);
+    assertCanAccessStudent(requestingUser, student);
     return Attendance.find({ studentId }).sort({ date: -1 });
   }
 

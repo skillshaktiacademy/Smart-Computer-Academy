@@ -15,7 +15,7 @@ export const enrollStudent = asyncHandler(async (req, res) => {
  * List all enrollments of a student
  */
 export const getStudentEnrollments = asyncHandler(async (req, res) => {
-  const enrollments = await EnrollmentService.getStudentEnrollments(req.params.studentId);
+  const enrollments = await EnrollmentService.getStudentEnrollments(req.params.studentId, req.user);
   return res.status(200).json(new ApiResponse(200, enrollments, "Enrollments fetched successfully"));
 });
 

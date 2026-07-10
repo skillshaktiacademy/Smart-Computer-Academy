@@ -6,11 +6,13 @@ const resultSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Student",
       required: true,
+      index: true,
     },
     examId: {
       type: Schema.Types.ObjectId,
       ref: "Exam",
       required: true,
+      index: true,
     },
     enrollmentId: {
       type: Schema.Types.ObjectId,

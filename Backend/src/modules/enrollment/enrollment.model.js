@@ -7,6 +7,7 @@ const enrollmentSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Student",
       required: true,
+      index: true,
     },
     courseId: {
       type: Schema.Types.ObjectId,
@@ -17,6 +18,7 @@ const enrollmentSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Franchise",
       required: true,
+      index: true,
     },
     enrollmentDate: {
       type: Date,
@@ -67,6 +69,9 @@ enrollmentSchema.pre("save", function (next) {
   }
   next();
 });
+
+// Speeds up enrollStudent's "already actively enrolled" duplicate check.
+enrollmentSchema.index({ studentId: 1, courseId: 1, status: 1 });
 
 enrollmentSchema.plugin(mongooseAggregatePaginate);
 

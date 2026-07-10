@@ -11,6 +11,7 @@ const studyMaterialSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Course",
       required: true,
+      index: true,
     },
     file: {
       url: {
@@ -26,6 +27,7 @@ const studyMaterialSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Franchise",
       required: true,
+      index: true,
     },
   },
   {

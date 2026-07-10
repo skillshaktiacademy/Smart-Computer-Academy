@@ -5,6 +5,7 @@ import { Student } from "../student/student.model.js";
 import { ApiError } from "../../shared/utils/api.utils.js";
 import { NotificationService } from "../../shared/services/notification.service.js";
 import logger from "../../shared/utils/logger.js";
+import { assertCanAccessStudent } from "../../shared/utils/access.utils.js";
 
 
 export class ResultService {
@@ -50,7 +51,9 @@ export class ResultService {
     return saved;
   }
 
-  static async getStudentResults(studentId) {
+  static async getStudentResults(studentId, requestingUser) {
+    const student = await Student.findById(studentId);
+    assertCanAccessStudent(requestingUser, student);
     return Result.find({ studentId }).populate("examId").sort({ createdAt: -1 });
   }
 

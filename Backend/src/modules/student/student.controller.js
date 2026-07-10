@@ -31,7 +31,7 @@ export const getMyCenterStudents = asyncHandler(async (req, res) => {
  * Get student details by enrollment number
  */
 export const getStudentByEnrollmentNo = asyncHandler(async (req, res) => {
-  const student = await StudentService.getStudentByEnrollmentNo(req.params.enrollmentNo);
+  const student = await StudentService.getStudentByEnrollmentNo(req.params.enrollmentNo, req.user);
   return res.status(200).json(new ApiResponse(200, student, "Student details fetched"));
 });
 
@@ -48,6 +48,6 @@ export const updateStudent = asyncHandler(async (req, res) => {
  * View/Generate student certificate
  */
 export const getStudentCertificate = asyncHandler(async (req, res) => {
-  const certificate = await StudentService.getStudentCertificate(req.params.id);
+  const certificate = await StudentService.getStudentCertificate(req.params.id, req.user);
   return res.status(200).json(new ApiResponse(200, certificate, "Certificate fetched"));
 });

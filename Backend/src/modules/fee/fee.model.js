@@ -6,6 +6,7 @@ const feeSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Student",
       required: true,
+      index: true,
     },
     courseId: {
       type: Schema.Types.ObjectId,
@@ -34,6 +35,7 @@ const feeSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Franchise",
       required: true,
+      index: true,
     },
   },
   {

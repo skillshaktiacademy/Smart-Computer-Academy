@@ -5,6 +5,7 @@ import { Course } from "../course/course.model.js";
 import { CouponService } from "../coupon/coupon.service.js";
 import { ApiError } from "../../shared/utils/api.utils.js";
 import { ROLES } from "../../shared/constants/roles.js";
+import { assertCanAccessStudent } from "../../shared/utils/access.utils.js";
 
 export class EnrollmentService {
   /**
@@ -70,7 +71,9 @@ export class EnrollmentService {
     }
   }
 
-  static async getStudentEnrollments(studentId) {
+  static async getStudentEnrollments(studentId, requestingUser) {
+    const student = await Student.findById(studentId);
+    assertCanAccessStudent(requestingUser, student);
     return Enrollment.find({ studentId }).populate("courseId");
   }
 

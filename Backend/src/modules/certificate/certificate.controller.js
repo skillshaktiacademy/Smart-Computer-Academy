@@ -21,7 +21,7 @@ export const verifyCertificate = asyncHandler(async (req, res) => {
  * Get student certificates
  */
 export const getStudentCertificates = asyncHandler(async (req, res) => {
-  const certificates = await CertificateService.getStudentCertificates(req.params.studentId);
+  const certificates = await CertificateService.getStudentCertificates(req.params.studentId, req.user);
   return res.status(200).json(new ApiResponse(200, certificates, "Certificates fetched"));
 });
 
@@ -37,6 +37,6 @@ export const getMyCertificates = asyncHandler(async (req, res) => {
  * Download certificate
  */
 export const downloadCertificate = asyncHandler(async (req, res) => {
-  const result = await CertificateService.downloadCertificate(req.params.id);
+  const result = await CertificateService.downloadCertificate(req.params.id, req.user);
   return res.status(200).json(new ApiResponse(200, result, "Download link fetched"));
 });

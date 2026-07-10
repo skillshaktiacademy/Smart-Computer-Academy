@@ -13,7 +13,7 @@ export const collectFee = asyncHandler(async (req, res) => {
  * Get fee history for a student
  */
 export const getFeeHistory = asyncHandler(async (req, res) => {
-  const history = await FeeService.getFeeHistory(req.params.studentId);
+  const history = await FeeService.getFeeHistory(req.params.studentId, req.user);
   return res.status(200).json(new ApiResponse(200, history, "Fee history fetched"));
 });
 

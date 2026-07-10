@@ -15,6 +15,7 @@ const examSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Franchise",
       required: true,
+      index: true,
     },
     examDate: {
       type: Date,

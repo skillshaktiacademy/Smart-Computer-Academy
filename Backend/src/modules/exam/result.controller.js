@@ -13,7 +13,7 @@ export const submitResults = asyncHandler(async (req, res) => {
  * Get results for a student
  */
 export const getStudentResults = asyncHandler(async (req, res) => {
-  const results = await ResultService.getStudentResults(req.params.id);
+  const results = await ResultService.getStudentResults(req.params.id, req.user);
   return res.status(200).json(new ApiResponse(200, results, "Student results fetched"));
 });
 

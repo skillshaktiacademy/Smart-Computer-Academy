@@ -19,6 +19,7 @@ const noticeSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Franchise",
       default: null, // null means global notice from super_admin
+      index: true,
     },
     isActive: {
       type: Boolean,

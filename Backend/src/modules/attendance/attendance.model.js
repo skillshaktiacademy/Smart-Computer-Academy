@@ -7,6 +7,7 @@ const attendanceSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Student",
       required: true,
+      index: true,
     },
     enrollmentId: {
       type: Schema.Types.ObjectId,
@@ -17,6 +18,7 @@ const attendanceSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Franchise",
       required: true,
+      index: true,
     },
     teacherId: {
       type: Schema.Types.ObjectId,
@@ -42,6 +44,10 @@ const attendanceSchema = new Schema(
     timestamps: true,
   }
 );
+
+// Speeds up markAttendance's per-day upsert lookup and prevents duplicate
+// attendance rows for the same student on the same day at the DB level.
+attendanceSchema.index({ studentId: 1, date: 1 });
 
 attendanceSchema.plugin(mongooseAggregatePaginate);
 

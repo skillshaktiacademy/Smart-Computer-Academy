@@ -7,6 +7,7 @@ import { uploadOnCloudinary } from "../../shared/config/cloudinary.config.js";
 import { ROLES } from "../../shared/constants/roles.js";
 import { NotificationService } from "../../shared/services/notification.service.js";
 import logger from "../../shared/utils/logger.js";
+import { assertCanAccessStudent } from "../../shared/utils/access.utils.js";
 
 /** Random 10-character temp password for newly-provisioned student logins. */
 const generateTempPassword = () => nanoid(10);
@@ -114,9 +115,9 @@ export class StudentService {
     return Student.findOne({ userId });
   }
 
-  static async getStudentByEnrollmentNo(enrollmentNo) {
+  static async getStudentByEnrollmentNo(enrollmentNo, requestingUser) {
     const student = await Student.findOne({ enrollmentNo }).populate("franchiseId");
-    if (!student) throw new ApiError(404, "Student not found");
+    assertCanAccessStudent(requestingUser, student);
     return student;
   }
 
@@ -151,7 +152,10 @@ export class StudentService {
     return student;
   }
 
-  static async getStudentCertificate(studentId) {
+  static async getStudentCertificate(studentId, requestingUser) {
+    const student = await Student.findById(studentId);
+    assertCanAccessStudent(requestingUser, student);
+
     const certificate = await Certificate.findOne({ studentId }).populate("courseId");
     if (!certificate) throw new ApiError(404, "Certificate not found for this student");
     return certificate;

@@ -4,11 +4,29 @@ import { Certificate } from "./certificate.model.js";
 import { Enrollment } from "../enrollment/enrollment.model.js";
 import { Result } from "../exam/result.model.js";
 import { Student } from "../student/student.model.js";
+import { assertCanAccessStudent } from "../../shared/utils/access.utils.js";
 import { ApiError } from "../../shared/utils/api.utils.js";
 import { uploadBufferToCloudinary } from "../../shared/config/cloudinary.config.js";
 import { generatePrefixedId } from "../../shared/utils/generator.utils.js";
 
 const ACADEMY_NAME = "Smart Computer Academy";
+
+/**
+ * Escapes HTML-significant characters. Student name / course title are
+ * franchise/admin-entered free text rendered into an HTML document that a
+ * real headless-Chromium instance (Puppeteer) parses and executes — without
+ * escaping, a crafted name (e.g. containing an <img> tag pointing at an
+ * internal URL) could trigger server-side requests from that browser
+ * process (SSRF) or otherwise break out of the intended markup.
+ */
+const escapeHtml = (value) =>
+  String(value ?? "").replace(/[&<>"']/g, (ch) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  }[ch]));
 
 const certificateHtml = ({ studentName, courseTitle, duration, grade, certificateNo, qrDataUrl }) => `
   <!DOCTYPE html>
@@ -36,9 +54,9 @@ const certificateHtml = ({ studentName, courseTitle, duration, grade, certificat
       <div class="header">${ACADEMY_NAME}</div>
       <div class="sub-header">CERTIFICATE OF COMPLETION</div>
       <p>This is to certify that</p>
-      <div class="student-name">${studentName}</div>
-      <p class="course-info">has successfully completed the <b>${courseTitle}</b></p>
-      <p>Duration: ${duration} | Grade: ${grade}</p>
+      <div class="student-name">${escapeHtml(studentName)}</div>
+      <p class="course-info">has successfully completed the <b>${escapeHtml(courseTitle)}</b></p>
+      <p>Duration: ${escapeHtml(duration)} | Grade: ${escapeHtml(grade)}</p>
 
       <div class="footer">
         <div class="qr-container">
@@ -148,7 +166,9 @@ export class CertificateService {
     };
   }
 
-  static async getStudentCertificates(studentId) {
+  static async getStudentCertificates(studentId, requestingUser) {
+    const student = await Student.findById(studentId);
+    assertCanAccessStudent(requestingUser, student);
     return Certificate.find({ studentId }).populate("courseId");
   }
 
@@ -159,9 +179,13 @@ export class CertificateService {
     return Certificate.find({ studentId: student._id }).populate("courseId");
   }
 
-  static async downloadCertificate(id) {
+  static async downloadCertificate(id, requestingUser) {
     const certificate = await Certificate.findById(id);
     if (!certificate) throw new ApiError(404, "Certificate not found");
+
+    const student = await Student.findById(certificate.studentId);
+    assertCanAccessStudent(requestingUser, student);
+
     return { downloadUrl: certificate.file.url };
   }
 }

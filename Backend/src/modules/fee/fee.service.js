@@ -3,6 +3,7 @@ import { Fee } from "./fee.model.js";
 import { Student } from "../student/student.model.js";
 import { ApiError } from "../../shared/utils/api.utils.js";
 import { ROLES } from "../../shared/constants/roles.js";
+import { assertCanAccessStudent } from "../../shared/utils/access.utils.js";
 
 /** Resolves the Student profile linked to a logged-in student's account. */
 async function resolveStudentForUser(userId) {
@@ -27,7 +28,9 @@ export class FeeService {
     });
   }
 
-  static async getFeeHistory(studentId) {
+  static async getFeeHistory(studentId, requestingUser) {
+    const student = await Student.findById(studentId);
+    assertCanAccessStudent(requestingUser, student);
     return Fee.find({ studentId }).sort({ paymentDate: -1 });
   }
 

@@ -40,6 +40,7 @@ const studentSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Franchise",
       required: true,
+      index: true,
     },
     addedBy: {
       type: Schema.Types.ObjectId,
@@ -50,11 +51,14 @@ const studentSchema = new Schema(
      * Null until a franchise admits + provisions login credentials for
      * this student (see student.service.js, Phase 4) — a self-registered
      * `student`-role User with no Student record yet is a valid, empty state.
+     * Indexed since every "my-X" self-service endpoint resolves via this
+     * field on the logged-in student's every dashboard page load.
      */
     userId: {
       type: Schema.Types.ObjectId,
       ref: "User",
       default: null,
+      index: true,
     },
     isActive: {
       type: Boolean,

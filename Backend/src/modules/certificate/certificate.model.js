@@ -7,6 +7,7 @@ const certificateSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Student",
       required: true,
+      index: true,
     },
     enrollmentId: {
       type: Schema.Types.ObjectId,
