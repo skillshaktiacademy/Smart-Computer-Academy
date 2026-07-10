@@ -60,6 +60,7 @@ export const ENDPOINTS = {
     CREATE_EXAM: "/exams",
     MY_CENTER_MATERIALS: "/materials/my-center",
     ATTENDANCE_BY_DATE: (date) => `/attendance/date/${date}`,
+    CREATE_ENROLLMENT: "/enrollments",
   },
 
   STUDENT: {

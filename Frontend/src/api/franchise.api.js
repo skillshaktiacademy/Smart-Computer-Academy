@@ -12,5 +12,6 @@ export const franchiseAPI = {
   createExam: (data) => api.post(ENDPOINTS.FRANCHISE.CREATE_EXAM, data),
   getMaterialsMyCenter: () => api.get(ENDPOINTS.FRANCHISE.MY_CENTER_MATERIALS),
   getAttendanceByDate: (date) => api.get(ENDPOINTS.FRANCHISE.ATTENDANCE_BY_DATE(date)),
+  createEnrollment: (data) => api.post(ENDPOINTS.FRANCHISE.CREATE_ENROLLMENT, data),
   validateCoupon: (data) => api.post(ENDPOINTS.ADMIN.VALIDATE_COUPON, data),
 };
