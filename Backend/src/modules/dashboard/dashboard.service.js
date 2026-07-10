@@ -6,6 +6,7 @@ import { Exam } from "../exam/exam.model.js";
 import { Student } from "../student/student.model.js";
 import { Franchise } from "../franchise/franchise.model.js";
 import { Course } from "../course/course.model.js";
+import { Result } from "../exam/result.model.js";
 import { ApiError } from "../../shared/utils/api.utils.js";
 
 export class DashboardService {
@@ -37,7 +38,20 @@ export class DashboardService {
 
     const enrollments = await Enrollment.find({ studentId: student._id });
     const pendingFees = enrollments.reduce((acc, curr) => acc + (curr.totalFee - curr.paidAmount), 0);
-    const courseProgress = enrollments.length > 0 ? 45 : 0; // placeholder
+
+    // Time-elapsed estimate (enrollmentDate -> expectedCompletionDate) for the
+    // student's active enrollment. There's no lesson/module completion
+    // tracking in the data model yet, so this is a real, grounded proxy
+    // rather than a fixed placeholder number shown to every student alike.
+    const activeEnrollment = enrollments.find((e) => e.status === "active") || enrollments[0];
+    let courseProgress = 0;
+    if (activeEnrollment?.expectedCompletionDate) {
+      const start = new Date(activeEnrollment.enrollmentDate).getTime();
+      const end = new Date(activeEnrollment.expectedCompletionDate).getTime();
+      if (end > start) {
+        courseProgress = Math.round(Math.min(100, Math.max(0, ((Date.now() - start) / (end - start)) * 100)));
+      }
+    }
 
     const earnedCertificates = await Certificate.countDocuments({ studentId: student._id });
 
@@ -68,8 +82,16 @@ export class DashboardService {
 
     const totalStudents = await Student.countDocuments({ franchiseId, isActive: true });
 
-    const upcomingExams = await Exam.find({ franchiseId, examDate: { $lte: new Date() } });
-    const pendingResults = upcomingExams.length; // placeholder
+    // "Pending results" = exams that have already happened but don't yet
+    // have a single Result recorded for them (i.e. still awaiting data
+    // entry) — not a count of upcoming exams, which was the prior bug here.
+    const pastExams = await Exam.find({
+      franchiseId,
+      status: "completed",
+    }).select("_id");
+    const pastExamIds = pastExams.map((e) => e._id);
+    const examIdsWithResults = await Result.distinct("examId", { examId: { $in: pastExamIds } });
+    const pendingResults = pastExamIds.length - examIdsWithResults.length;
 
     const todayAttendance = await Attendance.findOne({
       franchiseId,
@@ -81,32 +103,47 @@ export class DashboardService {
     return { totalStudents, pendingResults, todayAttendance: !!todayAttendance, assignedCourses };
   }
 
+  /**
+   * Sums an Enrollment collection's paidAmount/pendingFees via a MongoDB
+   * $group instead of pulling every document into Node and reducing in JS —
+   * matters here because these two callers scale with an entire franchise's
+   * or the whole platform's enrollment count, unlike getStudentStats' single
+   * student's enrollments (a handful of rows, not worth aggregating).
+   */
+  static async _sumEnrollmentFees(match) {
+    const [totals] = await Enrollment.aggregate([
+      { $match: match },
+      {
+        $group: {
+          _id: null,
+          totalRevenue: { $sum: "$paidAmount" },
+          pendingFees: { $sum: { $subtract: ["$totalFee", "$paidAmount"] } },
+        },
+      },
+    ]);
+    return { totalRevenue: totals?.totalRevenue || 0, pendingFees: totals?.pendingFees || 0 };
+  }
+
   static async getFranchiseStats(user) {
     const franchiseId = user.franchiseId;
     if (!franchiseId) throw new ApiError(400, "Franchise ID not found in user session");
 
-    const totalStudents = await Student.countDocuments({ franchiseId });
-
-    const enrollments = await Enrollment.find({ franchiseId });
-    const totalRevenue = enrollments.reduce((acc, curr) => acc + curr.paidAmount, 0);
-    const pendingFees = enrollments.reduce((acc, curr) => acc + (curr.totalFee - curr.paidAmount), 0);
-
-    const activeCourses = await Course.countDocuments({
-      $or: [{ franchiseId }, { franchiseId: null }],
-      isActive: true,
-    });
+    const [totalStudents, { totalRevenue, pendingFees }, activeCourses] = await Promise.all([
+      Student.countDocuments({ franchiseId }),
+      DashboardService._sumEnrollmentFees({ franchiseId }),
+      Course.countDocuments({ $or: [{ franchiseId }, { franchiseId: null }], isActive: true }),
+    ]);
 
     return { totalStudents, totalRevenue, activeCourses, pendingFees };
   }
 
   static async getAdminStats() {
-    const totalFranchises = await Franchise.countDocuments();
-    const totalStudents = await Student.countDocuments();
-
-    const enrollments = await Enrollment.find();
-    const totalRevenue = enrollments.reduce((acc, curr) => acc + curr.paidAmount, 0);
-
-    const activeNoticeCount = await Notice.countDocuments({ isActive: true, franchiseId: null });
+    const [totalFranchises, totalStudents, { totalRevenue }, activeNoticeCount] = await Promise.all([
+      Franchise.countDocuments(),
+      Student.countDocuments(),
+      DashboardService._sumEnrollmentFees({}),
+      Notice.countDocuments({ isActive: true, franchiseId: null }),
+    ]);
 
     return { totalFranchises, totalStudents, totalRevenue, activeNoticeCount };
   }
