@@ -23,11 +23,14 @@ const envSchema = z.object({
   CLOUDINARY_CLOUD_NAME: z.string().optional(),
   CLOUDINARY_API_KEY: z.string().optional(),
   CLOUDINARY_API_SECRET: z.string().optional(),
-  EMAIL_HOST: z.string().optional(),
-  EMAIL_PORT: z.string().optional(),
-  EMAIL_USER: z.string().optional(),
-  EMAIL_PASS: z.string().optional(),
-  EMAIL_FROM: z.string().optional(),
+  // Email (sent via Brevo's SMTP relay, smtp-relay.brevo.com:587).
+  // BREVO_API_KEY here is Brevo's "SMTP key" (format xsmtpsib-...) used as
+  // the SMTP AUTH password — not the REST "API Keys" key (xkeysib-...),
+  // which is a different credential for Brevo's HTTP API.
+  BREVO_API_KEY: z.string().optional(),
+  BREVO_SMTP_LOGIN: z.string().optional(),
+  FROM_EMAIL: z.string().optional(),
+  FROM_NAME: z.string().optional(),
   TWILIO_ACCOUNT_SID: z.string().optional(),
   TWILIO_AUTH_TOKEN: z.string().optional(),
   TWILIO_FROM_NUMBER: z.string().optional(),

@@ -55,13 +55,12 @@ const certificateSchema = new Schema(
  * countDocuments()-based read-then-write, and guarantees the number is
  * final before any QR code is generated against it).
  */
-certificateSchema.pre("save", async function (next) {
+certificateSchema.pre("save", async function () {
   if (!this.certificateNo) {
     const year = new Date().getFullYear();
     const sequence = await generatePrefixedId(`certificate-${year}`);
     this.certificateNo = `SSA/CERT/${year}/${sequence}`;
   }
-  next();
 });
 
 export const Certificate = mongoose.models.Certificate || mongoose.model("Certificate", certificateSchema);

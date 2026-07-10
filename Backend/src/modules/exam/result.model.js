@@ -54,13 +54,13 @@ resultSchema.virtual("isPassed").get(function () {
 /**
  * Pre-save hook to calculate grade
  */
-resultSchema.pre("save", async function (next) {
+resultSchema.pre("save", async function () {
   if (this.isModified("marksObtained")) {
     const exam = await mongoose.model("Exam").findById(this.examId);
-    if (!exam) return next();
+    if (!exam) return;
 
     const percentage = (this.marksObtained / exam.totalMarks) * 100;
-    
+
     if (this.marksObtained < exam.passingMarks) {
       this.grade = "F";
     } else if (percentage >= 90) {
@@ -75,7 +75,6 @@ resultSchema.pre("save", async function (next) {
       this.grade = "D";
     }
   }
-  next();
 });
 
 export const Result = mongoose.models.Result || mongoose.model("Result", resultSchema);

@@ -55,16 +55,19 @@ const courseSchema = new Schema(
 );
 
 /**
- * Pre-save hook to generate slug from title
+ * Pre-save hook to generate slug from title. No `next` parameter — with
+ * Mongoose 9's stricter middleware handling, declaring a `next` arg but not
+ * receiving a real callback (synchronous-style hook) throws "next is not a
+ * function"; a zero-arg hook is treated as synchronous/promise-based and
+ * simply completes when it returns.
  */
-courseSchema.pre("save", function (next) {
+courseSchema.pre("save", function () {
   if (this.isModified("title")) {
     this.slug = this.title
       .toLowerCase()
       .replace(/[^\w ]+/g, "")
       .replace(/ +/g, "-");
   }
-  next();
 });
 
 courseSchema.plugin(mongooseAggregatePaginate);

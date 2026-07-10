@@ -71,6 +71,10 @@ const certificateHtml = ({ studentName, courseTitle, duration, grade, certificat
   </html>
 `;
 
+// Exported for direct unit testing of the HTML-escaping/QR-encoding logic
+// without needing a live database (see scratchpad verification script).
+export { escapeHtml, certificateHtml };
+
 export class CertificateService {
   /**
    * Generate and issue a certificate for a completed, passed enrollment.

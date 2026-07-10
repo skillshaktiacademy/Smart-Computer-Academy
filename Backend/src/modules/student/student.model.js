@@ -75,13 +75,12 @@ const studentSchema = new Schema(
  * atomic Counter collection (avoids the race condition of a
  * countDocuments()-based read-then-write).
  */
-studentSchema.pre("save", async function (next) {
+studentSchema.pre("save", async function () {
   if (!this.enrollmentNo) {
     const year = new Date().getFullYear();
     const sequence = await generatePrefixedId(`student-${year}`);
     this.enrollmentNo = `SSA-${year}-${sequence}`;
   }
-  next();
 });
 
 studentSchema.plugin(mongooseAggregatePaginate);

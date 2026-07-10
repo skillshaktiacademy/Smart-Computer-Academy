@@ -79,18 +79,16 @@ const studentCredentialsTemplate = (name, loginId, tempPassword) => `
 export class MailService {
   static async send({ email, subject, html }) {
     try {
-      const mailOptions = {
-        from: `${ACADEMY_NAME} <${process.env.EMAIL_FROM}>`,
+      const info = await transporter.sendMail({
+        from: `${process.env.FROM_NAME || ACADEMY_NAME} <${process.env.FROM_EMAIL}>`,
         to: email,
         subject,
         html,
-      };
-
-      const info = await transporter.sendMail(mailOptions);
-      logger.info(`Email sent: ${info.messageId}`);
+      });
+      logger.info(`Email sent via Brevo SMTP relay: ${info.messageId}`);
       return info;
     } catch (error) {
-      logger.error("Email send failed", error);
+      logger.error(`Email send failed: ${error.message}`);
       throw new ApiError(500, "Email could not be sent");
     }
   }

@@ -59,7 +59,7 @@ const enrollmentSchema = new Schema(
 /**
  * Pre-save hook to update fee status based on paid amount
  */
-enrollmentSchema.pre("save", function (next) {
+enrollmentSchema.pre("save", function () {
   if (this.paidAmount >= this.totalFee) {
     this.feeStatus = "paid";
   } else if (this.paidAmount > 0) {
@@ -67,7 +67,6 @@ enrollmentSchema.pre("save", function (next) {
   } else {
     this.feeStatus = "pending";
   }
-  next();
 });
 
 // Speeds up enrollStudent's "already actively enrolled" duplicate check.
